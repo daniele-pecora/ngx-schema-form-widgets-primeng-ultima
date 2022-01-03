@@ -1,0 +1,176 @@
+.ngx-ui-widget-link {
+  margin: 0.2em;
+  display: inline-block;
+}
+.dots {
+  position: absolute;
+  left: 0px;
+}
+.ngx-ui-widget-link-icon {
+  vertical-align: middle;
+}
+
+.ngx-ui-widget-button {
+  margin: 0.2em;
+}
+
+:host ::ng-deep {
+  .ui-steps > ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .ui-steps-item {
+    &.vanished {
+      display: none;
+    }
+  }
+
+/*   @media (min-width: 641px) {
+    .ui-steps .ui-steps-item:last-of-type:before {
+      content: "...";
+      position: absolute;
+      transform: translate(-25px,15px);
+      background: white;
+      font-size: 1.1em;
+    }
+    .ngx-ui-wizard-widget-vertical-stepper .ui-steps .ui-steps-item:last-of-type:before {
+      content: "";
+    }
+    .ui-steps:before {
+      width:80%;
+      opacity: 0.99;
+    }
+  } */
+
+  .ui-accordion .ui-accordion-header {
+    /**
+     * Keep the icons in accordion header vertical aligned
+     */
+    .ui-accordion-icon,
+    .ui-accordion-left-icon,
+    .ui-accordion-right-icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.25em;
+      margin-right: 0.25em;
+    }
+  }
+
+  .ui-accordion-content {
+    /**
+     * This is required to make the tab of an accordion tab full height according its content.
+     * This style is taken from the class <code>.ui-g</code> from primeng.css.
+     * So if required keep this up to date.
+     */
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+}
+
+/** stepper vertical alignment */
+:host ::ng-deep {
+  /** vertical-align */
+  .ngx-ui-wizard-widget-vertical-stepper .ui-steps .ui-steps-item {
+    float: none;
+    width: auto;
+    display: list-item;
+
+    .ui-menuitem-link {
+      padding: 0.5em;
+      display: inline-block;
+      white-space: nowrap;
+    }
+  }
+  .ngx-ui-wizard-widget-vertical-stepper .ui-steps > ul {
+    display: block;
+  }
+
+  /** grey line */
+  .ngx-ui-wizard-widget-vertical-stepper .ui-steps:before {
+    display: none;
+  }
+
+  .ngx-ui-wizard-widget-accordion {
+    clear: both;
+  }
+}
+
+::ng-deep {
+  /** stepper modes */
+  .ngx-ui-wizard-widget-stepper-only-active-with-label {
+    /* keeps layout consistent when 'schema.widget.separateView' is set */
+    clear: both;
+
+    /** wizard stepper mode:   (1)-(2)-(3)-(current-with-label)-(5)-(6)-(7)-(8)-(last)*/
+    .ui-steps .ui-steps-item:not(.ui-steps-current) .ui-steps-title {
+      //display: none !important;
+    }
+  }
+
+  @media (min-width: 40.001em) {
+    .ngx-ui-wizard-widget-stepper-only-active-with-label {
+      /** wizard stepper mode:   (1)-(2)-(3)-(current-with-label)-(5)-(6)-(7)-(8)-(last)*/
+
+      /** stretch the items along the available form width */
+      .ui-steps ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .ui-steps li.ui-steps-item {
+        width: unset !important;
+      }
+    }
+  }
+  /** for small viewport */
+  @media (max-width: 40em) {
+    /** wizard stepper mode:   (past) --- (current-with-label) ----- (last)*/
+    .ngx-ui-wizard-widget-stepper-1-2-3 {
+      .ui-steps-item:not(:last-of-type):not(:first-of-type):not(.ui-steps-current) {
+        visibility: hidden;
+      }
+    }
+    /** fixes clipping of last element on small devices*/
+    .ui-steps .ui-steps-item:last-of-type {
+      width: unset !important;
+    }
+    .ui-steps-item:not(:last-of-type):not(:first-of-type):not(.ui-steps-current) {
+      display: none;
+    }
+
+  }
+
+  @media (max-width: 640px) {
+    /** wizard stepper mode:   (past) --- (current-with-label) ----- (last)*/
+    .ngx-ui-wizard-widget-stepper-1-2-3 {
+      /* keeps layout consistent when 'schema.widget.separateView' is set */
+      clear: both;
+
+      /** restore the label of the current step */
+      .ui-steps .ui-steps-item:not(:last-of-type).ui-steps-current .ui-menuitem-link .ui-steps-title {
+        display: unset;
+      }
+
+      /* show current step in the middle */
+      .ui-steps .ui-steps-item.ui-steps-current:not(:first-of-type):not(:last-of-type) {
+        justify-self: center;
+      }
+      /** */
+      .ui-steps .ui-steps-item:last-of-type.ui-steps-current .ui-menuitem-link .ui-steps-title {
+        display: unset;
+      }
+    }
+  }
+}
+
+/** hide closed accordion tabs */
+/** so they don't appear in tabindex when using tabnavigation */
+:host ::ng-deep {
+  .ui-accordion-content-wrapper[aria-hidden=true] {
+    display: none;
+  }
+}

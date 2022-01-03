@@ -1,0 +1,81 @@
+{
+    "type": "object",
+    "properties": {
+        "tablepack1": {
+            "widget": "form",
+            "type": "object",
+            "properties": {
+                "table_key_value1": {
+                    "title": "table 1 colgroup:colGroup1",
+                    "type": "string",
+                    "widget": {
+                        "id": "table",
+                        "style": "keyValue",
+                        "keyColGroup": "colGroup1",
+                        "keyColWidth": "max",
+                        "keyValue": [
+                            {
+                                "label": "Short content",
+                                "value": "Very short label"
+                            }
+                        ]
+                    }
+                },
+                "table_key_value2": {
+                    "title": "table 2 colgroup:colGroup1",
+                    "type": "string",
+                    "widget": {
+                        "id": "table",
+                        "style": "keyValue",
+                        "keyColGroup": "colGroup1",
+                        "keyColWidth": "max",
+                        "keyValue": [
+                            {
+                                "label": "Large of a very large cell content Large of a very large cell content",
+                                "value": "Very large label"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "tablepack2": {
+            "widget": "object",
+            "type": "object",
+            "properties": {
+                "table_key_value3": {
+                    "title": "table 3 colgroup:colGroup2",
+                    "type": "string",
+                    "widget": {
+                        "id": "table",
+                        "style": "keyValue",
+                        "keyColGroup": "colGroup2",
+                        "keyColWidth": "min",
+                        "keyValue": [
+                            {
+                                "label": "Short content",
+                                "value": "Very short label"
+                            }
+                        ]
+                    }
+                },
+                "table_key_value4": {
+                    "title": "table 4 colgroup:colGroup2",
+                    "type": "string",
+                    "widget": {
+                        "id": "table",
+                        "style": "keyValue",
+                        "keyColGroup": "colGroup2",
+                        "keyColWidth": "min",
+                        "keyValue": [
+                            {
+                                "label": "Large of a very large cell content Large of a very large cell content",
+                                "value": "Very large label"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

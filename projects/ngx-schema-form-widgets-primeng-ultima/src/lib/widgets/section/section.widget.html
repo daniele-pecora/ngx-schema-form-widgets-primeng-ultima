@@ -1,0 +1,163 @@
+<!--
+Element in json schema
+  - title = label
+  - description
+
+Element 'section' in 'widget'
+  - asCard       =  true|false (default:false) = show or don't show card layout
+  - style        = set to 'tabview' to show as tabview panels
+                   set to 'accordion' to show as accordion
+                   leaving this empty is equivalent to the object widget
+  - startSection = The section that will be open at start-up (default is the first section)
+  - sections     = Describes how a section header will be presented.
+                   The property corresponds to the property of the contained json section
+                   and the value will be the title
+                   leave empty to use the title from nested property
+
+                    key:section-property :  The property corresponds to the property of the contained json section
+                          - title        = Title
+                          - iconLeft     = Icon to the left of the title
+                          - iconRight    = Icon to the right of the title
+
+                  e.g.
+                    "sections" :  {
+                        "profile" : { "iconLeft" : "ui-icon-profile", "title" : "Your profile", "iconRight" : "ui-icon-send"},
+                        "address" : { "iconLeft" : "ui-icon-home", "title" : "Your address", "iconRight" : "ui-icon-home-small"},
+                        "comment" : { "iconLeft" : "some-icon", "title" : "Some comment", "iconRight" : "some-icon"}
+                    }
+
+                    the object representing the sections looks like
+
+                    "properties: {
+                        "profile" : { ... },
+                        "address" : { ... },
+                        "comment" : { ... }
+                    }
+
+
+                  you may also use a simpler approach where only the property and a title are set.
+
+                  e.g.
+                    "sections" :  {
+                        "profile" : "Your profile",
+                        "address" : "Your address",
+                        "comment" : "Some comment"
+                    }
+
+
+
+
+
+- showErrors : true|false
+               or object of type:
+                                {
+                                    position  : top|bottom, (default:top)   // shows the messages at top or at the bottom
+                                    all       : true|false, (default:false) // show also children's error messages
+                                    firstOnly : true|false, (default:false) // show only the first error message
+                                    codes     : string[],   ([])            // show only error messages that match any of this error codes, leave empty to show all errors
+                                 }
+  -->
+
+<ngx-ui-validation-messages
+  *ngIf="formProperty.schema.widget?.showErrors && formProperty.schema.widget?.showErrors?.position!=='bottom'"
+  [formComponent]="this"></ngx-ui-validation-messages>
+
+<div class="widget form-group {{['tabview','accordion'].includes(schema?.widget?.style)?'ui-g-12':''}}">
+  <label *ngIf="schema.title && formProperty.schema?.items?.type==='object'" [attr.for]="id"
+         class="horizontal control-label">
+    {{ schema.title }}
+  </label>
+  <div *ngIf="schema.title && formProperty.schema?.items?.type!=='object'">
+    <label [attr.for]="id" class="horizontal control-label">
+      {{ schema.title }}
+    </label>
+  </div>
+
+  <h5 *ngIf="schema.description">{{schema.description}}</h5>
+
+  <ng-template #sectionContainerWrapper>
+    <ng-container [ngSwitch]="schema?.widget?.style">
+      <ng-container *ngSwitchCase="'tabview'" [ngTemplateOutlet]="styleTemplateTabview"></ng-container>
+      <ng-container *ngSwitchCase="'accordion'" [ngTemplateOutlet]="styleTemplateAccordion"></ng-container>
+      <ng-container *ngSwitchDefault [ngTemplateOutlet]="styleTemplateDefault"></ng-container>
+    </ng-container>
+  </ng-template>
+
+  <ng-container *ngIf="!schema?.widget?.asCard;else sectionContainerWrapperCard">
+    <ng-container [ngTemplateOutlet]="sectionContainerWrapper"></ng-container>
+  </ng-container>
+  <ng-template #sectionContainerWrapperCard>
+    <div class="{{formProperty.schema?.widget?.asCard?'card ui-g-12':'ui-g-12'}}">
+      <ng-container [ngTemplateOutlet]="sectionContainerWrapper"></ng-container>
+    </div>
+  </ng-template>
+
+  <!-- ### Style TABS -->
+  <ng-template #styleTemplateTabview>
+
+    <p-tabView
+      class="ui-g"
+      (onClose)="onTabClose_Tabview($event.index)"
+      [activeIndex]="currentPage"
+    >
+    <ng-container
+    *ngFor="let itemPropertyKey of formProperty.propertiesId; let i=index"
+    >
+      <p-tabPanel
+        [selected]="currentPage===i"
+        [closable]="false"
+        leftIcon="{{(schema?.widget?.sections||{})[itemPropertyKey]?.iconLeft|IconName}}"
+        rightIcon="{{(schema?.widget?.sections||{})[itemPropertyKey]?.iconRight|IconName}}"
+        i18n-header
+        [header]="!testTypeObject((schema?.widget?.sections||{})[itemPropertyKey]) && (schema?.widget?.sections||{})[itemPropertyKey] ? (schema?.widget?.sections||{})[itemPropertyKey] : ((schema?.widget?.sections||{})[itemPropertyKey]?.title || formProperty.properties[itemPropertyKey]?.schema?.title || formProperty.properties[itemPropertyKey]?._path)"
+        *ngIf="formProperty.properties[itemPropertyKey]?.visible"
+        >
+        <div>
+          <sf-form-element [formProperty]="formProperty.properties[itemPropertyKey]"></sf-form-element>
+        </div>
+      </p-tabPanel>
+    </ng-container>
+    </p-tabView>
+
+  </ng-template>
+
+  <!-- ### Style Accordion -->
+  <ng-template #styleTemplateAccordion>
+
+    <p-accordion [activeIndex]="currentPage" (onOpen)="onTabOpen_Accordion($event)" (onClose)="onTabClose_Accordion($event)">
+      <ng-container
+      *ngFor="let itemPropertyKey of formProperty.propertiesId; let i=index"
+      >
+          <p-accordionTab
+          [selected]="currentPage===i"
+          i18n-header
+          [header]="testTypeObject((schema?.widget?.sections||{})[itemPropertyKey])? null : ((schema?.widget?.sections||{})[itemPropertyKey] || formProperty.properties[itemPropertyKey]?.schema?.title || formProperty.properties[itemPropertyKey]._path)"
+          *ngIf="formProperty.properties[itemPropertyKey].visible"
+        >
+          <p-header *ngIf="testTypeObject((schema?.widget?.sections||{})[itemPropertyKey])">
+            <span *ngIf="(schema?.widget?.sections||{})[itemPropertyKey]?.iconLeft" class="ui-accordion-left-icon {{(schema?.widget?.sections||{})[itemPropertyKey]?.iconLeft|IconName}}"></span>
+            <span>{{(schema?.widget?.sections||{})[itemPropertyKey]?.title || formProperty.properties[itemPropertyKey]?.schema?.title || formProperty.properties[itemPropertyKey]._path}}</span>
+            <span *ngIf="(schema?.widget?.sections||{})[itemPropertyKey]?.iconRight" class="ui-accordion-right-icon {{(schema?.widget?.sections||{})[itemPropertyKey]?.iconRight|IconName}}"></span>
+          </p-header>
+          <div>
+            <sf-form-element [formProperty]="formProperty.properties[itemPropertyKey]"></sf-form-element>
+          </div>
+        </p-accordionTab>
+      </ng-container>
+    </p-accordion>
+  </ng-template>
+
+  <!-- ### Style DEFAULT -->
+  <ng-template #styleTemplateDefault>
+    <ng-container *ngFor="let itemPropertyKey of formProperty.propertiesId">
+    <div *ngIf="formProperty.properties[itemPropertyKey]?.visible">
+      <span>{{formProperty.properties[itemPropertyKey].schema.title || formProperty.properties[itemPropertyKey]._path}}</span>
+      <sf-form-element [formProperty]="formProperty.properties[itemPropertyKey]"></sf-form-element>
+    </div>
+  </ng-container>
+  </ng-template>
+</div>
+
+<ngx-ui-validation-messages
+  *ngIf="formProperty.schema.widget?.showErrors && formProperty.schema.widget?.showErrors?.position==='bottom'"
+  [formComponent]="this"></ngx-ui-validation-messages>

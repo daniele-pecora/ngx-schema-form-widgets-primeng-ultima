@@ -1,0 +1,18 @@
+{
+  "collectable-simple": [
+    "entry 1",
+    "entry 2"
+  ],
+  "collectable": [
+    {
+      "loc": "Loc 1",
+      "toll": "Toll 1",
+      "message": "Hy 1"
+    },
+    {
+      "loc": "Loc 2",
+      "toll": "Toll 2",
+      "message": "Hy 2"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+    "type": "object",
+    "title": "Dropdown in Overlay Example",
+    "description": "",
+    "widget": {
+      "id": "form"
+    },
+    "properties": {
+      "dialogTable": {
+        "type": "object",
+        "widget": {
+          "id": "dialog",
+          "closable": true,
+          "header": "Dialog Tabelle",
+          "show": true,
+          "contentType": "form"
+        },
+        "properties": {
+          "tab": {
+            "type": "object",
+            "widget": {
+              "id": "table",
+              "style": "keyValue",
+              "collapsed": false,
+              "caption": "Tabelle",
+              "keyValue": [
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Name",
+                  "value": "Max"
+                },
+                {
+                  "label": "Alter",
+                  "value": "42"
+                },
+                {
+                  "label": "Alter",
+                  "value": "42"
+                },
+                {
+                  "label": "Alter",
+                  "value": "42"
+                }
+              ]
+            },
+            "properties": {}
+          }
+        }
+      }
+    }
+  }

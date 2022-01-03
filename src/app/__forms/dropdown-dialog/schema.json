@@ -1,0 +1,114 @@
+{
+  "type": "object",
+  "title": "Dropdown in Overlay Example",
+  "description": "",
+  "widget": {
+    "id": "form"
+  },
+  "properties": {
+    "select2": {
+      "type": "string",
+      "title": "Bitte wählen Sie aus (2)",
+      "widget": {
+        "id": "select"
+      },
+      "oneOf": [
+        {
+          "description": "Element 1",
+          "enum": [
+            "A"
+          ]
+        },
+        {
+          "description": "Element 2",
+          "enum": [
+            "B"
+          ]
+        },
+        {
+          "description": "Element 3",
+          "enum": [
+            "C"
+          ]
+        },
+        {
+          "description": "Element 4",
+          "enum": [
+            "D"
+          ]
+        },
+        {
+          "description": "Element 5",
+          "enum": [
+            "E"
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "type": "object",
+      "properties": {
+        "prop1": {
+          "type": "string"
+        },
+        "prop2": {
+          "type": "string"
+        },
+        "select": {
+          "type": "string",
+          "title": "Bitte wählen Sie aus",
+          "widget": {
+            "id": "select"
+          },
+          "oneOf": [
+            {
+              "description": "Element 1",
+              "enum": [
+                "A"
+              ]
+            },
+            {
+              "description": "Element 2",
+              "enum": [
+                "B"
+              ]
+            },
+            {
+              "description": "Element 3",
+              "enum": [
+                "C"
+              ]
+            },
+            {
+              "description": "Element 4",
+              "enum": [
+                "D"
+              ]
+            },
+            {
+              "description": "Element 5",
+              "enum": [
+                "E"
+              ]
+            }
+          ]
+        }
+      },
+      "widget": {
+        "id": "dialog",
+        "closable": true,
+        "header": "",
+        "contentType": "form",
+        "buttons": [
+          {
+            "label": "Button",
+            "severity": "primary",
+            "id": "id",
+            "parameters": {}
+          }
+        ],
+        "show": true
+      }
+    }
+  }
+}

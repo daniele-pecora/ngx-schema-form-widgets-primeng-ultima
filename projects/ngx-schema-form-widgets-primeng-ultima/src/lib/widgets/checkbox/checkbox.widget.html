@@ -1,0 +1,45 @@
+<!--
+Element 'checkbox'
+  - title = label
+
+Element 'checkbox' in 'widget'
+  - labelPosition = after|before
+-->
+<!--
+Element 'widget'
+  - noSpacer = Allows to hide the preserved free space where the helper-text and validation message are displayed.
+              `false` (default) = shows the preserved space
+              `true` = hides the preserved space when no helper-text and validation message is present.
+              'always' , will hide the space completely and will never display a helper-text or validation message
+-->
+<div class="ui-g-12">
+  <div class="md-checkbox">
+    <label *ngIf="schema?.widget?.labelPosition==='before'" for="{{id}}">{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }}<ngx-ui-widget-required-mark [formProperty]="formProperty"></ngx-ui-widget-required-mark></label>
+    <p-checkbox
+      inputId="{{id}}"
+      [attr.name]="name"
+      [formControl]="control"
+      [disabled]="schema.readOnly"
+      indeterminate="control.value !== false && control.value !== true ? true :null"
+      [value]="control.value"
+      binary="true"
+      
+      
+      [required]="(formProperty|IsRequiredAttr)"
+    ></p-checkbox><!--moved to label
+      label="{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }} {{formProperty|IsRequiredAsterisk}}"
+    -->
+    <label *ngIf="schema?.widget?.labelPlacement!=='before'" for="{{id}}">{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }}<ngx-ui-widget-required-mark [formProperty]="formProperty"></ngx-ui-widget-required-mark></label>
+    <input *ngIf="schema.readOnly" [attr.name]="name" type="hidden" [formControl]="control">
+    <ngx-ui-field-validation-messages
+      [formComponent]="this"
+      [validationErrors]="control.errors"
+    >
+      <div class="ui-message ui-messages-info"
+           *ngIf="schema.description">
+        {{schema.description}}
+      </div>
+    </ngx-ui-field-validation-messages>
+  </div>
+
+</div>

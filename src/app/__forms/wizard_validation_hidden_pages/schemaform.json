@@ -1,0 +1,211 @@
+{
+    "title": "wizard",
+    "readOnly": true,
+    "buttons": [
+      {
+        "id": "action_toggle_wizard_view",
+        "icon": "ui-icon-compare",
+        "description": "Toggle wizard mode (default -> accordion)"
+      },
+      {
+        "id": "action_toggle_wizard_stepper_view",
+        "icon": "ui-icon-border-inner",
+        "description": "Toggle wizard stepper mode (horizontal -> vertical)"
+      },
+      {
+        "id": "action_wizard_page_show_hide",
+        "icon": "ui-icon-visibility-off",
+        "iconPos": "right",
+        "description": "Toggle page",
+        "label": "Toggle page",
+        "severity": "secondary"
+      }
+    ],
+    "widget": {
+      "id": "wizard",
+      "live": true,
+      "style": "default",
+      "buttons": {
+        "prev": {
+          "label": "Zur\u00FCck",
+          "severity": "secondary",
+          "icon": "ui-icon-arrow-back",
+          "iconPos": "left",
+          "actionId": "wizard_action_prev",
+          "styleClass": "flat"
+        },
+        "next": {
+          "label": "Weiter",
+          "severity": "primary",
+          "icon": "ui-icon-arrow-forward",
+          "iconPos": "right",
+          "actionId": "wizard_action_next",
+          "styleClass": "flat"
+        },
+        "finish": {
+          "label": "Absenden",
+          "severity": "info",
+          "icon": "ui-icon-cloud-upload",
+          "iconPos": "right",
+          "actionId": "wizard_action_finish",
+          "styleClass": "flat"
+        }
+      },
+      "separateView": false,
+      "asCard": true,
+      "stepper": {
+        "page1": "Start",
+        "page2": "Betroffener",
+        "page3": "Kontakt",
+        "page4": "Person",
+        "page5": "Gewerbe",
+        "page6": "Wichtige Dokumente",
+        "page7": "Gebuehren",
+        "page8": "Hilfe",
+        "page9": "I",
+        "page10": "J",
+        "page11": "K",
+        "page12": "L",
+        "page13": "M",
+        "page14": "N",
+        "page15": "Abschluss"
+      }
+    },
+    "properties": {
+      "name": {},
+      "obj": {
+        "type": "object",
+        "widget": {
+          "id": "form"
+        },
+        "properties": {
+          "alpha": {
+            "type": "string"
+          },
+          "beta": {
+            "type": "string"
+          },
+          "gamma": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "alpha"
+        ]
+      },
+      "field": {},
+      "field2": {},
+      "field3": {},
+      "field4": {},
+      "field5": {},
+      "field6": {},
+      "field7": {},
+      "field8": {
+        "type": "object",
+        "properties": {
+          "prop": {
+            "type": "string"
+          }
+        },
+        "required": ["prop"]
+      },
+      "field9": {},
+      "field10": {},
+      "field11": {},
+      "field12": {},
+      "field13": {}
+    },
+    "fieldsets": [
+      {
+        "id": "page1",
+        "fields": [
+          "name"
+        ]
+      },
+      {
+        "id": "page2",
+        "fields": [
+          "obj"
+        ]
+      },
+      {
+        "id": "page3",
+        "fields": [
+          "field"
+        ]
+      },
+      {
+        "id": "page4",
+        "fields": [
+          "field2"
+        ]
+      },
+      {
+        "id": "page5",
+        "fields": [
+          "field3"
+        ]
+      },
+      {
+        "id": "page6",
+        "fields": [
+          "field4"
+        ]
+      },
+      {
+        "id": "page7",
+        "fields": [
+          "field5"
+        ]
+      },
+      {
+        "id": "page8",
+        "fields": [
+          "field6"
+        ]
+      },
+      {
+        "id": "page9",
+        "fields": [
+          "field7"
+        ]
+      },
+      {
+        "id": "page10",
+        "fields": [
+          "field8"
+        ]
+      },
+      {
+        "id": "page11",
+        "fields": [
+          "field9"
+        ]
+      },
+      {
+        "id": "page12",
+        "fields": [
+          "field10"
+        ]
+      },
+      {
+        "id": "page13",
+        "fields": [
+          "field11"
+        ]
+      },
+      {
+        "id": "page14",
+        "fields": [
+          "field12"
+        ]
+      },
+      {
+        "id": "page15",
+        "fields": [
+          "field13"
+        ]
+      }
+    ]
+  }
+  

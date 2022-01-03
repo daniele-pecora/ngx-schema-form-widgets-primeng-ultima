@@ -1,0 +1,52 @@
+{
+    "widget": "form",
+    "properties": {
+        "auswahlSee": {
+            "widget": {
+                "id": "select"
+            }
+        },
+        "beschreibung1": {
+            "widget": {
+                "id": "bbcode",
+                "bbcode": [
+                    "[h1]See 1 - Beschreibung[/h2]",
+                    "[p]Text See 1: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.[/p]"
+                ]
+            },
+            "visibleIf": {
+                "auswahlSee": [
+                    "see1"
+                ]
+            }
+        },
+        "beschreibung2": {
+            "widget": {
+                "id": "bbcode",
+                "bbcode": [
+                    "[h1]See 2 - Beschreibung[/h2]",
+                    "[p]Text See 2: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.[/p]"
+                ]
+            },
+            "visibleIf": {
+                "auswahlSee": [
+                    "see2"
+                ]
+            }
+        },
+        "beschreibung3": {
+            "widget": {
+                "id": "bbcode",
+                "bbcode": [
+                    "[h1]See 3 - Beschreibung[/h2]",
+                    "[p]Text See 3: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.[/p]"
+                ]
+            },
+            "visibleIf": {
+                "auswahlSee": [
+                    "see3"
+                ]
+            }
+        }
+    }
+}

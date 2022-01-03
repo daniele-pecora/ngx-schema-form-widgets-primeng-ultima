@@ -1,0 +1,40 @@
+<!--
+Element 'schema':
+        - title
+        - name
+        - description
+        - oneOf
+        - readOnly
+-->
+<!--
+Element 'widget'
+  - noSpacer = Allows to hide the preserved free space where the helper-text and validation message are displayed.
+              `false` (default) = shows the preserved space
+              `true` = hides the preserved space when no helper-text and validation message is present.
+              'always' , will hide the space completely and will never display a helper-text or validation message
+-->
+<div class="ui-g-12">
+  <div class="md-radiogroup">
+    <label [attr.for]="id">{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }}<ngx-ui-widget-required-mark [formProperty]="formProperty"></ngx-ui-widget-required-mark></label>
+    <div *ngFor="let option of schema.oneOf" class="radio">
+      <p-radioButton
+        [name]="name"
+        [value]="option.enum[0]"
+        [disabled]="schema.readOnly||option.readOnly"
+        [formControl]="control"
+        label="{{option.description || (schema.hasOwnProperty('title') ? schema.title :formProperty.path) + ' ' + option.enum[0]}}"
+        [inputId]="createRadioId(option.enum[0])"
+        #radioButtonEl
+      ></p-radioButton>
+    </div>
+    <ngx-ui-field-validation-messages
+      [formComponent]="this"
+      [validationErrors]="control.errors"
+    >
+      <div class="ui-message ui-messages-info"
+           *ngIf="schema.description">
+        {{schema.description}}
+      </div>
+    </ngx-ui-field-validation-messages>
+  </div>
+</div>

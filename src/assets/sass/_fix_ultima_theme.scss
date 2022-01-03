@@ -1,0 +1,551 @@
+/**
+ * Fix for missing support for PLACEHOLDER and Helper Text and more
+ * @author daniele.pecora@hsh-berlin.com
+ */
+ body {
+  /**
+   * Fix label alignment for autocomplete input field.
+   * Lets it appear like a regular input field.
+   */
+  .md-autocomplete {
+    @extend .md-inputfield;
+  }
+
+  /**
+   * Fixes missing focus signal on inputswitch.
+   * We simply draw a border...
+   */
+  .ui-inputswitch {
+    &.ui-inputswitch-checked {
+      .ui-inputswitch-handle.ui-state-focus {
+        // TODO sould we remove the border on active state?
+      }
+    }
+
+    .ui-inputswitch-handle.ui-state-focus {
+      border: solid 2px $primaryColor !important;
+    }
+  }
+
+  /*
+   * Adding the missing selectors to move the label
+   * label to top if placeholder is set.
+   * Also for textareas, dropdowns, autocomplete, calendar, slider.
+   */
+  .md-inputfield {
+
+    [data-ngx-ui-placeholder] ~ label, p-slider ~ label, p-dropdown ~ label, // p-calendar, p-slider, p-spinner, p-autoComplete, p-inputMask
+    ___not_per_se____textarea ~ label, // textareas
+    input[placeholder] ~ label, // input fields
+    input:focus ~ label,
+    input.ui-state-filled ~ label,
+    .ui-inputwrapper-focus ~ label,
+    .ui-inputwrapper-filled ~ label {
+      top: -20px;
+      font-size: 12px;
+      color: $primaryColor;
+    }
+
+    /*
+      * Adding the missing css definitions
+      * for the class "ui-messages-info"
+      * allows you to use this message type as helper text
+      * in the same manner as the message type "ui-messages-error"
+      */
+    .ui-message {
+      background-color: transparent;
+      border: 0 none;
+      margin: 0px;
+      font-size: .75em;
+      color: $primaryColor;
+
+      &.ui-messages-info {
+        color: $primaryColor;
+      }
+    }
+  }
+
+  .md-dropdown, .md-select_button {
+    display: block;
+    position: relative;
+
+    & > label {
+      color: #999;
+      font-weight: normal;
+      position: absolute;
+      pointer-events: none;
+      left: 5px;
+      top: 1px;
+      transition: 0.3s ease all;
+      -moz-transition: 0.3s ease all;
+      -webkit-transition: 0.3s ease all;
+
+      top: -20px;
+      font-size: 12px;
+      color: $primaryColor;
+    }
+  }
+
+  .md-radiogroup {
+
+    & > label {
+      font-size: 12px;
+      color: $primaryColor;
+    }
+  }
+
+  /**
+   * because of the obove .md-inputfield rule:
+   * Redmarker for invalid fields must be redefined
+   */
+  p-calendar, p-slider, p-spinner, p-autoComplete, p-dropdown {
+    &.ng-invalid.ng-dirty, &.ng-dirty.ng-invalid {
+      .ui-inputtext {
+        border-bottom-color: $inputBorderErrorColor;
+      }
+    }
+  }
+
+  /**
+   * because of the obove .md-inputfield rule:
+   * Redmarker for invalid fields label must be redefined
+   */
+  .md-inputfield, .md-autocomplete {
+    [data-ngx-ui-placeholder] {
+      &.ng-dirty.ng-invalid ~ label, &.ng-invalid.ng-dirty ~ label {
+        color: $inputErrorTextColor;
+      }
+    }
+  }
+
+  /**
+   * because of the obove .md-inputfield rule:
+   * Redmarker for invalid fields label must be redefined
+   */
+  p-calendar, p-slider, p-spinner, p-autoComplete, p-dropdown, p-inputMask {
+    &.ng-dirty.ng-invalid ~ label {
+      color: $inputErrorTextColor;
+    }
+  }
+
+  /**
+   * This will enable helper text and error messages for radio groups and dropdowns.
+   * This class names are not part of ULTIMA.
+   * So must be carefully when updating ULTIMA if this overrides something.
+   * Must be used for Radiogroups and Dropdown:
+   * e.G.:<br/>
+   * <pre>
+   * <span class="md-radiogroup">
+   * <label>Your radio group label</label>
+   * <p-radioButton ...></p-radioButton>
+   * <p-radioButton ...></p-radioButton>
+   * <p-radioButton ...></p-radioButton>
+   * </span>
+   * </pre>
+   * or for
+   * <pre>
+   * <span class="md-dropdown">
+   * <label>Your dropdown label</label>
+   * <p-dropdown [options]="gendersSelect" formControlName="gender" [autoWidth]="true"></p-dropdown>
+   * </span>
+   * ...etc...
+   * </pre>
+   * or
+   * <pre>
+   * <span class="md-autocomplete">
+   * ...
+   * </pre>
+   * or
+   * <pre>
+   * <span class="md-textarea">
+   * ...
+   * </pre>
+   * or
+   * <pre>
+   * <span class="md-checkbox">
+   * ...
+   * </pre>
+   * or
+   * <pre>
+   * <span class="md-inputfield_upload">
+   * ...
+   * </pre>
+   * ...etc...
+   */
+  .md-radiogroup, .md-dropdown, .md-textarea, .md-switch, .md-checkbox, .md-autocomplete, .md-inputfield_upload, /** added custom md defintion md-select_button */
+  .md-select_button {
+    /*
+      * Adding the missing css definitions
+      * for the class "ui-messages-info"
+      * allows you to use this message type as helper text
+      * in the same manner as the message type "ui-messages-error"
+      */
+    .ui-message {
+      background-color: transparent;
+      border: 0 none;
+      margin: 0px;
+      font-size: .75em;
+      color: $primaryColor;
+
+      &.ui-messages-error {
+        background-color: transparent;
+        border: 0 none;
+        margin: 0px;
+        color: #e62a10;
+        font-size: .75em;
+      }
+
+      &.ui-messages-info {
+        color: $primaryColor;
+      }
+    }
+  }
+
+  /**
+   * This fixes how the the ui-message is shown as material design helper text.
+   * With primeng 5.0.0-rc.0 the messages are set as inline-block display type,
+   * what does align the helper text, when too short, around to the input field.
+   * According to material design guide the helper text should be shown under the input field.
+   * This may be fixed by Ultima in future releases.
+   */
+  *[class^="md-"] .ui-message {
+    display: block;
+  }
+
+  /**
+   * Workaround: Remove icon bottom border.
+   * - Since for now we are not capable to align all prefix and suffix icons in line with the input field
+   * it looks better to not show the bottom border at all.
+   * -  Position the icon a vertical top.
+   * - And more over do align all inputgroup-addon in horizontal line rather then vertical
+   */
+  .ui-inputgroup {
+
+    /**
+     * This fixed the position of ui-messages when shown in a .ui-inputgroup.
+     * This happens then when some prefix or suffix icons or text are used.
+     */
+    *[class^="md-"] {
+      -webkit-box-flex: initial;
+      -ms-flex: initial;
+      flex: initial;
+      width: auto;
+      display: initial;
+
+      /**
+       * This fixed the position of the floating labels
+       */
+      label {
+        top: 1px;
+      }
+
+      [data-ngx-ui-placeholder] ~ label, p-slider ~ label, p-dropdown ~ label, // p-calendar, p-spinner, p-autoComplete, p-inputMask
+      textarea ~ label, // textareas
+      input[placeholder] ~ label, // input fields
+      input:focus ~ label,
+      input.ui-state-filled ~ label,
+      .ui-inputwrapper-focus ~ label,
+      .ui-inputwrapper-filled ~ label {
+        top: -20px;
+      }
+
+    }
+
+    /**
+     * This fixed the position of the prefix suffix icons and text
+     */
+    .ui-inputgroup-addon {
+      border-width: 0;
+      align-self: flex-start;
+
+      i {
+        display: inline-block;
+      }
+    }
+  }
+
+  /**
+   * fix required with ultima 5.2.2 :
+   * This fixes the width of the messages used as helper text for input fields
+   */
+  .md-inputfield {
+    display: block;
+    position: relative;
+
+    .ui-message {
+      /** ultima 5.2.2 set this to position: absolute, and destroys the helper texts */
+      position: unset !important;
+
+      & .ui-messages-error {
+
+      }
+    }
+  }
+}
+
+/**
+The attribute [data-ngx-ui-placeholder] will be set from widget library ngx-schema-form-widgets-primeng-ultima
+ */
+
+/** OVERRIDES **/
+
+/** START: make sure that very large options text do not cause the caret to overlap the selected option */
+.ui-dropdown-label {
+  text-overflow: ellipsis;
+}
+
+/** END: make sure that very large options text do not cause the caret to overlap the selected option */
+
+/** START: make sure checkbox label don't wrap under the checkbox */
+.ui-chkbox-label {
+  display: inline-block !important;
+  white-space: normal !important;
+  vertical-align: top !important;
+}
+
+.ui-chkbox {
+  display: inline-block !important;
+  vertical-align: top !important;
+}
+
+.md-checkbox {
+  white-space: nowrap;
+}
+
+/* restore the wrap property for the validation messages */
+.md-checkbox ngx-ui-field-validation-messages {
+  white-space: normal;
+}
+
+/** END: make sure checkbox label don't wrap under the checkbox */
+
+
+/**
+ * missing borders on select-buttons for the first and last button
+ * when showing buttons inlined.
+ * this is the case on large screens (not mobiles).
+ */
+.ui-buttonset {
+  .ui-button {
+    &:first-child {
+      @include border-radius-left($borderRadius);
+    }
+
+    &:last-child {
+      @include border-radius-right($borderRadius);
+    }
+
+    &.ui-state-focus {
+      outline: 0 none;
+      background-color: lighten($primaryColor, 10%);
+    }
+  }
+}
+
+/**
+ * Fix using filled input as filled textbox
+ */
+body {
+  .md-inputfield.md-inputfield-fill .ui-chips,
+  .md-inputfield-fill.md-autocomplete .ui-chips,
+  .md-inputfield.md-inputfield-fill .ui-multiselect,
+  .md-inputfield-fill.md-autocomplete .ui-multiselect,
+  .md-inputfield.md-inputfield-fill .ui-dropdown,
+  .md-inputfield-fill.md-autocomplete .ui-dropdown,
+  .md-inputfield.md-inputfield-fill textarea,
+  .md-inputfield-fill.md-autocomplete textarea,
+  .md-inputfield.md-inputfield-fill input,
+  .md-inputfield-fill.md-autocomplete input {
+    padding-top: 24px;
+  }
+
+  .md-inputfield.md-inputfield-fill label,
+  .md-inputfield-fill.md-autocomplete label {
+    margin-top: 20px;
+  }
+
+  .md-textarea.md-inputfield-fill textarea {
+    padding-top: 24px;
+  }
+
+  .md-textarea.md-inputfield-fill label {
+    margin-top: 0;
+  }
+}
+
+body {
+
+  /**
+   * full width inputs
+   */
+  .ngx-ui-widget-full-width.ui-inputgroup .md-inputfield,
+  .ngx-ui-widget-full-width.ui-inputgroup .md-inputfield,
+  .ngx-ui-widget-full-width.ui-inputgroup .md-autocomplete,
+  .ngx-ui-widget-full-width.ui-inputgroup .md-dropdown {
+    flex: unset;
+  }
+
+  .ngx-ui-widget-full-width.ui-inputgroup .md-inputfield,
+  .ngx-ui-widget-full-width.ui-inputgroup .ui-calendar,
+  .ngx-ui-widget-full-width.ui-inputgroup .ui-spinner,
+  .ngx-ui-widget-full-width.ui-inputgroup .ui-autocomplete,
+  .ngx-ui-widget-full-width.ui-inputgroup input.ui-widget,
+  .ngx-ui-widget-full-width.md-textarea textarea {
+    width: 100%;
+  }
+
+  /* dropdown */
+  .ngx-ui-widget-full-width.ui-inputgroup .md-dropdown,
+  .ngx-ui-widget-full-width.ui-inputgroup .md-dropdown .ui-widget {
+    width: 100% !important;
+  }
+}
+
+body {
+  /**
+   * Support for accent button type
+   */
+  @mixin vo_buttons_color_accent {
+    color: $buttonTextColor;
+    background-color: $accentColor;
+
+    &:hover {
+      background-color: $accentDarkColor;
+    }
+    &:enabled:not(:focus):hover {
+      background-color: $accentDarkColor;
+    }
+    &:focus {
+      background-color: lighten($accentDarkColor, 10%);
+    }
+    &.ui-state-focus {
+      background-color: lighten($accentDarkColor, 10%);
+    }
+  }
+
+  .ngx-ui-widget-button-accent,
+  .ui-button-accent {
+    &:not(.ui-button-primary):not(.ui-button-secondary):not(.ui-button-success):not(.ui-button-info):not(.ui-button-warning):not(.ui-button-danger) {
+      @include vo_buttons_color_accent()
+    }
+  }
+
+  /**
+   * Support for fab button type (Floating Action Button)
+   */
+  .ngx-ui-widget-button-fab,
+  .ui-button.ngx-ui-widget-button-fab {
+    width: 3.5em;
+    height: 3.5em;
+    &:not(.ui-button-primary):not(.ui-button-secondary):not(.ui-button-success):not(.ui-button-info):not(.ui-button-warning):not(.ui-button-danger) {
+      @include vo_buttons_color_accent()
+    }
+  }
+
+  /**
+   * Support for minit fab button type (Floating Action Button)
+   */
+  .ngx-ui-widget-button-mini-fab {
+    &:not(.ui-button-primary):not(.ui-button-secondary):not(.ui-button-success):not(.ui-button-info):not(.ui-button-warning):not(.ui-button-danger) {
+      @include vo_buttons_color_accent()
+    }
+  }
+}
+
+/**
+ * Fix icon color on secondary button on hover
+ */
+body{
+  /**
+   * Fix missing color icons in secondary buttons.
+   * Also fixes hover on a focused secondary button.
+   */
+   .ui-button.ui-button-secondary, .ui-button.ui-button-secondary:enabled {
+    .fa {
+      color: $textColor;
+    }
+
+    &:hover {
+      color: white;
+
+      .fa {
+        color: white;
+      }
+
+      &:focus {
+        color: white;
+        background-color: $primaryColor;
+
+        .fa {
+          color: white;
+        }
+      }
+    }
+  }
+  /** this came with a later version of ultima */
+  .ui-button.ui-state-default.ui-button-secondary {
+    &:hover:focus {
+      span {
+        color:$buttonTextColor;
+      }
+    }
+  }
+
+}
+
+/**
+ * Fix button padding when using button with icon only
+ */
+ body{
+  .ui-button.ui-button-icon-only {
+    &.ui-button-text-icon-left {
+      padding: unset;
+    }
+    &.ui-button-text-icon-right {
+      padding: unset;
+    }
+  }
+}
+
+/**
+ * Fix radio button label and switch label
+ * wrapping below the ui widget.
+ * Makes appear the radio button label the same
+ * as the ui-checkbox-label
+ */
+ body {
+  .md-radiogroup .radio, .md-switch {
+    white-space: nowrap;
+  }
+  .ui-radiobutton-label, .md-switch label {
+    display: inline-block;
+    white-space: normal;
+    vertical-align: top;
+  }
+  /** make sure any label right of the switch has the same margin as the label of a checkbox */
+  p-inputswitch {
+    margin: 0 .5em 0 0;
+  }
+  /** range widget label */
+  .thumb-label {
+    background-color: $accentColor;
+  }
+  .thumb-label-text {
+    color: $accentTextColor;
+  }
+ }
+
+body {
+  /** fix accessibility colors - enable contrast 3.5:1 */
+  .md-inputfield {
+    > label {
+        color:#888;
+    }
+  }
+  /** fix accessibility colors - enable contrast 3.5:1 */
+  .md-dropdown, .md-select_button {
+    & > label {
+      color: #888;
+    }
+  }
+}

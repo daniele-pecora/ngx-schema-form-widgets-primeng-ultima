@@ -1,0 +1,10 @@
+<!--
+    In Element 'widget'
+                - severity    = the severt
+                - text        = the text to set as message content
+-->
+
+
+<p-message *ngIf="schema.widget?.text"
+           [severity]="getSeverity(schema.widget?.severity)"
+           [text]="schema.widget.text"></p-message>

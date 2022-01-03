@@ -1,0 +1,13 @@
+/** fix: progress-spinner not centred */
+::ng-deep .ui-progress-spinner {
+  width: 100%;
+}
+
+/** fix: progress-bar not visible in some containers */
+::ng-deep .ui-progressbar-indeterminate {
+  padding: 0.01em;
+}
+
+.center-text {
+  text-align: center;
+}

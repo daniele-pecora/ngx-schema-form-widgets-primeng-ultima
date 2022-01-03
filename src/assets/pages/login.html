@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+      <link rel="icon" type="image/x-icon" href="../layout/images/hsh/favicon.png">
+      <link rel="apple-touch-icon" sizes="57x57" href="../layout/images/hsh/icon/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="../layout/images/hsh/icon/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="../layout/images/hsh/icon/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="../layout/images/hsh/icon/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="../layout/images/hsh/icon/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="../layout/images/hsh/icon/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="../layout/images/hsh/icon/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="../layout/images/hsh/icon/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="../layout/images/hsh/icon/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192"  href="../layout/images/hsh/icon/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="../layout/images/hsh/icon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="../layout/images/hsh/icon/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="../layout/images/hsh/icon/favicon-16x16.png">
+      <link rel="manifest" href="/manifest.json">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="../layout/images/hsh/icon/ms-icon-144x144.png">
+      <meta name="theme-color" content="#ffffff">
+
+
+    <title>Login</title>
+
+    <!-- Layout CSS -->
+      <link id="theme-css" rel="stylesheet" type="text/css" href="../theme/theme-vois.css">
+      <link id="layout-css" rel="stylesheet" type="text/css" href="../layout/css/layout-vois.css">
+    <link rel="stylesheet" type="text/css" href="../pages/primeng.min.css">
+
+    <!-- Ripple -->
+    <script src="../pages/jquery.js"></script>
+    <script src="../layout/js/ripple.js"></script>
+  </head>
+
+  <!-- 3. Display the application -->
+  <body class="login-body">
+
+  <div class="card login-panel ui-fluid">
+          <div class="ui-g form-group">
+              <div class="ui-g-12">
+                  <img width="120px" src="../layout/images/hsh/App_Icon_blue_no_padding.svg">
+              </div>
+              <div class="ui-g-12">
+                  <span class="md-inputfield">
+                      <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                      <label>Benutzername</label>
+                  </span>
+              </div>
+              <div class="ui-g-12">
+                  <span class="md-inputfield">
+                      <input type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                      <label>Passwort</label>
+                  </span>
+              </div>
+              <div class="ui-g-12">
+                  <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+                      <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-person"></span>
+                      <span class="ui-button-text ui-c">Anmelden</span>
+                  </button>
+
+                  <button type="button" class="secondary ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+                      <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-verified-user"></span>
+                      <span class="ui-button-text ui-c">Ohne Anmeldung</span>
+                  </button>
+                  <div>
+                      <a href="sign_in">
+                          <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-person-add"></span>
+                          Zugang beantragen
+                      </a>
+                  </div>
+                  <div>
+                      <a href="password_reset">
+                          <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-vpn-key"></span>
+                          Passwort vergessen
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  <script>
+      // @author daniele.pecora
+      // example of how labels are made to stay on top of the input field
+      document.addEventListener("DOMContentLoaded", function (event) {
+          var _check_input_field_for_value = function (event) {
+
+              var _ev = window.event || event;
+              console.log(_ev)
+              var target = _ev.target
+              if (target.parentNode.classList.contains('md-inputfield')) {
+                  if (target.value) {
+                      target.classList.add('ui-state-filled')
+                  } else {
+                      target.classList.remove('ui-state-filled')
+                  }
+              }
+          }
+          var ll = document.querySelectorAll('.ui-inputtext');
+          for (var i = 0; i < ll.length; i++) {
+              ll[i].addEventListener('blur', _check_input_field_for_value)
+          }
+      })
+  </script>
+  </body>
+
+</html>

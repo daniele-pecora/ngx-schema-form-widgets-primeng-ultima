@@ -1,0 +1,339 @@
+{
+  "readOnly": true,
+  "widget": {
+    "id": "wizard",
+    "asCard": true,
+    "split": true,
+    "stepper": {
+      "first": "First Step 1",
+      "second": "Second Step 2",
+      "third": "Third Step 3"
+    },
+    "scrollToTop": {
+      "first": false,
+      "second": true,
+      "third": true
+    },
+    "disableScrollToTop": false,
+    "startPage": 0,
+    "buttons": [
+      {
+        "id": "action_1",
+        "icon": "ui-icon-lock",
+        "label": "haah"
+      }
+    ]
+  },
+  "properties": {
+    "betroffener": {
+      "widget": {
+        "id": "array",
+        "style": "tabview",
+        "itemTitle": "Person"
+      },
+      "minItems": 1,
+      "title": "Betroffener",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vorname": {
+            "title": "Vorname"
+          },
+          "name": {
+            "title": "Name"
+          },
+          "geburtsdatum": {
+            "title": "Geburtsdatum",
+            "description": "Anzugeben ist das Geburtsdatum in der Reihenfolge Tag Monat Jahr (TT.MM.JJJJ)",
+            "widget": {
+              "id": "date",
+              "dateFormat": "dd.MM.yyyy",
+              "modelDateFormat": "yyyy-MM-dd"
+            }
+          }
+        }
+      }
+    },
+    "messages": {
+      "type": "string",
+      "widget": {
+        "id": "messages",
+        "inline": false,
+        "msgs": [
+          {
+            "severity": "info",
+            "title": "",
+            "text": "Geben Sie entweder"
+          },
+          {
+            "severity": "info",
+            "title": "A) Geschlecht und Geburtsdatum",
+            "text": ""
+          },
+          {
+            "severity": "info",
+            "title": "",
+            "text": "oder"
+          },
+          {
+            "severity": "info",
+            "title": "B) Letzte bekannte Anschrift",
+            "text": ""
+          },
+          {
+            "severity": "info",
+            "title": "",
+            "text": "ein"
+          }
+        ]
+      }
+    },
+    "message": {
+      "type": "string",
+      "widget": {
+        "id": "message",
+        "severity": "info",
+        "text": "Geben Sie entweder<br/><strong>A)</strong> Geschlecht und Geburtsdatum<br/>oder<br/><strong>B)</strong> Letzte bekannte Anschrift<br/>ein.<br/>"
+      }
+    },
+    "name": {
+      "xplaceholder": "your name here",
+      "description": "Your name  here",
+      "widget": {
+        "prefix": [
+          {
+            "icon": "account_circle",
+            "ligature": true,
+            "x-text": "name:"
+          }
+        ]
+      }
+    },
+    "age": {
+      "placeholder": "your age here",
+      "widget": {
+        "id": "number",
+        "prefix": [
+          {
+            "icon": "face",
+            "ligature": true,
+            "x.text": "years:"
+          }
+        ]
+      }
+    },
+    "birthday": {
+      "placeholder": "Your birthday here",
+      "widget": {
+        "prefix": [
+          {
+            "icon": "cake",
+            "ligature": true,
+            "x-text": "to you:"
+          }
+        ],
+        "suffix": [
+          {
+            "icon": "cake",
+            "ligature": true,
+            "x-text": "to you:"
+          }
+        ],
+        "id": "date",
+        "dateFormat": "dd.MM.yyyy",
+        "modelDateFormat": "yyyy-MM-dd"
+      }
+    },
+    "phone": {
+      "placeholder": "0049 30 452435",
+      "description": "Your phone number here",
+      "widget": {
+        "prefix": [
+          {
+            "icon": "phone",
+            "ligature": true,
+            "text": "call:"
+          }
+        ]
+      }
+    },
+    "address": {
+      "type": "string",
+      "x.placeholder": "your name here",
+      "description": "Your address here",
+      "widget": {
+        "id": "autocomplete",
+        "emptyMessage": "-----",
+        "immutable": false,
+        "readonly": false,
+        "size": 30,
+        "minLength": 1,
+        "x-field": "label",
+        "x-dataKey": "label",
+        "labelExpression": "item.anschrift.plz + ' ' + item.anschrift.ort.ortName + ', ' +   item.anschrift.strasse.name + ' ' + item.anschrift.hausnummer",
+        "resultExpression": "data.results",
+        "serviceUrl": "https://egov-test.hsh-berlin.com/IRWSBV/rest/inforeg/v1/acosv/search?apiKey=debug&q={__ac_query__}&age={age}&category={category}",
+        "prefix": [
+          {
+            "icon": "map",
+            "ligature": true,
+            "x-text": "name:"
+          }
+        ]
+      }
+    },
+    "category": {
+      "widget": {
+        "id": "select",
+        "prefix": [
+          {
+            "icon": "palette",
+            "ligature": true,
+            "text": "send:"
+          }
+        ]
+      }
+    },
+    "group": {
+      "widget": {
+        "id": "radio",
+        "prefix": [
+          {
+            "icon": "group_work",
+            "ligature": true,
+            "text": "work"
+          }
+        ]
+      }
+    },
+    "captcha": {
+      "type": "string",
+      "title": "Confirm humanity",
+      "widget": {
+        "id": "captcha",
+        "siteKey": "6Le3Ay0UAAAAAOS_6B6FV7oZj9lFqeCOKdMdVtsN",
+        "_invisibleCAPTCHASiteKey": "6Le3Ay0UAAAAAOS_6B6FV7oZj9lFqeCOKdMdVtsN",
+        "_visibleCAPTCHASiteKey": "6Lfb7SgUAAAAADQ35l5rWBAZ4hQF84YWzDxVrwrG",
+        "type": "image audio",
+        "language": "de",
+        "theme": "light",
+        "size": "invisible",
+        "_invisible_size": "invisible",
+        "_visible_size": "visible"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "phone"
+  ],
+  "fieldsets": [
+    {
+      "id": "first",
+      "name": "Page 1",
+      "fields": [
+        "betroffener"
+      ]
+    },
+    {
+      "id": "second",
+      "name": "Page 2",
+      "fields": [
+        "group",
+        "category",
+        "messages",
+        "message",
+        "name",
+        "age",
+        "birthday",
+        "phone",
+        "address"
+      ]
+    },
+    {
+      "id": "second",
+      "name": "Page 3",
+      "fields": [
+        "captcha"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "label": "Kontakt",
+      "id": "kontakt",
+      "href": "http://www.google.de",
+      "target": "_blank",
+      "icon": "ui-icon-lock",
+      "iconPos": "left",
+      "inline": false
+    },
+    {
+      "description": "Angular IO (Overlay)",
+      "label": "Angular IO (Overlay)",
+      "id": "testlink3",
+      "href": "https://angular.io/",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": "true"
+    },
+    {
+      "description": "Angular IO (No Overlay)",
+      "label": "Angular IO (No Overlay)",
+      "id": "testlink3",
+      "href": "https://angular.io/",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false
+    },
+    {
+      "description": "Angular IO (Overlay - allow script)",
+      "label": "Angular IO (Overlay -  allow script)",
+      "id": "testlink4",
+      "href": "https://angular.io/",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "sandbox": "allow-same-origin allow-scripts",
+      "overlayClose": "Close this overlay",
+      "overlayOpen": "Open in new window"
+    }
+  ],
+  "buttons": [
+    {
+      "label": "Load",
+      "description": "Continue a previously saved application form.",
+      "iconPos": "left",
+      "severity": "success",
+      "icon": "vi-download",
+      "id": "action_upload_model",
+      "parameters": {
+        "upload": {
+          "property": "",
+          "success": "Upload failed",
+          "error": "Incompatible file"
+        }
+      }
+    },
+    {
+      "label": "Save",
+      "description": "Download your current work to continue later on.",
+      "iconPos": "left",
+      "severity": "info",
+      "icon": "vi-save",
+      "id": "action_download_model",
+      "parameters": {
+        "download": {
+          "property": "",
+          "name": "Download.json",
+          "prompt": "Save as ..."
+        }
+      }
+    }
+  ]
+}

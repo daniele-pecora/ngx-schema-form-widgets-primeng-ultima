@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "nameAndForname": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "forname": {
+          "type": "string",
+          "title": "Forename"
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string",
+          "title": "Street"
+        },
+        "housenumber": {
+          "type": "string",
+          "title": "No."
+        }
+      }
+    },
+    "country": {
+      "type": "string",
+      "title": "Country"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+/**
+ * fix primeng - file upload choose button
+ * see https://github.com/primefaces/primeng/issues/3455
+ */
+/* TODO unfotunately this doesn't work here, it must be done in styles.scss */
+.ui-fileupload-choose.ui-fileupload-choose-selected input[type=file],
+.ui-fileupload-buttonbar .ui-fileupload-choose input {
+  display: block;
+}

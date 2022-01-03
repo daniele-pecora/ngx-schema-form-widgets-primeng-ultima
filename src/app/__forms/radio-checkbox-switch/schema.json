@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "switch": {
+      "type": "string",
+      "title": "switch",
+      "description": "Presentation of the component 'switch'."
+    },
+    "checkbox": {
+      "type": "string",
+      "title": "checkbox",
+      "description": "Presentation of the component 'checkbox'."
+    },
+    "radio": {
+      "type": "string",
+      "title": "radio",
+      "description": "Presentation of the component 'radio'.",
+      "oneOf": [
+        {
+          "enum": [
+            "a"
+          ],
+          "description": "A"
+        },
+        {
+          "enum": [
+            "b"
+          ],
+          "description": "B",
+          "disabled": true
+        },
+        {
+          "enum": [
+            "c"
+          ],
+          "description": "C"
+        }
+      ]
+    }
+  }
+}

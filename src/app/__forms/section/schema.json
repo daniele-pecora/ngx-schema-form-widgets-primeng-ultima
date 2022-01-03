@@ -1,0 +1,90 @@
+{
+  "name": "Demo Widget Section",
+  "type": "object",
+  "properties": {
+    "enabler": {
+      "type": "boolean",
+      "title": "Section 3",
+      "description": "Toggle the visibility of section 3",
+      "default": true
+    },
+    "section": {
+      "name": "Demo Widget Section",
+      "type": "object",
+      "properties": {
+        "container1": {
+          "type": "object",
+          "title": "Container 1",
+          "properties": {
+            "prop1": {
+              "type": "string"
+            },
+            "prop2": {
+              "type": "string"
+            },
+            "prop3": {
+              "type": "string"
+            },
+            "prop4": {
+              "type": "string"
+            }
+          }
+        },
+        "container2": {
+          "type": "object",
+          "title": "Container 2",
+          "properties": {
+            "prop1": {
+              "type": "string"
+            },
+            "prop2": {
+              "type": "string"
+            },
+            "prop3": {
+              "type": "string"
+            },
+            "prop4": {
+              "type": "string"
+            }
+          }
+        },
+        "container3": {
+          "type": "object",
+          "title": "Container 3",
+          "properties": {
+            "prop1": {
+              "type": "string"
+            },
+            "prop2": {
+              "type": "string"
+            },
+            "prop3": {
+              "type": "string"
+            },
+            "prop4": {
+              "type": "string"
+            }
+          }
+        },
+        "container4": {
+          "type": "object",
+          "title": "Container 4",
+          "properties": {
+            "prop1": {
+              "type": "string"
+            },
+            "prop2": {
+              "type": "string"
+            },
+            "prop3": {
+              "type": "string"
+            },
+            "prop4": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

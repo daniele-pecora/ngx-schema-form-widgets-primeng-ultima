@@ -1,0 +1,60 @@
+{
+  "widget": {
+    "id": "form",
+    "noCard": false,
+    "asCard": false,
+    "buttons": [
+      {
+        "id": "action_1",
+        "icon": "ui-icon-cast",
+        "description": "Action 1",
+        "inline": true,
+        "label": "Action 1",
+        "iconPos": "left",
+        "type": "raised"
+      },
+      {
+        "id": "action_2",
+        "icon": "ui-icon-cast-connected",
+        "description": "Action 2",
+        "inline": true,
+        "label": "Action 2",
+        "iconPos": "left"
+      }
+    ]
+  },
+  "buttons": [
+    {
+      "label": "Open application file",
+      "description": "Load a previous stored work.",
+      "iconPos": "left",
+      "severity": "success",
+      "icon": "cloud_download",
+      "id": "___default_action_upload_model",
+      "parameters": {
+        "upload": {
+          "property": "",
+          "success": "🙂 UPLOAD COMPLETE",
+          "error": "OUCH! 🙁 Incompatible file."
+        }
+      },
+      "inline": false
+    },
+    {
+      "label": "Save",
+      "description": "Store your current work to file.",
+      "iconPos": "left",
+      "severity": "info",
+      "icon": "save",
+      "id": "___default_action_download_model",
+      "parameters": {
+        "download": {
+          "property": "",
+          "name": "MyForm.json",
+          "prompt": "SAVE WORK AS ..."
+        }
+      },
+      "inline": false
+    }
+  ]
+}

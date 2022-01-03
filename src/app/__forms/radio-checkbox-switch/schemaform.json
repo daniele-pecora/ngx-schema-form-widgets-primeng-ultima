@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "switch": {
+      "widget": {
+        "id": "switch"
+      }
+    },
+    "checkbox": {
+      "widget": {
+        "id": "checkbox"
+      }
+    },
+    "radio": {
+      "widget": {
+        "id": "radio"
+      }
+    }
+  }
+}

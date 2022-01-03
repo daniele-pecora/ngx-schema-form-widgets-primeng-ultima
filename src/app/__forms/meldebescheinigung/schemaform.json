@@ -1,0 +1,510 @@
+{
+  "properties": {
+    "start-page": {
+      "type": "object",
+      "widget": {
+        "id": "form",
+        "ignoreParentSplit": true,
+        "split": false
+      },
+      "properties": {
+        "start-infotext": {
+          "type": "string",
+          "title": "",
+          "widget": {
+            "id": "html",
+            "html": "<p>Mit diesem Online-Service k\u00F6nnen Sie eine einfache Meldebescheinigung beantragen.</p><p>Die einfache Meldebescheinigung enth\u00E4lt nach \u00A7 18 Bundesmeldegesetz folgende Daten:</p><ol><li>Familienname</li><li>fr\u00FChere Namen</li><li>Vornamen</li><li>Doktorgrad</li><li>Ordensname, K\u00FCnstlername</li><li>Geburtsdatum, Geburtsort, ggf. Geburtsstaat</li><li>Derzeitige Anschriften, gekennzeichnet nach Haupt- und Nebenwohnung</li></ol><p>F\u00FCr die einfache Meldebescheinigung wird eine Geb\u00FChr von <strong>5,50 Euro</strong> w\u00E4hrend der Online-Beantragung erhoben.</p><p>Von der zust\u00E4ndigen Meldebeh\u00F6rde erh\u00E4lt die betroffene Person die einfache Meldebescheinigung postalisch zugestellt.</p>"
+          }
+        },
+        "agreement": {
+          "type": "boolean",
+          "widget": {
+            "id": "checkbox",
+            "validationMessage": "Wir ben\u00F6tigen Ihr Einverst\u00E4ndnis zur Kenntnisnahme der Hinweise zum Datenschutz und den genannten Bedingungen."
+          },
+          "title": "Ich bin einverstanden",
+          "description": "Ja, ich habe die Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiere die genannten Bedingungen.",
+          "enum": [
+            true
+          ]
+        }
+      },
+      "required": [
+        "agreement"
+      ]
+    },
+    "betroffener": {
+      "widget": "form",
+      "properties": {
+        "vorname": {
+          "description": "Geben Sie hier Ihren Vornamen an",
+          "widget": {
+            "validationMessage": "Geben Sie Ihren g\u00FCltigen Vornamen an."
+          }
+        },
+        "nachname": {
+          "description": "Geben Sie Ihren Familiennamen an.",
+          "widget": {
+            "validationMessage": "Geben Sie Ihren g\u00FCltigen Familiennamen an."
+          }
+        },
+        "geburt": {
+          "readOnly": false,
+          "description": "Geben Sie das Datum in der Form TT.MM.JJJJ an.",
+          "pattern": "[1-9]\\d{3}-\\d{2}-\\d{2}",
+          "widget": {
+            "id": "date",
+            "dateFormat": "dd.MM.yyyy",
+            "modelDateFormat": "yyyy-MM-dd",
+            "yearRange": "1900:2200",
+            "yearNavigator": true,
+            "validationMessages": {
+              "DATE_IN_FUTURE": "Geben Sie ein Datum in der Vergangenheit an.",
+              "DATE_IN_PAST": "Geben Sie ein Datum nach dem 01.01.1900 an.",
+              "PATTERN": "Geben Sie ein g\u00FCltiges Datum in der Form TT.MM.JJJJ an."
+            },
+            "maxAge": "-16:0:0"
+          }
+        }
+      },
+      "required": [
+        "nachname",
+        "geburt"
+      ],
+      "title": "",
+      "description": "Pers\u00F6nliche Angaben"
+    },
+    "betroffeneranschrift": {
+      "widget": "form",
+      "properties": {
+        "wohnort": {
+          "title": "Plz Ort",
+          "description": "Geben Sie die Postleitzahl und den Ort an.",
+          "pattern": "^[0-9]{5}[ ](([ -         -~¡-¬®-ćĊ-ěĞ-ģĦ-ıĴ-śŞ-ūŮ-žƏƠ-ơƯ-ưƷǍ-ǔǞ-ǟǤ-ǰǴ-ǵǺ-ǿȘ-țȞ-ȟȪ-ȫȮ-ȳəʒḂ-ḃḊ-ḋḐ-ḑḞ-ḡḤ-ḧḰ-ḱṀ-ṁṄ-ṅṖ-ṗṠ-ṣṪ-ṫẀ-ẅẌ-ẓẞẠ-ầẪ-ẬẮ-ềỄ-ồỖ-ờỤ-ỹ€])|(M̂|N̂|m̂|n̂|D̂|d̂|J̌|L̂|l̂))+",
+          "widget": {
+            "id": "autocomplete",
+            "emptyMessage": "-----",
+            "immutable": false,
+            "readonly": false,
+            "x-size": 30,
+            "minLength": 1,
+            "labelExpression": "item.anschrift.plz + ' ' + item.anschrift.ort.ortName",
+            "resultExpression": "data.results",
+            "serviceUrl": "${backend}/inforeg/v1/acosv/search",
+            "serviceOptions": {
+              "method": "GET",
+              "headers": {
+                "X-ApiKey": "${apiKey}"
+              },
+              "params": {
+                "q": "{__ac_query__}",
+                "m": "${mbom}"
+              },
+              "withCredentials": true,
+              "content-type": "application/json"
+            },
+            "validationMessages": {
+              "MIN_LENGTH": "Geben Sie eine g\u00FCltige Postleitzahl mit Ort an.",
+              "MAX_LENGTH": "Geben Sie maximal 50 Zeichen an.",
+              "PATTERN": "Geben Sie eine g\u00FCltige Postleitzahl mit Ort an."
+            }
+          }
+        },
+        "postleitzahl": {
+          "widget": "hidden"
+        },
+        "strassemithausnummer": {
+          "description": "Geben Sie die Stra\u00DFe mit Hausnummer an.",
+          "widget": {
+            "id": "autocomplete",
+            "emptyMessage": "Kein Treffer",
+            "immutable": false,
+            "readonly": false,
+            "x-size": 30,
+            "minLength": 1,
+            "validationMessage": "Geben Sie eine g\u00FCltige Stra\u00DFe mit Hausnummer an.",
+            "labelExpression": "item.anschrift.strasse.name + ' ' + item.anschrift.hausnummer",
+            "resultExpression": "data.results",
+            "serviceUrl": "${backend}/inforeg/v1/acosv/search",
+            "serviceOptions": {
+              "method": "GET",
+              "headers": {
+                "X-ApiKey": "${apiKey}"
+              },
+              "params": {
+                "q": "{__ac_query__}",
+                "m": "${mbom}"
+              },
+              "withCredentials": true,
+              "content-type": "application/json"
+            }
+          }
+        },
+        "wohnungsgeber": {
+          "description": "Angaben zu Ihrem Vermieter/Wohnungsgeber.",
+          "widget": {
+            "id": "hidden",
+            "validationMessage": "Der Wohnungsgeber ist ung\u00FClig."
+          }
+        },
+        "gemeindeschluessel": {
+          "widget": "hidden"
+        }
+      },
+      "required": [
+        "wohnort",
+        "strassemithausnummer"
+      ],
+      "title": "",
+      "description": "Ihre Wohnanschrift"
+    },
+    "kontaktdatenantragsteller": {
+      "widget": "form",
+      "properties": {
+        "telefon": {
+          "description": "Ihre Telefonnummer f\u00FCr evtl. R\u00FCckfragen.",
+          "placeholder": "0175 _ _ _ _ _",
+          "widget": {
+            "validationMessage": "Geben Sie eine g\u00FCltige Telefonnummer an.",
+            "prefix": [
+              {
+                "icon": "phone",
+                "ligature": true
+              }
+            ],
+            "keyFilter": "pint"
+          }
+        },
+        "fax": {
+          "description": "Ihre Faxnummer",
+          "widget": {
+            "validationMessage": "Geben Sie eine g\u00FCltige Faxnummer an.",
+            "prefix": [
+              {
+                "icon": "settings_phone",
+                "ligature": true
+              }
+            ],
+            "keyFilter": "pint"
+          }
+        },
+        "email": {
+          "format": "email",
+          "placeholder": "_ _ _ _ @ _ _ _ _.de",
+          "description": "Ihre E-Mail-Adresse f\u00FCr evtl. Mitteilungen.",
+          "widget": {
+            "validationMessage": "Geben Sie eine g\u00FCltige E-Mail-Adresse an.",
+            "prefix": [
+              {
+                "icon": "email",
+                "ligature": true
+              }
+            ]
+          }
+        },
+        "ansprechpartner": {
+          "description": "Ansprechpartner f\u00FCr evtl. R\u00FCckfragen.",
+          "widget": {
+            "validationMessage": "Die Angabe zu Ansprechpartner ist ung\u00FCltig.",
+            "prefix": [
+              {
+                "icon": "contact_phone",
+                "ligature": true
+              }
+            ]
+          }
+        }
+      },
+      "title": "",
+      "description": "",
+      "required": [
+        "email"
+      ],
+      "order": [
+        "email",
+        "telefon",
+        "fax",
+        "ansprechpartner"
+      ]
+    },
+    "zurvorlagebei": {
+      "placeholder": "Standesamt",
+      "default": "",
+      "widget": {
+        "validationMessage": "Geben Sie 1 bis 60 Zeichen lang an."
+      }
+    },
+    "zeichen": {
+      "placeholder": "2200-B/14",
+      "description": "Eigenes Zeichen zur eigenen Identifizierung und Zuordnung.",
+      "title": "Ihr Zeichen"
+    },
+    "fassung": {
+      "widget": "hidden",
+      "default": "2017-07-01"
+    },
+    "test": {
+      "widget": "hidden",
+      "default": "false"
+    },
+    "responsewithoutrequest": {
+      "widget": "hidden",
+      "default": false
+    },
+    "produkt": {
+      "widget": "hidden",
+      "default": "HSH Online"
+    },
+    "produkthersteller": {
+      "widget": "hidden",
+      "default": "HSH Soft- und Hardware Vertriebs GmbH"
+    },
+    "produktversion": {
+      "widget": "hidden",
+      "default": "1.0"
+    },
+    "version": {
+      "widget": "hidden",
+      "default": "1.0"
+    },
+    "transaktionsdaten": {
+      "widget": "hidden",
+      "properties": {
+        "erfolgsUrl": {
+          "default": "not-set"
+        },
+        "fehlerUrl": {
+          "default": "not-set"
+        },
+        "hmac": {
+          "default": "not-set"
+        },
+        "kundeninformation": {
+          "properties": {
+            "vorname": {
+            },
+            "nachname": {
+            },
+            "email": {
+            },
+            "strasse": {
+            },
+            "hausnummer": {
+            },
+            "plz": {
+            },
+            "stadt": {
+            },
+            "tel": {
+            },
+            "fax": {
+            },
+            "firmenname": {
+            }
+          }
+        },
+        "transactionsPrefix": {
+        }
+      },
+      "required": [
+        "erfolgsUrl",
+        "fehlerUrl",
+        "hmac"
+      ]
+    },
+    "end-page": {
+      "type": "object",
+      "widget": {
+        "id": "form",
+        "ignoreParentSplit": true,
+        "split": false
+      },
+      "properties": {
+        "finish-infotext": {
+          "type": "string",
+          "title": "",
+          "description": "",
+          "widget": {
+            "id": "html",
+            "html": "<p>Ihr Antrag wird der zust\u00E4ndigen Beh\u00F6rde zur weiteren Bearbeitung \u00FCbergeben. Als Best\u00E4tigung erhalten Sie eine E-Mail von uns, die an Ihre angegebene E-Mail-Adresse gesendet wird.</p><p>F\u00FCr Fragen oder Anregungen stehen wir Ihnen gern zur Verf\u00FCgung.</p>"
+          }
+        },
+        "captcha": {
+          "type": "string",
+          "title": "Best\u00E4tigen Sie bitte das CAPTCHA",
+          "widget": {
+            "id": "captcha",
+            "siteKey": "6Lc6gXkUAAAAAPgUuueXezZvHrXh94nXvQG0X3QG",
+            "_invisibleCAPTCHASiteKey": "6Lc_gXkUAAAAAELBii9_xBNQkvw1lw_-ckqSgIjW",
+            "_visibleCAPTCHASiteKey": "6Lc6gXkUAAAAAPgUuueXezZvHrXh94nXvQG0X3QG",
+            "type": "image audio",
+            "language": "de",
+            "theme": "light",
+            "size": "visible"
+          }
+        }
+      },
+      "required": [
+        "captcha"
+      ]
+    }
+  },
+  "required": [
+    "betroffener",
+    "betroffeneranschrift",
+    "kontaktdatenantragsteller",
+    "version"
+  ],
+  "name": "Meldebescheinigung",
+  "widget": {
+    "style": "default",
+    "id": "wizard",
+    "asCard": true,
+    "no_override_for_now_labelPrev": "Zur\u00FCck",
+    "no_override_for_now_labelNext": "Weiter",
+    "no_override_for_now_labelFinish": "Absenden",
+    "buttons": {
+      "prev": {
+        "label": "Zur\u00FCck",
+        "severity": "secondary",
+        "icon": "ui-icon-arrow-back",
+        "iconPos": "left",
+        "actionId": "wizard_action_prev"
+      },
+      "next": {
+        "label": "Weiter",
+        "severity": "primary",
+        "icon": "ui-icon-arrow-forward",
+        "iconPos": "right",
+        "actionId": "wizard_action_next"
+      },
+      "finish": {
+        "label": "Absenden",
+        "severity": "info",
+        "icon": "ui-icon-cloud-upload",
+        "iconPos": "right",
+        "actionId": "___action___schema_form_final"
+      }
+    },
+    "startPage": 0,
+    "split": true,
+    "service": {
+      "url": "${backend}/olav/meldebescheinigung/meldebescheinigungsantrag",
+      "method": "POST",
+      "headers": {
+        "X-ApiKey": "${apiKeyOLAV}"
+      },
+      "withCredentials": true
+    },
+    "stepper": {
+      "start": "Start",
+      "betroffener": "Daten",
+      "kontaktdatenantragsteller": "Kontakt",
+      "finish": "Absenden"
+    }
+  },
+  "readOnly": true,
+  "fieldsets": [
+    {
+      "id": "start",
+      "description": "",
+      "fields": [
+        "start-page"
+      ]
+    },
+    {
+      "id": "betroffener",
+      "description": "",
+      "fields": [
+        "betroffener",
+        "betroffeneranschrift"
+      ]
+    },
+    {
+      "id": "kontaktdatenantragsteller",
+      "description": "Ansprechpartner",
+      "fields": [
+        "kontaktdatenantragsteller",
+        "zurvorlagebei",
+        "zeichen",
+        "fassung",
+        "test",
+        "responsewithoutrequest",
+        "produkt",
+        "produkthersteller",
+        "produktversion",
+        "version",
+        "transaktionsdaten"
+      ]
+    },
+    {
+      "id": "finish",
+      "name": "",
+      "title": "Sie sind fast am Ziel.",
+      "description": "Wir haben nun alle ben\u00F6tigten Informationen. Sie m\u00FCssen nur noch Ihren Antrag absenden.",
+      "fields": [
+        "end-page"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "description": "Rechtsgrundlage \u00A7 18 Bundesmeldegesetz. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Rechtsgrundlage \u00A7 18",
+      "id": "rechtsgrundlage",
+      "href": "https://www.gesetze-im-internet.de/bmg/__18.html",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    },
+    {
+      "description": "Allgemeine Hinweise. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Allgemeine Hinweise",
+      "id": "allgemeine_hinweise",
+      "href": "https://www.gesetze-im-internet.de/bmg/",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    },
+    {
+      "description": "Hinweise zum Datenschutz. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Datenschutz",
+      "id": "datenschutz",
+      "href": "${server}/datenschutz",
+      "target": "_blank",
+      "icon": "ui-icon-lock",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    },
+    {
+      "description": "Impressum und Kontakt. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Impressum",
+      "id": "impressum",
+      "href": "${server}/impressum",
+      "target": "_blank",
+      "icon": "ui-icon-mail-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    }
+  ],
+  "buttons": [
+    {
+      "id": "action_toggle_view",
+      "icon": "ui-icon-compare"
+    }
+  ]
+}

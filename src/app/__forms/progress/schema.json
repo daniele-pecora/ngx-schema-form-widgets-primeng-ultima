@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "progress": {
+            "type": "string",
+            "title": "progress",
+            "description": "Some representation of component 'progress'"
+        },
+        "progress-bar": {
+            "type": "string",
+            "title": "progress",
+            "description": "Some representation of component 'progress-bar'"
+        }
+    }
+}

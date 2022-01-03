@@ -1,0 +1,83 @@
+<!--
+Element 'schema':
+        - title
+        - name
+        - description
+        - minLength
+        - maxLength
+
+Element 'pInputTextarea'
+        - autoResize
+
+Element 'widget'
+        - width       = Set style width (any css value), will be set on 'md-autocomplete', 'ui-autocomplete' and 'input'
+                         This is helpful for create a screen wide input element that is responsive also for mobiles.
+                         Disables the property 'size'.
+        - inline      = true|false
+                        Per default the label for textarea is shown above the textarea field
+                        to show it left of it the value of 'inline' may be set to 'true'
+
+        - rows        = HTML standard attribute for textarea.
+        - cols        = HTML standard attribute for textarea.
+                        Setting the 'cols' property value will override the property 'width' and
+                        is set to a too long value your form may not be compliant to responsive design anymore
+
+        - filled = filled background for the input section of the widget
+-->
+<!--
+Element 'widget':
+  - size  = when not set the widget will be set to full width of available space
+            set this to 'default' to use defaults width
+            set to a positive number value to set a value like on input element
+-->
+<!--
+Element 'widget'
+  - noSpacer = Allows to hide the preserved free space where the helper-text and validation message are displayed.
+              `false` (default) = shows the preserved space
+              `true` = hides the preserved space when no helper-text and validation message is present.
+              'always' , will hide the space completely and will never display a helper-text or validation message
+-->
+<div class="ui-g-12">
+  <div class="md-inputfield md-textarea"
+  [class.md-inputfield-fill]="schema?.widget?.filled"
+  [class.ngx-ui-widget-full-width]="!schema.widget?.size"
+  >
+
+    <textarea pInputTextarea
+              [style.width]="schema?.widget?.width"
+              [style.display]="!schema.widget || schema.widget.inline===true?null:'block'"
+              [attr.placeholder]="schema.placeholder"
+              [readonly]="schema.readOnly"
+              [name]="name"
+              [attr.id]="id"
+              [formControl]="control"
+              [attr.maxlength]="schema.maxLength||null"
+              [attr.minlength]="schema.minLength||null"
+
+              [attr.cols]="schema?.widget?.cols||null"
+              [attr.rows]="schema?.widget?.rows||null"
+              [cols]="schema?.widget?.cols||null"
+              [rows]="schema?.widget?.rows||null"
+              [autoResize]="schema?.widget?.autoResize||null"
+
+              [attr.autocomplete]="schema?.widget?.autofill"
+
+              [disabled]="schema.readOnly"
+              [attr.disabled]="schema.readOnly?'disabled':null"
+
+              [required]="(formProperty|IsRequiredAttr)" 
+              [attr.aria-required]="(formProperty|IsRequiredAttr)"
+    ></textarea>
+    <!-- due to a misconcetion in ReactiveForm setting '[disabled]' doesn't visualize the 'disabled' state, so also '[attr.disabled]' must be set -->
+    <label [attr.for]="id">{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }}<ngx-ui-widget-required-mark [formProperty]="formProperty"></ngx-ui-widget-required-mark></label>
+    <ngx-ui-field-validation-messages
+      [formComponent]="this"
+      [validationErrors]="control.errors"
+    >
+      <div class="ui-message ui-messages-info"
+           *ngIf="schema.description">
+        {{schema.description}}
+      </div>
+    </ngx-ui-field-validation-messages>
+  </div>
+</div>

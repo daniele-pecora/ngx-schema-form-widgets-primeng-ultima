@@ -1,0 +1,47 @@
+{
+    "type": "object",
+    "properties": {
+        "auswahlSee": {
+            "type": "string",
+            "title": "Auswahlsee",
+            "oneOf": [
+                {
+                    "enum": [
+                        ""
+                    ],
+                    "description": "Bitte Auswählen"
+                },
+                {
+                    "enum": [
+                        "see1"
+                    ],
+                    "description": "See 1"
+                },
+                {
+                    "enum": [
+                        "see2"
+                    ],
+                    "description": "See 2"
+                },
+                {
+                    "enum": [
+                        "see3"
+                    ],
+                    "description": "See 3"
+                }
+            ]
+        },
+        "beschreibung1": {
+            "type": "string",
+            "description": "Hinweise zum See 1"
+        },
+        "beschreibung2": {
+            "type": "string",
+            "description": "Hinweise zum See 2"
+        },
+        "beschreibung3": {
+            "type": "string",
+            "description": "Hinweise zum See 3"
+        }
+    }
+}

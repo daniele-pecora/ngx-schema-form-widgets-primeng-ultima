@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "bbcode": {
+      "type": "string",
+      "title": "Some examples written with bbcode",
+      "widget": {
+        "id": "bbcode",
+        "bbcode": [
+          "[url=https://www.example.com]text1[/url][br]",
+          "[url=https://www.example.com]text2[/url][br]",
+          "[url=alert('end of the example')|onclick]alert on click[/url][br]",
+          "[url=https://www.example.com]text3[/url][br]",
+          "[url=https://www.example.com]text4[/url][br]",
+          "[url=alert('end of the example')|onclick]alert on click[/url][br]"
+        ]
+      }
+    }
+  }
+}

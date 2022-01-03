@@ -1,0 +1,8 @@
+::ng-deep {
+  .ngx-ui-table-no-border {
+    border: none;
+    .ui-table .ui-table-tbody > tr > td {
+      border: none;
+    }
+  }
+}

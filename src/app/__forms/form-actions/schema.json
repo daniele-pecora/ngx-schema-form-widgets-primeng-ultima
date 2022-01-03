@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "prop1": {
+      "type": "string"
+    },
+    "prop2": {
+      "type": "string"
+    },
+    "prop3": {
+      "type": "string"
+    },
+    "prop4": {
+      "type": "string"
+    },
+    "prop5": {
+      "type": "string"
+    }
+  }
+}

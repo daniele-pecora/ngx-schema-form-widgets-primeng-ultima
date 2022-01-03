@@ -1,0 +1,2520 @@
+{
+  "properties": {
+    "start-page": {
+      "type": "object",
+      "widget": {
+        "id": "form",
+        "ignoreParentSplit": true,
+        "split": false
+      },
+      "properties": {
+        "start-infotext": {
+          "type": "string",
+          "title": "",
+          "widget": {
+            "id": "html",
+            "html": "<p>Mit diesem Online-Service k\u00F6nnen Sie eine einfache Melderegisterauskunft beantragen.</p><p>Die einfache Melderegisterauskunft enth\u00E4lt nach \u00A7 44 und \u00A7 49 Bundesmeldegesetz folgende Daten:</p><ol><li>Familienname</li><li>Vornamen unter Kennzeichnung des gebr\u00E4uchlichen Vornamens,</li><li>Doktorgrad und</li><li>derzeitige Anschriften sowie,</li><li>sofern die Person verstorben ist, diese Tatsache.</li></ol><p>F\u00FCr die einfache Melderegisterauskunft wird eine Geb\u00FChr von <strong>5,50 Euro</strong> w\u00E4hrend der Online-Beantragung erhoben.</p><p>Sie erhalten die einfache Melderegisterauskunft im Anschluss als herunterladbares PDF Dokument.</p>"
+          }
+        },
+        "bla": {
+          "type": "string"
+        },
+        "agreement": {
+          "type": "boolean",
+          "widget": {
+            "id": "checkbox",
+            "validationMessage": "Wir ben\u00F6tigen Ihr Einverst\u00E4ndnis zur Kenntnisnahme der Hinweise zum Datenschutz und den genannten Bedingungen."
+          },
+          "title": "Ich bin einverstanden",
+          "description": "Ja, ich habe die Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiere die genannten Bedingungen.",
+          "enum": [
+            true
+          ]
+        }
+      },
+      "required": [
+        "agreement",
+        "bla"
+      ]
+    },
+    "antragsteller": {
+      "widget": {
+        "id": "form",
+        "split": true,
+        "ignoreParentSplit": true
+      },
+      "properties": {
+        "firma": {
+          "title": "Firma",
+          "description": "Geben Sie den Namen der Firma an (optional).",
+          "widget": {
+            "validationMessage": "Entfernen Sie ung\u00FCltige Zeichen aus dem Firmennamen."
+          }
+        },
+        "vorname": {
+          "title": "Vorname",
+          "description": "Geben Sie hier Ihren Vornamen an.",
+          "widget": {
+            "validationMessage": "Geben Sie Ihren g\u00FCltigen Vornamen an."
+          }
+        },
+        "nachname": {
+          "title": "Nachname",
+          "description": "Geben Sie Ihren Familiennamen an.",
+          "widget": {
+            "validationMessage": "Geben Sie Ihren g\u00FCltigen Familiennamen an."
+          }
+        },
+        "anschrift": {
+          "title": "Anschrift",
+          "description": "Geben Sie Ihre Anschrift an.",
+          "minLength": 1,
+          "widget": {
+            "id": "autocomplete",
+            "emptyMessage": "Kein Vorschlag",
+            "immutable": false,
+            "readonly": false,
+            "x-size": 30,
+            "minLength": 1,
+            "validationMessage": "Geben Sie einen g\u00FCltigen Anschrift an.",
+            "labelExpression": "item.anschrift.plz + ' ' + item.anschrift.ort.ortName + ', ' +   item.anschrift.strasse.name + ' ' + item.anschrift.hausnummer",
+            "resultExpression": "data.results",
+            "serviceUrl": "${backend}/inforeg/v1/acosv/search",
+            "serviceOptions": {
+              "method": "GET",
+              "headers": {
+                "X-ApiKey": "${apiKey}"
+              },
+              "params": {
+                "q": "{__ac_query__}",
+                "m": "${mbom}"
+              },
+              "withCredentials": true,
+              "content-type": "application/json"
+            }
+          }
+        },
+        "land": {
+          "title": "Land",
+          "description": "W\u00E4hlen Sie das Land zur Anschrift aus",
+          "default": "Deutschland",
+          "widget": {
+            "id": "select",
+            "empty_oneOf": {
+              "description": "Keine Angabe",
+              "enum": [
+                ""
+              ]
+            },
+            "filter": true
+          },
+          "oneOf": [
+            {
+              "description": "Afghanistan",
+              "enum": [
+                "Afghanistan"
+              ]
+            },
+            {
+              "description": "Akrotiri und Dhekelia",
+              "enum": [
+                "Akrotiri und Dhekelia"
+              ]
+            },
+            {
+              "description": "Albanien",
+              "enum": [
+                "Albanien"
+              ]
+            },
+            {
+              "description": "Algerien",
+              "enum": [
+                "Algerien"
+              ]
+            },
+            {
+              "description": "Amerikanisch-Samoa",
+              "enum": [
+                "Amerikanisch-Samoa"
+              ]
+            },
+            {
+              "description": "Amerikanische Jungferninseln",
+              "enum": [
+                "Amerikanische Jungferninseln"
+              ]
+            },
+            {
+              "description": "Andorra",
+              "enum": [
+                "Andorra"
+              ]
+            },
+            {
+              "description": "Angola",
+              "enum": [
+                "Angola"
+              ]
+            },
+            {
+              "description": "Anguilla",
+              "enum": [
+                "Anguilla"
+              ]
+            },
+            {
+              "description": "Antarctica",
+              "enum": [
+                "Antarctica"
+              ]
+            },
+            {
+              "description": "Antigua und Barbuda",
+              "enum": [
+                "Antigua und Barbuda"
+              ]
+            },
+            {
+              "description": "Arabische Republik Syrien",
+              "enum": [
+                "Arabische Republik Syrien"
+              ]
+            },
+            {
+              "description": "Argentinien",
+              "enum": [
+                "Argentinien"
+              ]
+            },
+            {
+              "description": "Argentinische Antarktis",
+              "enum": [
+                "Argentinische Antarktis"
+              ]
+            },
+            {
+              "description": "Armenien",
+              "enum": [
+                "Armenien"
+              ]
+            },
+            {
+              "description": "Aruba",
+              "enum": [
+                "Aruba"
+              ]
+            },
+            {
+              "description": "Aserbaidschan",
+              "enum": [
+                "Aserbaidschan"
+              ]
+            },
+            {
+              "description": "Ashmore- und Cartierinseln",
+              "enum": [
+                "Ashmore- und Cartierinseln"
+              ]
+            },
+            {
+              "description": "Australien",
+              "enum": [
+                "Australien"
+              ]
+            },
+            {
+              "description": "Australisches Antarktis-Territorium",
+              "enum": [
+                "Australisches Antarktis-Territorium"
+              ]
+            },
+            {
+              "description": "Autre (sonstige, andere)",
+              "enum": [
+                "Autre (sonstige, andere)"
+              ]
+            },
+            {
+              "description": "Bahamas",
+              "enum": [
+                "Bahamas"
+              ]
+            },
+            {
+              "description": "Bahrain",
+              "enum": [
+                "Bahrain"
+              ]
+            },
+            {
+              "description": "Bangladesch",
+              "enum": [
+                "Bangladesch"
+              ]
+            },
+            {
+              "description": "Barbados",
+              "enum": [
+                "Barbados"
+              ]
+            },
+            {
+              "description": "Belgien",
+              "enum": [
+                "Belgien"
+              ]
+            },
+            {
+              "description": "Belize",
+              "enum": [
+                "Belize"
+              ]
+            },
+            {
+              "description": "Benin",
+              "enum": [
+                "Benin"
+              ]
+            },
+            {
+              "description": "Bermuda",
+              "enum": [
+                "Bermuda"
+              ]
+            },
+            {
+              "description": "Bhutan",
+              "enum": [
+                "Bhutan"
+              ]
+            },
+            {
+              "description": "Bolivarische Republik Venezuela",
+              "enum": [
+                "Bolivarische Republik Venezuela"
+              ]
+            },
+            {
+              "description": "Bonaire, Saba, St. Eustatius",
+              "enum": [
+                "Bonaire, Saba, St. Eustatius"
+              ]
+            },
+            {
+              "description": "Bophuthaswana",
+              "enum": [
+                "Bophuthaswana"
+              ]
+            },
+            {
+              "description": "Bosnien und Herzegowina",
+              "enum": [
+                "Bosnien und Herzegowina"
+              ]
+            },
+            {
+              "description": "Botsuana",
+              "enum": [
+                "Botsuana"
+              ]
+            },
+            {
+              "description": "Bouvetinsel",
+              "enum": [
+                "Bouvetinsel"
+              ]
+            },
+            {
+              "description": "Brasilien",
+              "enum": [
+                "Brasilien"
+              ]
+            },
+            {
+              "description": "Britische Jungferninseln",
+              "enum": [
+                "Britische Jungferninseln"
+              ]
+            },
+            {
+              "description": "Britische \u00DCberseegebiete",
+              "enum": [
+                "Britische \u00DCberseegebiete"
+              ]
+            },
+            {
+              "description": "Britisches Antarktis-Territorium",
+              "enum": [
+                "Britisches Antarktis-Territorium"
+              ]
+            },
+            {
+              "description": "Britisches Territorium im Indischen Ozean",
+              "enum": [
+                "Britisches Territorium im Indischen Ozean"
+              ]
+            },
+            {
+              "description": "Brunei Darussalam",
+              "enum": [
+                "Brunei Darussalam"
+              ]
+            },
+            {
+              "description": "Bulgarien",
+              "enum": [
+                "Bulgarien"
+              ]
+            },
+            {
+              "description": "Burkina Faso",
+              "enum": [
+                "Burkina Faso"
+              ]
+            },
+            {
+              "description": "Burundi",
+              "enum": [
+                "Burundi"
+              ]
+            },
+            {
+              "description": "Cabo Verde",
+              "enum": [
+                "Cabo Verde"
+              ]
+            },
+            {
+              "description": "Chile",
+              "enum": [
+                "Chile"
+              ]
+            },
+            {
+              "description": "Chilenische Antarktis",
+              "enum": [
+                "Chilenische Antarktis"
+              ]
+            },
+            {
+              "description": "China",
+              "enum": [
+                "China"
+              ]
+            },
+            {
+              "description": "Ciskei",
+              "enum": [
+                "Ciskei"
+              ]
+            },
+            {
+              "description": "Clipperton",
+              "enum": [
+                "Clipperton"
+              ]
+            },
+            {
+              "description": "Cookinseln",
+              "enum": [
+                "Cookinseln"
+              ]
+            },
+            {
+              "description": "Costa Rica",
+              "enum": [
+                "Costa Rica"
+              ]
+            },
+            {
+              "description": "Cura\u00E7ao",
+              "enum": [
+                "Cura\u00E7ao"
+              ]
+            },
+            {
+              "description": "C\u00F4te d'Ivoire",
+              "enum": [
+                "C\u00F4te d'Ivoire"
+              ]
+            },
+            {
+              "description": "Demokratische Republik Kongo",
+              "enum": [
+                "Demokratische Republik Kongo"
+              ]
+            },
+            {
+              "description": "Demokratische Volksrepublik Korea",
+              "enum": [
+                "Demokratische Volksrepublik Korea"
+              ]
+            },
+            {
+              "description": "Demokratische Volksrepublik Laos",
+              "enum": [
+                "Demokratische Volksrepublik Laos"
+              ]
+            },
+            {
+              "description": "Deutschland",
+              "enum": [
+                "Deutschland"
+              ]
+            },
+            {
+              "description": "Dominica",
+              "enum": [
+                "Dominica"
+              ]
+            },
+            {
+              "description": "Dominikanische Republik",
+              "enum": [
+                "Dominikanische Republik"
+              ]
+            },
+            {
+              "description": "Dschibuti",
+              "enum": [
+                "Dschibuti"
+              ]
+            },
+            {
+              "description": "D\u00E4nemark",
+              "enum": [
+                "D\u00E4nemark"
+              ]
+            },
+            {
+              "description": "Ecuador",
+              "enum": [
+                "Ecuador"
+              ]
+            },
+            {
+              "description": "El Salvador",
+              "enum": [
+                "El Salvador"
+              ]
+            },
+            {
+              "description": "Eritrea",
+              "enum": [
+                "Eritrea"
+              ]
+            },
+            {
+              "description": "Estland",
+              "enum": [
+                "Estland"
+              ]
+            },
+            {
+              "description": "Europ\u00E4ische Union (ISAD)",
+              "enum": [
+                "Europ\u00E4ische Union (ISAD)"
+              ]
+            },
+            {
+              "description": "Falklandinseln (Malwinen)",
+              "enum": [
+                "Falklandinseln (Malwinen)"
+              ]
+            },
+            {
+              "description": "Fidschi",
+              "enum": [
+                "Fidschi"
+              ]
+            },
+            {
+              "description": "Finnland",
+              "enum": [
+                "Finnland"
+              ]
+            },
+            {
+              "description": "Frankreich",
+              "enum": [
+                "Frankreich"
+              ]
+            },
+            {
+              "description": "Franz\u00F6sisch-Guayana",
+              "enum": [
+                "Franz\u00F6sisch-Guayana"
+              ]
+            },
+            {
+              "description": "Franz\u00F6sisch-Polynesien",
+              "enum": [
+                "Franz\u00F6sisch-Polynesien"
+              ]
+            },
+            {
+              "description": "Franz\u00F6sische S\u00FCd- und Antarktisgebiete",
+              "enum": [
+                "Franz\u00F6sische S\u00FCd- und Antarktisgebiete"
+              ]
+            },
+            {
+              "description": "F\u00E4r\u00F6er",
+              "enum": [
+                "F\u00E4r\u00F6er"
+              ]
+            },
+            {
+              "description": "F\u00F6derierte Staaten von Mikronesien",
+              "enum": [
+                "F\u00F6derierte Staaten von Mikronesien"
+              ]
+            },
+            {
+              "description": "F\u00FCr interne Zwecke verwendet",
+              "enum": [
+                "F\u00FCr interne Zwecke verwendet"
+              ]
+            },
+            {
+              "description": "Gabun",
+              "enum": [
+                "Gabun"
+              ]
+            },
+            {
+              "description": "Gambia",
+              "enum": [
+                "Gambia"
+              ]
+            },
+            {
+              "description": "Georgien",
+              "enum": [
+                "Georgien"
+              ]
+            },
+            {
+              "description": "Ghana",
+              "enum": [
+                "Ghana"
+              ]
+            },
+            {
+              "description": "Gibraltar",
+              "enum": [
+                "Gibraltar"
+              ]
+            },
+            {
+              "description": "Grenada",
+              "enum": [
+                "Grenada"
+              ]
+            },
+            {
+              "description": "Griechenland",
+              "enum": [
+                "Griechenland"
+              ]
+            },
+            {
+              "description": "Gr\u00F6nland",
+              "enum": [
+                "Gr\u00F6nland"
+              ]
+            },
+            {
+              "description": "Guadeloupe",
+              "enum": [
+                "Guadeloupe"
+              ]
+            },
+            {
+              "description": "Guam",
+              "enum": [
+                "Guam"
+              ]
+            },
+            {
+              "description": "Guatemala",
+              "enum": [
+                "Guatemala"
+              ]
+            },
+            {
+              "description": "Guernsey",
+              "enum": [
+                "Guernsey"
+              ]
+            },
+            {
+              "description": "Guinea",
+              "enum": [
+                "Guinea"
+              ]
+            },
+            {
+              "description": "Guinea-Bissau",
+              "enum": [
+                "Guinea-Bissau"
+              ]
+            },
+            {
+              "description": "Guyana",
+              "enum": [
+                "Guyana"
+              ]
+            },
+            {
+              "description": "Haiti",
+              "enum": [
+                "Haiti"
+              ]
+            },
+            {
+              "description": "Heard und McDonaldinseln",
+              "enum": [
+                "Heard und McDonaldinseln"
+              ]
+            },
+            {
+              "description": "Honduras",
+              "enum": [
+                "Honduras"
+              ]
+            },
+            {
+              "description": "Hongkong",
+              "enum": [
+                "Hongkong"
+              ]
+            },
+            {
+              "description": "Indien",
+              "enum": [
+                "Indien"
+              ]
+            },
+            {
+              "description": "Indonesien",
+              "enum": [
+                "Indonesien"
+              ]
+            },
+            {
+              "description": "Insel Man",
+              "enum": [
+                "Insel Man"
+              ]
+            },
+            {
+              "description": "Internat. Komitee Rotes Kreuz",
+              "enum": [
+                "Internat. Komitee Rotes Kreuz"
+              ]
+            },
+            {
+              "description": "Irak",
+              "enum": [
+                "Irak"
+              ]
+            },
+            {
+              "description": "Irland",
+              "enum": [
+                "Irland"
+              ]
+            },
+            {
+              "description": "Islamische Republik Iran",
+              "enum": [
+                "Islamische Republik Iran"
+              ]
+            },
+            {
+              "description": "Island",
+              "enum": [
+                "Island"
+              ]
+            },
+            {
+              "description": "Israel",
+              "enum": [
+                "Israel"
+              ]
+            },
+            {
+              "description": "Italien",
+              "enum": [
+                "Italien"
+              ]
+            },
+            {
+              "description": "Jamaika",
+              "enum": [
+                "Jamaika"
+              ]
+            },
+            {
+              "description": "Japan",
+              "enum": [
+                "Japan"
+              ]
+            },
+            {
+              "description": "Jemen",
+              "enum": [
+                "Jemen"
+              ]
+            },
+            {
+              "description": "Jersey",
+              "enum": [
+                "Jersey"
+              ]
+            },
+            {
+              "description": "Jordanien",
+              "enum": [
+                "Jordanien"
+              ]
+            },
+            {
+              "description": "Kaimaninseln",
+              "enum": [
+                "Kaimaninseln"
+              ]
+            },
+            {
+              "description": "Kambodscha",
+              "enum": [
+                "Kambodscha"
+              ]
+            },
+            {
+              "description": "Kamerun",
+              "enum": [
+                "Kamerun"
+              ]
+            },
+            {
+              "description": "Kanada",
+              "enum": [
+                "Kanada"
+              ]
+            },
+            {
+              "description": "Kasachstan",
+              "enum": [
+                "Kasachstan"
+              ]
+            },
+            {
+              "description": "Katar",
+              "enum": [
+                "Katar"
+              ]
+            },
+            {
+              "description": "Kenia",
+              "enum": [
+                "Kenia"
+              ]
+            },
+            {
+              "description": "Kirgisistan",
+              "enum": [
+                "Kirgisistan"
+              ]
+            },
+            {
+              "description": "Kiribati",
+              "enum": [
+                "Kiribati"
+              ]
+            },
+            {
+              "description": "Kleinere Amerikanische \u00DCberseeinseln",
+              "enum": [
+                "Kleinere Amerikanische \u00DCberseeinseln"
+              ]
+            },
+            {
+              "description": "Kokosinseln",
+              "enum": [
+                "Kokosinseln"
+              ]
+            },
+            {
+              "description": "Kolumbien",
+              "enum": [
+                "Kolumbien"
+              ]
+            },
+            {
+              "description": "Komoren",
+              "enum": [
+                "Komoren"
+              ]
+            },
+            {
+              "description": "Kongo",
+              "enum": [
+                "Kongo"
+              ]
+            },
+            {
+              "description": "Kongo, Demokr. Rep. - SIS",
+              "enum": [
+                "Kongo, Demokr. Rep. - SIS"
+              ]
+            },
+            {
+              "description": "Korallenmeerinseln",
+              "enum": [
+                "Korallenmeerinseln"
+              ]
+            },
+            {
+              "description": "Kosovo",
+              "enum": [
+                "Kosovo"
+              ]
+            },
+            {
+              "description": "Kroatien",
+              "enum": [
+                "Kroatien"
+              ]
+            },
+            {
+              "description": "Kuba",
+              "enum": [
+                "Kuba"
+              ]
+            },
+            {
+              "description": "Kuwait",
+              "enum": [
+                "Kuwait"
+              ]
+            },
+            {
+              "description": "Lesotho",
+              "enum": [
+                "Lesotho"
+              ]
+            },
+            {
+              "description": "Lettland",
+              "enum": [
+                "Lettland"
+              ]
+            },
+            {
+              "description": "Libanon",
+              "enum": [
+                "Libanon"
+              ]
+            },
+            {
+              "description": "Liberia",
+              "enum": [
+                "Liberia"
+              ]
+            },
+            {
+              "description": "Libyen",
+              "enum": [
+                "Libyen"
+              ]
+            },
+            {
+              "description": "Liechtenstein",
+              "enum": [
+                "Liechtenstein"
+              ]
+            },
+            {
+              "description": "Litauen",
+              "enum": [
+                "Litauen"
+              ]
+            },
+            {
+              "description": "Luxemburg",
+              "enum": [
+                "Luxemburg"
+              ]
+            },
+            {
+              "description": "Macau",
+              "enum": [
+                "Macau"
+              ]
+            },
+            {
+              "description": "Madagaskar",
+              "enum": [
+                "Madagaskar"
+              ]
+            },
+            {
+              "description": "Malawi",
+              "enum": [
+                "Malawi"
+              ]
+            },
+            {
+              "description": "Malaysia",
+              "enum": [
+                "Malaysia"
+              ]
+            },
+            {
+              "description": "Malediven",
+              "enum": [
+                "Malediven"
+              ]
+            },
+            {
+              "description": "Mali",
+              "enum": [
+                "Mali"
+              ]
+            },
+            {
+              "description": "Malta",
+              "enum": [
+                "Malta"
+              ]
+            },
+            {
+              "description": "Marokko",
+              "enum": [
+                "Marokko"
+              ]
+            },
+            {
+              "description": "Marshallinseln",
+              "enum": [
+                "Marshallinseln"
+              ]
+            },
+            {
+              "description": "Martinique",
+              "enum": [
+                "Martinique"
+              ]
+            },
+            {
+              "description": "Mauretanien",
+              "enum": [
+                "Mauretanien"
+              ]
+            },
+            {
+              "description": "Mauritius",
+              "enum": [
+                "Mauritius"
+              ]
+            },
+            {
+              "description": "Mayotte",
+              "enum": [
+                "Mayotte"
+              ]
+            },
+            {
+              "description": "Mexiko",
+              "enum": [
+                "Mexiko"
+              ]
+            },
+            {
+              "description": "Monaco",
+              "enum": [
+                "Monaco"
+              ]
+            },
+            {
+              "description": "Mongolei",
+              "enum": [
+                "Mongolei"
+              ]
+            },
+            {
+              "description": "Montenegro",
+              "enum": [
+                "Montenegro"
+              ]
+            },
+            {
+              "description": "Montserrat",
+              "enum": [
+                "Montserrat"
+              ]
+            },
+            {
+              "description": "Mosambik",
+              "enum": [
+                "Mosambik"
+              ]
+            },
+            {
+              "description": "Myanmar",
+              "enum": [
+                "Myanmar"
+              ]
+            },
+            {
+              "description": "Namibia",
+              "enum": [
+                "Namibia"
+              ]
+            },
+            {
+              "description": "Nauru",
+              "enum": [
+                "Nauru"
+              ]
+            },
+            {
+              "description": "Navassa",
+              "enum": [
+                "Navassa"
+              ]
+            },
+            {
+              "description": "Nepal",
+              "enum": [
+                "Nepal"
+              ]
+            },
+            {
+              "description": "Neukaledonien",
+              "enum": [
+                "Neukaledonien"
+              ]
+            },
+            {
+              "description": "Neuseeland",
+              "enum": [
+                "Neuseeland"
+              ]
+            },
+            {
+              "description": "Neuseel\u00E4ndische Antarktis: Ross-Nebengebiet",
+              "enum": [
+                "Neuseel\u00E4ndische Antarktis: Ross-Nebengebiet"
+              ]
+            },
+            {
+              "description": "Nicaragua",
+              "enum": [
+                "Nicaragua"
+              ]
+            },
+            {
+              "description": "Niederlande",
+              "enum": [
+                "Niederlande"
+              ]
+            },
+            {
+              "description": "Niger",
+              "enum": [
+                "Niger"
+              ]
+            },
+            {
+              "description": "Nigeria",
+              "enum": [
+                "Nigeria"
+              ]
+            },
+            {
+              "description": "Niue",
+              "enum": [
+                "Niue"
+              ]
+            },
+            {
+              "description": "Norfolkinsel",
+              "enum": [
+                "Norfolkinsel"
+              ]
+            },
+            {
+              "description": "Norwegen",
+              "enum": [
+                "Norwegen"
+              ]
+            },
+            {
+              "description": "Norwegisches Antarktis-Territorium",
+              "enum": [
+                "Norwegisches Antarktis-Territorium"
+              ]
+            },
+            {
+              "description": "N\u00F6rdliche Marianen",
+              "enum": [
+                "N\u00F6rdliche Marianen"
+              ]
+            },
+            {
+              "description": "O.N.U.",
+              "enum": [
+                "O.N.U."
+              ]
+            },
+            {
+              "description": "Oman",
+              "enum": [
+                "Oman"
+              ]
+            },
+            {
+              "description": "Pakistan",
+              "enum": [
+                "Pakistan"
+              ]
+            },
+            {
+              "description": "Palau",
+              "enum": [
+                "Palau"
+              ]
+            },
+            {
+              "description": "Pal\u00E4stinensische Gebiete",
+              "enum": [
+                "Pal\u00E4stinensische Gebiete"
+              ]
+            },
+            {
+              "description": "Pal\u00E4stinensische Gebiete",
+              "enum": [
+                "Pal\u00E4stinensische Gebiete"
+              ]
+            },
+            {
+              "description": "Pal\u00E4stinensische Gebiete",
+              "enum": [
+                "Pal\u00E4stinensische Gebiete"
+              ]
+            },
+            {
+              "description": "Panama",
+              "enum": [
+                "Panama"
+              ]
+            },
+            {
+              "description": "Papua-Neuguinea",
+              "enum": [
+                "Papua-Neuguinea"
+              ]
+            },
+            {
+              "description": "Paraguay",
+              "enum": [
+                "Paraguay"
+              ]
+            },
+            {
+              "description": "Peru",
+              "enum": [
+                "Peru"
+              ]
+            },
+            {
+              "description": "Philippinen",
+              "enum": [
+                "Philippinen"
+              ]
+            },
+            {
+              "description": "Pitcairninseln",
+              "enum": [
+                "Pitcairninseln"
+              ]
+            },
+            {
+              "description": "Plurinationaler Staat Bolivien",
+              "enum": [
+                "Plurinationaler Staat Bolivien"
+              ]
+            },
+            {
+              "description": "Polen",
+              "enum": [
+                "Polen"
+              ]
+            },
+            {
+              "description": "Portugal",
+              "enum": [
+                "Portugal"
+              ]
+            },
+            {
+              "description": "Puerto Rico",
+              "enum": [
+                "Puerto Rico"
+              ]
+            },
+            {
+              "description": "Republik Korea",
+              "enum": [
+                "Republik Korea"
+              ]
+            },
+            {
+              "description": "Republik Moldau",
+              "enum": [
+                "Republik Moldau"
+              ]
+            },
+            {
+              "description": "Ruanda",
+              "enum": [
+                "Ruanda"
+              ]
+            },
+            {
+              "description": "Rum\u00E4nien",
+              "enum": [
+                "Rum\u00E4nien"
+              ]
+            },
+            {
+              "description": "Russische F\u00F6deration",
+              "enum": [
+                "Russische F\u00F6deration"
+              ]
+            },
+            {
+              "description": "R\u00E9union",
+              "enum": [
+                "R\u00E9union"
+              ]
+            },
+            {
+              "description": "STAATENLOS",
+              "enum": [
+                "STAATENLOS"
+              ]
+            },
+            {
+              "description": "STAATENLOS GEM\u00C4SS KONVENTION 1954",
+              "enum": [
+                "STAATENLOS GEM\u00C4SS KONVENTION 1954"
+              ]
+            },
+            {
+              "description": "Salomonen",
+              "enum": [
+                "Salomonen"
+              ]
+            },
+            {
+              "description": "Sambia",
+              "enum": [
+                "Sambia"
+              ]
+            },
+            {
+              "description": "Samoa",
+              "enum": [
+                "Samoa"
+              ]
+            },
+            {
+              "description": "San Marino",
+              "enum": [
+                "San Marino"
+              ]
+            },
+            {
+              "description": "Saudi-Arabien",
+              "enum": [
+                "Saudi-Arabien"
+              ]
+            },
+            {
+              "description": "Schweden",
+              "enum": [
+                "Schweden"
+              ]
+            },
+            {
+              "description": "Schweiz",
+              "enum": [
+                "Schweiz"
+              ]
+            },
+            {
+              "description": "Senegal",
+              "enum": [
+                "Senegal"
+              ]
+            },
+            {
+              "description": "Serbien",
+              "enum": [
+                "Serbien"
+              ]
+            },
+            {
+              "description": "Serbien SIS",
+              "enum": [
+                "Serbien SIS"
+              ]
+            },
+            {
+              "description": "Seychellen",
+              "enum": [
+                "Seychellen"
+              ]
+            },
+            {
+              "description": "Sierra Leone",
+              "enum": [
+                "Sierra Leone"
+              ]
+            },
+            {
+              "description": "Simbabwe",
+              "enum": [
+                "Simbabwe"
+              ]
+            },
+            {
+              "description": "Singapur",
+              "enum": [
+                "Singapur"
+              ]
+            },
+            {
+              "description": "Slowakei",
+              "enum": [
+                "Slowakei"
+              ]
+            },
+            {
+              "description": "Slowenien",
+              "enum": [
+                "Slowenien"
+              ]
+            },
+            {
+              "description": "Somalia",
+              "enum": [
+                "Somalia"
+              ]
+            },
+            {
+              "description": "Spanien",
+              "enum": [
+                "Spanien"
+              ]
+            },
+            {
+              "description": "Spanische Hoheitspl\u00E4tze in Nordafrika",
+              "enum": [
+                "Spanische Hoheitspl\u00E4tze in Nordafrika"
+              ]
+            },
+            {
+              "description": "Sri Lanka",
+              "enum": [
+                "Sri Lanka"
+              ]
+            },
+            {
+              "description": "St. Barth\u00E9lemy",
+              "enum": [
+                "St. Barth\u00E9lemy"
+              ]
+            },
+            {
+              "description": "St. Helena, Ascension und Tristan da Cunha",
+              "enum": [
+                "St. Helena, Ascension und Tristan da Cunha"
+              ]
+            },
+            {
+              "description": "St. Kitts und Nevis",
+              "enum": [
+                "St. Kitts und Nevis"
+              ]
+            },
+            {
+              "description": "St. Lucia",
+              "enum": [
+                "St. Lucia"
+              ]
+            },
+            {
+              "description": "St. Martin",
+              "enum": [
+                "St. Martin"
+              ]
+            },
+            {
+              "description": "St. Martin",
+              "enum": [
+                "St. Martin"
+              ]
+            },
+            {
+              "description": "St. Pierre und Miquelon",
+              "enum": [
+                "St. Pierre und Miquelon"
+              ]
+            },
+            {
+              "description": "St. Vincent und die Grenadinen",
+              "enum": [
+                "St. Vincent und die Grenadinen"
+              ]
+            },
+            {
+              "description": "Sudan",
+              "enum": [
+                "Sudan"
+              ]
+            },
+            {
+              "description": "Suriname",
+              "enum": [
+                "Suriname"
+              ]
+            },
+            {
+              "description": "Svalbard und Jan Mayen",
+              "enum": [
+                "Svalbard und Jan Mayen"
+              ]
+            },
+            {
+              "description": "Swasiland",
+              "enum": [
+                "Swasiland"
+              ]
+            },
+            {
+              "description": "S\u00E3o Tom\u00E9 und Pr\u00EDncipe",
+              "enum": [
+                "S\u00E3o Tom\u00E9 und Pr\u00EDncipe"
+              ]
+            },
+            {
+              "description": "S\u00FCdafrika",
+              "enum": [
+                "S\u00FCdafrika"
+              ]
+            },
+            {
+              "description": "S\u00FCdgeorgien und die s\u00FCdlichen Sandwichinseln",
+              "enum": [
+                "S\u00FCdgeorgien und die s\u00FCdlichen Sandwichinseln"
+              ]
+            },
+            {
+              "description": "S\u00FCdsudan",
+              "enum": [
+                "S\u00FCdsudan"
+              ]
+            },
+            {
+              "description": "Tadschikistan",
+              "enum": [
+                "Tadschikistan"
+              ]
+            },
+            {
+              "description": "Taiwan",
+              "enum": [
+                "Taiwan"
+              ]
+            },
+            {
+              "description": "Thailand",
+              "enum": [
+                "Thailand"
+              ]
+            },
+            {
+              "description": "Timor-Leste",
+              "enum": [
+                "Timor-Leste"
+              ]
+            },
+            {
+              "description": "Togo",
+              "enum": [
+                "Togo"
+              ]
+            },
+            {
+              "description": "Tokelau",
+              "enum": [
+                "Tokelau"
+              ]
+            },
+            {
+              "description": "Tonga",
+              "enum": [
+                "Tonga"
+              ]
+            },
+            {
+              "description": "Transkei",
+              "enum": [
+                "Transkei"
+              ]
+            },
+            {
+              "description": "Treuhandgeb. Pazifische Inseln",
+              "enum": [
+                "Treuhandgeb. Pazifische Inseln"
+              ]
+            },
+            {
+              "description": "Trinidad und Tobago",
+              "enum": [
+                "Trinidad und Tobago"
+              ]
+            },
+            {
+              "description": "Tschad",
+              "enum": [
+                "Tschad"
+              ]
+            },
+            {
+              "description": "Tschechien",
+              "enum": [
+                "Tschechien"
+              ]
+            },
+            {
+              "description": "Tunesien",
+              "enum": [
+                "Tunesien"
+              ]
+            },
+            {
+              "description": "Turkmenistan",
+              "enum": [
+                "Turkmenistan"
+              ]
+            },
+            {
+              "description": "Turks- und Caicosinseln",
+              "enum": [
+                "Turks- und Caicosinseln"
+              ]
+            },
+            {
+              "description": "Tuvalu",
+              "enum": [
+                "Tuvalu"
+              ]
+            },
+            {
+              "description": "T\u00FCrkei",
+              "enum": [
+                "T\u00FCrkei"
+              ]
+            },
+            {
+              "description": "Uganda",
+              "enum": [
+                "Uganda"
+              ]
+            },
+            {
+              "description": "Ukraine",
+              "enum": [
+                "Ukraine"
+              ]
+            },
+            {
+              "description": "Ungarn",
+              "enum": [
+                "Ungarn"
+              ]
+            },
+            {
+              "description": "United Nations Organization",
+              "enum": [
+                "United Nations Organization"
+              ]
+            },
+            {
+              "description": "Uruguay",
+              "enum": [
+                "Uruguay"
+              ]
+            },
+            {
+              "description": "Usbekistan",
+              "enum": [
+                "Usbekistan"
+              ]
+            },
+            {
+              "description": "Vanuatu",
+              "enum": [
+                "Vanuatu"
+              ]
+            },
+            {
+              "description": "Vatikanstadt",
+              "enum": [
+                "Vatikanstadt"
+              ]
+            },
+            {
+              "description": "Venda",
+              "enum": [
+                "Venda"
+              ]
+            },
+            {
+              "description": "Vereinigte Arabische Emirate",
+              "enum": [
+                "Vereinigte Arabische Emirate"
+              ]
+            },
+            {
+              "description": "Vereinigte Republik Tansania",
+              "enum": [
+                "Vereinigte Republik Tansania"
+              ]
+            },
+            {
+              "description": "Vereinigte Staaten",
+              "enum": [
+                "Vereinigte Staaten"
+              ]
+            },
+            {
+              "description": "Vereinigtes K\u00F6nigreich",
+              "enum": [
+                "Vereinigtes K\u00F6nigreich"
+              ]
+            },
+            {
+              "description": "Vietnam",
+              "enum": [
+                "Vietnam"
+              ]
+            },
+            {
+              "description": "Wallis und Futuna",
+              "enum": [
+                "Wallis und Futuna"
+              ]
+            },
+            {
+              "description": "Weihnachtsinsel",
+              "enum": [
+                "Weihnachtsinsel"
+              ]
+            },
+            {
+              "description": "Wei\u00DFrussland",
+              "enum": [
+                "Wei\u00DFrussland"
+              ]
+            },
+            {
+              "description": "Westsahara",
+              "enum": [
+                "Westsahara"
+              ]
+            },
+            {
+              "description": "Zentralafrikanische Republik",
+              "enum": [
+                "Zentralafrikanische Republik"
+              ]
+            },
+            {
+              "description": "Zypern",
+              "enum": [
+                "Zypern"
+              ]
+            },
+            {
+              "description": "ehemalige jugoslawische Republik Mazedonien",
+              "enum": [
+                "ehemalige jugoslawische Republik Mazedonien"
+              ]
+            },
+            {
+              "description": "ohne Angabe",
+              "enum": [
+                "ohne Angabe"
+              ]
+            },
+            {
+              "description": "unbekanntes Ausland",
+              "enum": [
+                "unbekanntes Ausland"
+              ]
+            },
+            {
+              "description": "ungekl\u00E4rt",
+              "enum": [
+                "ungekl\u00E4rt"
+              ]
+            },
+            {
+              "description": "von/nach See",
+              "enum": [
+                "von/nach See"
+              ]
+            },
+            {
+              "description": "\u00C4gypten",
+              "enum": [
+                "\u00C4gypten"
+              ]
+            },
+            {
+              "description": "\u00C4quatorialguinea",
+              "enum": [
+                "\u00C4quatorialguinea"
+              ]
+            },
+            {
+              "description": "\u00C4thiopien",
+              "enum": [
+                "\u00C4thiopien"
+              ]
+            },
+            {
+              "description": "\u00C5landinseln",
+              "enum": [
+                "\u00C5landinseln"
+              ]
+            },
+            {
+              "description": "\u00D6sterreich",
+              "enum": [
+                "\u00D6sterreich"
+              ]
+            }
+          ]
+        },
+        "email": {
+          "title": "E-Mail",
+          "format": "email",
+          "placeholder": "_ _ _ _ @ _ _ _ _.de",
+          "description": "Ihre E-Mail-Adresse f\u00FCr evtl. Mitteilungen.",
+          "widget": {
+            "validationMessage": "Geben Sie eine g\u00FCltige E-Mail-Adresse an.",
+            "prefix": [
+              {
+                "icon": "email",
+                "ligature": true
+              }
+            ]
+          }
+        }
+      },
+      "order": [
+        "email",
+        "firma",
+        "nachname",
+        "vorname",
+        "anschrift",
+        "land"
+      ],
+      "required": [
+        "email",
+        "nachname",
+        "vorname",
+        "anschrift",
+        "land"
+      ],
+      "title": "",
+      "description": "Pers\u00F6nliche Angaben"
+    },
+    "betroffener": {
+      "widget": {
+        "asCard": false,
+        "id": "form",
+        "split": true,
+        "ignoreParentSplit": true,
+        "showErrors": {
+          "firstOnly": false,
+          "all": false,
+          "codes": [
+            "ONE_OF_PROPERTY"
+          ],
+          "position": "bottom"
+        }
+      },
+      "properties": {
+        "geburt_geschlecht_oder_adresse_hinweis_message_html_2a": {
+          "type": "string",
+          "title": "",
+          "widget": {
+            "split": false,
+            "ignoreParentSplit": true,
+            "id": "html",
+            "html": "Machen Sie weitere Angaben zu* <br/><strong>A) Geschlecht und Geburtsdatum</strong>"
+          }
+        },
+        "geburt_geschlecht_oder_adresse_hinweis_message_html_2b": {
+          "type": "string",
+          "title": "",
+          "widget": {
+            "split": false,
+            "ignoreParentSplit": true,
+            "id": "html",
+            "html": "oder <strong>B) Letzte bekannte Anschrift</strong><br/>"
+          }
+        },
+        "vorname": {
+          "title": "Vornamen",
+          "description": "Geben Sie den gesuchten Vornamen an.",
+          "widget": {
+            "validationMessage": "Geben Sie einen g\u00FCltigen Vornamen an."
+          }
+        },
+        "nachname": {
+          "title": "Familienname",
+          "description": "Geben Sie den gesuchten Familiennamen an.",
+          "widget": {
+            "validationMessage": "Geben Sie einen g\u00FCltigen Familiennamen an."
+          }
+        },
+        "geburt": {
+          "readOnly": false,
+          "pattern": "[1-9]\\d{3}-\\d{2}-\\d{2}",
+          "widget": {
+            "id": "date",
+            "dateFormat": "dd.MM.yyyy",
+            "modelDateFormat": "yyyy-MM-dd",
+            "yearRange": "1900:2200",
+            "yearNavigator": true,
+            "dataType": "string",
+            "maxAge": "0:0:0",
+            "errorMessages": {
+              "DATE_IN_FUTURE": "Geben Sie ein Datum in der Vergangenheit an.",
+              "DATE_IN_PAST": "Geben Sie ein Datum nachdem 01.01.1900 an."
+            }
+          },
+          "title": "Geburtsdatum",
+          "description": "Geben Sie Ihr Geburtsdatum in der Form TT.MM.JJJJ an."
+        },
+        "geschlecht": {
+          "title": "Geschlecht",
+          "description": "W\u00E4hlen Sie das Geschlecht zur gesuchten Person aus.",
+          "default": "",
+          "pattern": "",
+          "widget": {
+            "id": "radio"
+          },
+          "oneOf": [
+            {
+              "description": "Keine Angabe",
+              "enum": [
+                ""
+              ]
+            },
+            {
+              "description": "nicht festgestellt",
+              "enum": [
+                "X"
+              ]
+            },
+            {
+              "description": "m\u00E4nnlich",
+              "enum": [
+                "M"
+              ]
+            },
+            {
+              "description": "weiblich",
+              "enum": [
+                "W"
+              ]
+            }
+          ]
+        },
+        "anschrift": {
+          "title": "Letzte bekannte Anschrift",
+          "description": "Geben Sie die letzte bekannte Anschrift an.",
+          "minLength": 1,
+          "widget": {
+            "split": false,
+            "ignoreParentSplit": true,
+            "id": "autocomplete",
+            "emptyMessage": "Kein Vorschlag",
+            "immutable": false,
+            "readonly": false,
+            "x-size": 30,
+            "minLength": 1,
+            "labelExpression": "item.anschrift.plz + ' ' + item.anschrift.ort.ortName + ', ' +   item.anschrift.strasse.name + ' ' + item.anschrift.hausnummer",
+            "resultExpression": "data.results",
+            "validationMessage": "Geben Sie einen g\u00FCltigen Anschrift an.",
+            "serviceUrl": "${backend}/inforeg/v1/acosv/search",
+            "serviceOptions": {
+              "method": "GET",
+              "headers": {
+                "X-ApiKey": "${apiKey}"
+              },
+              "params": {
+                "q": "{__ac_query__}",
+                "m": "${mbom}"
+              },
+              "withCredentials": true,
+              "content-type": "application/json"
+            }
+          }
+        },
+        "gemeindeschluessel": {
+          "widget": {
+            "id": "hidden"
+          }
+        }
+      },
+      "order": [
+        "vorname",
+        "nachname",
+        "geburt_geschlecht_oder_adresse_hinweis_message_html_2a",
+        "geschlecht",
+        "geburt",
+        "geburt_geschlecht_oder_adresse_hinweis_message_html_2b",
+        "anschrift",
+        "gemeindeschluessel"
+      ],
+      "required": [
+        "vorname",
+        "nachname"
+      ],
+      "title": "",
+      "description": "Gesuchte Person"
+    },
+    "anfragezweck": {
+      "widget": {
+        "id": "form",
+        "split": false,
+        "ignoreParentSplit": true
+      },
+      "properties": {
+        "aktenzeichen": {
+          "minLength": 1,
+          "maxLength": 255,
+          "placeholder": "2200-B/14",
+          "description": "Eigenes Zeichen zur eigenen Identifizierung und Zuordnung.",
+          "title": "Ihr Zeichen",
+          "widget": {
+            "validationMessage": "Geben Sie 1 bis 60 Zeichen lang an."
+          }
+        },
+        "nichtgewerblich": {
+          "widget": "radio",
+          "default": "nichtgewerblich",
+          "title": "Der Zweck der Anfrage ist",
+          "x-description": "Sie versichern, dass Sie die erteilte Auskunft nicht zu gewerblichen Zwecken, Zwecken der Werbung und des Adresshandels verwenden und dass Ihnen die <a rel=\"noopener noreferrer\" target=\"_blank\" alt=\"Link zu den rechtlichen Grundlagen\" href=\"https://www.meldebehoerde.de/rechtliches/olmera/gewerblicherZweck.html\">rechtliche Grundlage</a> bekannt ist.",
+          "oneOf": [
+            {
+              "description": "nicht gewerblich",
+              "enum": [
+                "nichtgewerblich"
+              ]
+            },
+            {
+              "description": "gewerblich",
+              "enum": [
+                "gewerblich"
+              ]
+            }
+          ]
+        },
+        "nichtgewerblich_hinweis": {
+          "type": "string",
+          "title": "",
+          "widget": {
+            "id": "html",
+            "html": "Sie versichern, dass Sie die erteilte Auskunft <strong>nicht zu gewerblichen Zwecken, Zwecken der Werbung und des Adresshandels verwenden</strong> und dass Ihnen die rechtliche Grundlage bekannt ist."
+          },
+          "visibleIf": {
+            "nichtgewerblich": [
+              "nichtgewerblich"
+            ]
+          }
+        },
+        "gewerblich": {
+          "properties": {
+            "adressabgleich": {
+              "type": "boolean",
+              "title": "Adressabgleich",
+              "default": false
+            },
+            "adressermittlung": {
+              "title": "Adressermittlung und -weitergabe an (eine) im Freitextfeld bestimmte Person(en) oder Stelle(n)",
+              "default": false
+            },
+            "andererGrund": {
+              "widget": "textarea",
+              "title": "Freitextfeld",
+              "description": "Freitextfeld f\u00FCr andere Gr\u00FCnde",
+              "placeholder": "Freitextfeld f\u00FCr andere Gr\u00FCnde"
+            },
+            "speicherungAdressabgleich": {
+              "title": "Speicherung und Nutzung zum Adressabgleich f\u00FCr Dritte",
+              "default": false
+            },
+            "aktualisierung": {
+              "title": "Aktualisierung eigener Bestandsdaten",
+              "default": false
+            },
+            "adresshistorisierung": {
+              "title": "Speicherung und Nutzung zur Adresshistorisierung",
+              "default": false
+            },
+            "forderungsmanagement": {
+              "title": "Forderungsmanagement",
+              "default": false
+            },
+            "bonitaetsrisikopruefungen": {
+              "title": "Bonit\u00E4tsrisikopr\u00FCfungen",
+              "default": false
+            },
+            "werbung": {
+              "title": "Werbung",
+              "default": true
+            },
+            "adresshandel": {
+              "title": "Adresshandel",
+              "default": true
+            },
+            "markt": {
+              "title": "Markt-, Meinungs- oder Sozialforschung",
+              "default": false
+            },
+            "einwilligungenWerbung": {
+              "visibleIf": {
+                "/anfragezweck/gewerblich/werbung": [
+                  true
+                ]
+              },
+              "x-widget": {
+                "id": "form",
+                "split": false,
+                "ignoreParentSplit": true
+              },
+              "properties": {
+                "einwilligungenWerbung": {
+                  "title": "Einwilligungserkl\u00E4rung liegt vor",
+                  "description": "Ausdr\u00FCckliche Einwilligungserkl\u00E4rung im Rahmen der gesetzlichen Vorgaben liegt mir vor f\u00FCr die Nutzung zum Zwecke der Werbung.",
+                  "visibleIf": {
+                    "/anfragezweck/gewerblich/werbung": [
+                      true
+                    ]
+                  }
+                }
+              }
+            },
+            "einwilligungenAdresshandel": {
+              "visibleIf": {
+                "/anfragezweck/gewerblich/adresshandel": [
+                  true
+                ]
+              },
+              "x-widget": {
+                "id": "form",
+                "split": false,
+                "ignoreParentSplit": true
+              },
+              "properties": {
+                "einwilligungenAdresshandel": {
+                  "title": "Einwilligungserkl\u00E4rung liegt vor",
+                  "description": "Ausdr\u00FCckliche Einwilligungserkl\u00E4rung im Rahmen der gesetzlichen Vorgaben liegt mir vor f\u00FCr die Nutzung zum Zwecke des Adresshandels.",
+                  "visibleIf": {
+                    "/anfragezweck/gewerblich/adresshandel": [
+                      true
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "widget": {
+            "id": "form",
+            "noCard": true
+          },
+          "visibleIf": {
+            "nichtgewerblich": [
+              "gewerblich"
+            ]
+          },
+          "title": "",
+          "description": "W\u00E4hlen Sie die gewerblichen Zwecke aus",
+          "order": [
+            "adressabgleich",
+            "adressermittlung",
+            "speicherungAdressabgleich",
+            "aktualisierung",
+            "adresshistorisierung",
+            "forderungsmanagement",
+            "bonitaetsrisikopruefungen",
+            "werbung",
+            "einwilligungenWerbung",
+            "adresshandel",
+            "einwilligungenAdresshandel",
+            "markt",
+            "andererGrund"
+          ]
+        }
+      },
+      "order": [
+        "aktenzeichen",
+        "nichtgewerblich",
+        "nichtgewerblich_hinweis",
+        "gewerblich"
+      ],
+      "title": "",
+      "description": "Geben Sie den Zweck der Anfrage an"
+    },
+    "zeichen": {
+      "widget": {
+        "id": "hidden"
+      }
+    },
+    "fassung": {
+      "widget": {
+        "id": "hidden"
+      }
+    },
+    "test": {
+      "widget": {
+        "id": "hidden"
+      }
+    },
+    "responsewithoutrequest": {
+      "widget": {
+        "id": "hidden"
+      }
+    },
+    "produkt": {
+      "widget": {
+        "id": "hidden"
+      }
+    },
+    "produkthersteller": {
+      "widget": {
+        "id": "hidden"
+      }
+    },
+    "produktversion": {
+      "widget": {
+        "id": "hidden"
+      }
+    },
+    "version": {
+      "widget": {
+        "id": "hidden"
+      }
+    },
+    "transaktionsdaten": {
+      "widget": {
+        "id": "hidden"
+      },
+      "properties": {
+        "erfolgsUrl": {
+          "default": "not-set"
+        },
+        "fehlerUrl": {
+          "default": "not-set"
+        },
+        "hmac": {
+          "default": "not-set"
+        },
+        "kundeninformation": {
+          "properties": {
+            "vorname": {
+            },
+            "nachname": {
+            },
+            "email": {
+            },
+            "strasse": {
+            },
+            "hausnummer": {
+            },
+            "plz": {
+            },
+            "stadt": {
+            },
+            "tel": {
+            },
+            "fax": {
+            },
+            "firmenname": {
+            }
+          }
+        },
+        "transactionsPrefix": {
+        }
+      },
+      "required": [
+        "erfolgsUrl",
+        "fehlerUrl",
+        "hmac"
+      ]
+    },
+    "end-page": {
+      "type": "object",
+      "widget": {
+        "id": "form",
+        "ignoreParentSplit": true,
+        "split": false
+      },
+      "properties": {
+        "finish-infotext": {
+          "type": "string",
+          "title": "",
+          "description": "",
+          "widget": {
+            "id": "html",
+            "html": "<p>Ihr Antrag wird der zust\u00E4ndigen Beh\u00F6rde zur weiteren Bearbeitung \u00FCbergeben. Als Best\u00E4tigung erhalten Sie eine E-Mail von uns, die an Ihre angegebene E-Mail-Adresse gesendet wird.</p><p>F\u00FCr Fragen oder Anregungen stehen wir Ihnen gern zur Verf\u00FCgung.</p>"
+          }
+        },
+        "captcha": {
+          "type": "string",
+          "title": "Best\u00E4tigen Sie bitte das CAPTCHA",
+          "widget": {
+            "id": "captcha",
+            "siteKey": "6Lc6gXkUAAAAAPgUuueXezZvHrXh94nXvQG0X3QG",
+            "_invisibleCAPTCHASiteKey": "6Lc_gXkUAAAAAELBii9_xBNQkvw1lw_-ckqSgIjW",
+            "_visibleCAPTCHASiteKey": "6Lc6gXkUAAAAAPgUuueXezZvHrXh94nXvQG0X3QG",
+            "type": "image audio",
+            "language": "de",
+            "theme": "light",
+            "size": "visible"
+          }
+        }
+      },
+      "required": [
+        "captcha"
+      ]
+    }
+  },
+  "required": [
+    "antragsteller",
+    "betroffener",
+    "anfragezweck"
+  ],
+  "name": "Einfache Melderegisterauskunft",
+  "widget": {
+    "id": "wizard",
+    "asCard": true,
+    "no_override_for_now_labelPrev": "Zur\u00FCck",
+    "no_override_for_now_labelNext": "Weiter",
+    "no_override_for_now_labelFinish": "Absenden",
+    "buttons": {
+      "prev": {
+        "label": "Zur\u00FCck",
+        "severity": "secondary",
+        "icon": "ui-icon-arrow-back",
+        "iconPos": "left",
+        "actionId": "wizard_action_prev"
+      },
+      "next": {
+        "label": "Weiter",
+        "severity": "primary",
+        "icon": "ui-icon-arrow-forward",
+        "iconPos": "right",
+        "actionId": "wizard_action_next"
+      },
+      "finish": {
+        "label": "Absenden",
+        "severity": "info",
+        "icon": "ui-icon-cloud-upload",
+        "iconPos": "right",
+        "actionId": "___action___schema_form_final"
+      }
+    },
+    "startPage": 0,
+    "split": true,
+    "ignoreParentSplit": true,
+    "service": {
+      "url": "${backend}/olmera/melderegister/einfachemelderegisterauskunftgast",
+      "method": "POST",
+      "headers": {
+        "X-ApiKey": "${apiKeyOLMERA}"
+      },
+      "withCredentials": true
+    },
+    "stepper": {
+      "start": "Start",
+      "antragsteller": "Kontakt",
+      "betroffener": "Anfrage",
+      "anfragezweck": "Zweck",
+      "finish": "Absenden"
+    },
+    "noCard": true
+  },
+  "readOnly": false,
+  "fieldsets": [
+    {
+      "id": "start",
+      "description": "",
+      "fields": [
+        "start-page"
+      ]
+    },
+    {
+      "id": "antragsteller",
+      "description": "",
+      "fields": [
+        "antragsteller"
+      ]
+    },
+    {
+      "id": "betroffener",
+      "description": "",
+      "fields": [
+        "betroffener"
+      ]
+    },
+    {
+      "id": "anfragezweck",
+      "description": "",
+      "fields": [
+        "anfragezweck"
+      ]
+    },
+    {
+      "id": "finish",
+      "name": "",
+      "title": "Sie sind fast am Ziel.",
+      "description": "Wir haben nun alle ben\u00F6tigten Informationen. Sie m\u00FCssen nur noch Ihren Antrag absenden.",
+      "fields": [
+        "end-page",
+        "zeichen",
+        "fassung",
+        "test",
+        "responsewithoutrequest",
+        "produkt",
+        "produkthersteller",
+        "produktversion",
+        "version",
+        "transaktionsdaten"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "description": "Rechtsgrundlage \u00A7 44 Bundesmeldegesetz. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Rechtsgrundlage \u00A7 44",
+      "id": "rechtsgrundlage1",
+      "href": "https://www.gesetze-im-internet.de/bmg/__44.html",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    },
+    {
+      "description": "Rechtsgrundlage \u00A7 49 Bundesmeldegesetz. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Rechtsgrundlage \u00A7 49",
+      "id": "rechtsgrundlage2",
+      "href": "https://www.gesetze-im-internet.de/bmg/__49.html",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    },
+    {
+      "description": "Allgemeine Hinweise. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Allgemeine Hinweise",
+      "id": "allgemeine_hinweise",
+      "href": "https://www.gesetze-im-internet.de/bmg/",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    },
+    {
+      "description": "Hinweise zum Datenschutz. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Datenschutz",
+      "id": "datenschutz",
+      "href": "${server}/datenschutz",
+      "target": "_blank",
+      "icon": "ui-icon-lock",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    },
+    {
+      "description": "Impressum und Kontakt. Link \u00F6ffnet in neuem Fenster.",
+      "label": "Impressum",
+      "id": "impressum",
+      "href": "${server}/impressum",
+      "target": "_blank",
+      "icon": "ui-icon-mail-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "overlayClose": "Schlie\u00DFen",
+      "overlayOpen": "In eigenem Fenster oder Tab \u00F6ffnen"
+    }
+  ],
+  "buttons": [
+    {
+      "label": "\u00D6ffnen",
+      "description": "F\u00FChren Sie eine zuvor gespeicherte Arbeit fort.",
+      "iconPos": "left",
+      "severity": "success",
+      "icon": "vi-download",
+      "id": "___default_action_upload_model",
+      "parameters": {
+        "upload": {
+          "property": "",
+          "success": "Erfolgreich hochgeladen.",
+          "error": "Datei ist nicht kompatibel."
+        }
+      }
+    },
+    {
+      "label": "Speichern",
+      "description": "Sichern Sie Ihre Arbeit und f\u00FChren Sie sie sp\u00E4ter fort.",
+      "iconPos": "left",
+      "severity": "info",
+      "icon": "vi-save",
+      "id": "___default_action_download_model",
+      "parameters": {
+        "download": {
+          "property": "",
+          "name": "Einfache-Melderegisterauskunft.json",
+          "prompt": "Speichern als ..."
+        }
+      }
+    }
+  ]
+}

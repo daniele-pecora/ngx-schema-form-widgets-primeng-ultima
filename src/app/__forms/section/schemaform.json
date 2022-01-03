@@ -1,0 +1,86 @@
+{
+    "properties": {
+        "enabler": {
+            "widget": {
+                "id": "switch"
+            }
+        },
+        "section": {
+            "widget": {
+                "id": "section",
+                "style": "accordion",
+                "startSection": null,
+                "sections": {
+                    "__container1": "Section A",
+                    "__container2": "Section B",
+                    "__container3": "Section C",
+                    "container1": {
+                        "_iconLeft": "ui-icon-edit",
+                        "title": "Section 1",
+                        "iconRight": "ui-icon-edit"
+                    },
+                    "container2": {
+                        "_iconLeft": "ui-icon-send",
+                        "title": "Section 2",
+                        "iconRight": "ui-icon-send"
+                    },
+                    "container3": {
+                        "_iconLeft": "ui-icon-add",
+                        "title": "Section 3",
+                        "iconRight": "ui-icon-add"
+                    },
+                    "container4": {
+                        "_iconLeft": "ui-icon-add",
+                        "title": "Section 4",
+                        "iconRight": "ui-icon-add"
+                    }
+                }
+            },
+            "properties": {
+                "container1": {
+                    "properties": {
+                        "prop1": {},
+                        "prop2": {},
+                        "prop3": {},
+                        "prop4": {}
+                    }
+                },
+                "container2": {
+                    "properties": {
+                        "prop1": {},
+                        "prop2": {},
+                        "prop3": {},
+                        "prop4": {}
+                    }
+                },
+                "container3": {
+                    "properties": {
+                        "prop1": {},
+                        "prop2": {},
+                        "prop3": {},
+                        "prop4": {}
+                    },
+                    "visibleIf": {
+                        "/enabler": [
+                            true
+                        ]
+                    }
+                },
+                "container4": {
+                    "properties": {
+                        "prop1": {},
+                        "prop2": {},
+                        "prop3": {},
+                        "prop4": {}
+                    }
+                }
+            },
+            "buttons": [
+                {
+                    "id": "switch_tabview_accordion",
+                    "label": "Toggle view"
+                }
+            ]
+        }
+    }
+}

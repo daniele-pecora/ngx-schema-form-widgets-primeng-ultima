@@ -1,0 +1,37 @@
+<!--
+Element 'widget':
+  - labelPlacement = It is either 'before' (default) or 'after'
+  - noSpacer = Allows to hide the preserved free space where the helper-text and validation message are displayed.
+              `false` (default) = shows the preserved space
+              `true` = hides the preserved space when no helper-text and validation message is present.
+              'always' , will hide the space completely and will never display a helper-text or validation message
+-->
+<div class="ui-g-12">
+  <div class="md-switch">
+    <label *ngIf="schema.widget?.labelPlacement==='before'" [attr.for]="id" class="horizontal control-label control-label-before">{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }}<ngx-ui-widget-required-mark [formProperty]="formProperty"></ngx-ui-widget-required-mark></label>
+
+    <p-inputSwitch
+      inputId="{{id}}"
+      onLabel="On" offLabel="Off"
+      [formControl]="control" [attr.name]="name"
+      indeterminate="control.value !== false && control.value !== true ? true :null"
+      [disabled]="schema.readOnly"
+      ariaLabelTemplate="Inputswitch state is {0}"
+      (onChange)="handleChange($event)"
+      #inputSwitchEl
+    ></p-inputSwitch>
+    <input *ngIf="schema.readOnly" [attr.name]="name" type="hidden" [formControl]="control">
+
+    <label *ngIf="schema?.widget?.labelPlacement!=='before'" [attr.for]="id" class="horizontal control-label control-label-after">{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }}<ngx-ui-widget-required-mark [formProperty]="formProperty"></ngx-ui-widget-required-mark></label>
+
+    <ngx-ui-field-validation-messages
+      [formComponent]="this"
+      [validationErrors]="control.errors"
+    >
+      <div class="ui-message ui-messages-info"
+           *ngIf="schema.description">
+        {{schema.description}}
+      </div>
+    </ngx-ui-field-validation-messages>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<!--
+Element 'p-spinner'
+  - title = label
+
+Element 'p-spinner' in 'widget' field do represent the same as in the primeng documentation
+  - min
+  - max
+  - step
+  - size
+
+Element 'widget':
+  - prefix [ {icon, text, ligature }] - see component <ngx-ui-widget-addon>
+  - suffix  [ {icon, text, ligature }] - see component <ngx-ui-widget-addon>
+  - filled = filled background for the input section of the widget
+  - size  = when not set the widget will be set to full width of available space
+            set this to 'default' to use defaults width
+            set to a positive number value to set a value like on input element
+
+  - noSpacer = Allows to hide the preserved free space where the helper-text and validation message are displayed.
+              `false` (default) = shows the preserved space
+              `true` = hides the preserved sp ace when no helper-text and validation message is present.
+              'always' , will hide the space completely and will never display a helper-text or validation message
+-->
+<div class="ui-g-12">
+  <div class="ui-inputgroup"
+    [class.ngx-ui-widget-full-width]="!schema.widget?.size"
+  >
+    <ngx-ui-widget-addon *ngIf="schema?.widget?.prefix" [addons]="schema.widget.prefix"></ngx-ui-widget-addon>
+    <div class="md-inputfield" 
+      [class.md-inputfield-fill]="schema?.widget?.filled"
+    >
+      <p-spinner
+        inputId="{{id}}"
+        [readonly]="schema.readOnly"
+        [disabled]="schema.readOnly"
+        [formControl]="control"
+        [min]="schema.minimum||null"
+        [max]="schema.maximum||null"
+        [step]="schema.widget?.step||1"
+        [placeholder]="schema.placeholder"
+        [size]="schema?.widget?.size"
+        [attr.data-ngx-ui-placeholder]="schema.placeholder"
+
+        [required]="(formProperty|IsRequiredAttr)"
+      >
+      </p-spinner>
+
+      <label [attr.for]="id">{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }}<ngx-ui-widget-required-mark [formProperty]="formProperty"></ngx-ui-widget-required-mark></label>
+
+      <ngx-ui-field-validation-messages
+        [formComponent]="this"
+        [validationErrors]="control.errors"
+      >
+        <div class="ui-message ui-messages-info"
+             *ngIf="schema.description">
+          {{schema.description}}
+        </div>
+      </ngx-ui-field-validation-messages>
+    </div>
+    <ngx-ui-widget-addon *ngIf="schema?.widget?.suffix" [addons]="schema.widget.suffix"></ngx-ui-widget-addon>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<!--
+    In Element 'widget'
+                - msgs             = all the messages to show
+                    |- severity    = the severity
+                    |- title       = the label of the message
+                    |- text        = the text to set as message content
+
+                - inline      = set to true when using inside of forms
+                                will set 'display:inline-block' instead of 'display:block'
+-->
+<p-messages *ngIf="schema.widget?.msgs"
+            [(value)]="msgs"
+            [style.display]="!this.schema?.widget.hasOwnProperty('inline')||this.schema?.widget.inline?'inline-block':null"
+            [closable]="this.schema?.widget?.closable === true"></p-messages>
