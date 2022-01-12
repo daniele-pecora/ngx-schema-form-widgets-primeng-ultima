@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "date-picker1995": {
+      "widget": {
+        "id": "date-picker",
+        "filled": true,
+        "formatFilter": true,
+        "yearRange": "1920:1995",
+        "yearNavigator": true,
+        "_preset":"-50:0:0"
+      }
+    },
+    "date-picker2200": {
+      "widget": {
+        "id": "date-picker",
+        "filled": true,
+        "formatFilter": true,
+        "yearRange": "1920:2200",
+        "maxDate":"2200",
+        "yearNavigator": true
+      }
+    }
+  }
+}

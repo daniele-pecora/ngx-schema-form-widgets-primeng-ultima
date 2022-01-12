@@ -6,8 +6,8 @@ import { ControlWidget } from "ngx-schema-form";
 import { DateValueConverter } from "./date-value.converter";
 import { DateFormatHelper } from './date-format-helper'
 import { inputDateAutoComplete, setDateInputEditListener } from './date.autocomplete'
-import {BindingRegistry} from 'ngx-schema-form'
-import {triggerBinding} from '../bindings-registry-helper'
+import { BindingRegistry } from 'ngx-schema-form'
+import { triggerBinding } from '../bindings-registry-helper'
 import { NoHelperTextSpacer } from "../_component-helper/no-helpertext-spacer.widget";
 import { escapeForCSSId } from "../_utils/utils";
 
@@ -69,7 +69,7 @@ export class DateWidgetComponent extends NoHelperTextSpacer implements OnInit, A
     constructor(private bindingRegistry: BindingRegistry
         , private renderer: Renderer2
         , private elRef: ElementRef
-        ){
+    ) {
         super()
     }
 
@@ -86,8 +86,8 @@ export class DateWidgetComponent extends NoHelperTextSpacer implements OnInit, A
             const _target = this.dateCalenderElement['el'].nativeElement.querySelector(`#${escapeForCSSId(this.id)}`)
             _target.value = this.formProperty.value
             const _event = { srcElement: _target, target: _target }
-                triggerBinding(this, 'change', _event, this.bindingRegistry, this.formProperty)
-          }
+            triggerBinding(this, 'change', _event, this.bindingRegistry, this.formProperty)
+        }
     }
 
     ngOnInit() {
@@ -158,7 +158,44 @@ export class DateWidgetComponent extends NoHelperTextSpacer implements OnInit, A
         if (false !== this.formProperty.schema.widget.formatFilter) {
             setDateInputEditListener(this.elRef.nativeElement.querySelector('.ui-calendar input'))
         }
+        this.initYearNavigator()
     }
+
+    initYearNavigator() {
+        /**
+         * Fix: When activating year navigator
+         * the internal current year will allways be set to 
+         * the actual current year.
+         * 
+         * This will cause jumping the year from the min year of a given year-range 
+         * to the current date year when using the month arrows to navigate through the month/years.
+         * 
+         * PrimeNg Calendar widget does increment the year when the final month (december) is arrived,
+         * but not starting from the year currently selected in the dropdown but 
+         * from the year of the internal date, which is the actual current date.
+         */
+        const setCurrentYearFromMinDate = () => {
+            this.dateCalenderElement['currentYear'] = null
+            this.dateCalenderElement['currentMonth'] = null
+            let __date
+            if (this.minDate) {
+                __date = this.minDate
+            } else {
+                const date_yearRange = this.schema.widget.yearRange || this.defaultYearRange()
+                __date = new Date()
+                __date.setFullYear(date_yearRange.split(':')[0])
+                __date.setMonth(0)
+                __date.setDate(1)
+            }
+            this.dateCalenderElement['currentYear'] = __date.getFullYear()
+            this.dateCalenderElement['currentMonth'] = __date.getMonth()
+            this.dateCalenderElement['defaultDate'] = __date
+            this.dateCalenderElement['ngOnInit']()
+        }
+        if (true === this.schema.widget.yearNavigator)
+            setCurrentYearFromMinDate()
+    }
+
     setMissingAriaAttributes() {
         const button = (this.dateCalenderElement.nativeElement || this.dateCalenderElement['el'].nativeElement).querySelector('button.ui-calendar-button')
         if (button) {
