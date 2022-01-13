@@ -14,7 +14,9 @@ import { escapeForCSSId } from "../_utils/utils";
 @Component({
     selector: 'ngx-ui-date-widget',
     templateUrl: './date.widget.html',
-    styleUrls: ['../_component-helper/no-helpertext-spacer.widget.scss']
+    styleUrls: ['../_component-helper/no-helpertext-spacer.widget.scss'
+        , './date.widget.scss'
+    ]
 })
 //TODO when typing the date we must check the format to make the input match
 export class DateWidgetComponent extends NoHelperTextSpacer implements OnInit, AfterViewInit {
@@ -158,10 +160,10 @@ export class DateWidgetComponent extends NoHelperTextSpacer implements OnInit, A
         if (false !== this.formProperty.schema.widget.formatFilter) {
             setDateInputEditListener(this.elRef.nativeElement.querySelector('.ui-calendar input'))
         }
-        this.initYearNavigator()
+        this.initYearMonthNavigator()
     }
 
-    initYearNavigator() {
+    initYearMonthNavigator() {
         /**
          * Fix: When activating year navigator
          * the internal current year will allways be set to 
@@ -194,6 +196,134 @@ export class DateWidgetComponent extends NoHelperTextSpacer implements OnInit, A
         }
         if (true === this.schema.widget.yearNavigator)
             setCurrentYearFromMinDate()
+
+        /**
+         * Fix: 
+         * the year navigator not counting properly when selecting the last available year form year dropdown.
+         * selecting the last available year from calendar and 
+         * navigating via month navigation will cause
+         * a re-creation of the month resulting in a non predictable list of month.
+         * this fix prevents from navigating outside the given year range
+         * by hiding the navigation arrows
+         */
+        const wrapDateNavigation = () => {
+            if (!this.dateCalenderElement['__backup_navForward']) {
+                const __backup_navForward = this.dateCalenderElement['navForward']
+                const __backup_navBackward = this.dateCalenderElement['navBackward']
+
+                this.dateCalenderElement['__backup_navForward'] = __backup_navForward
+                this.dateCalenderElement['__backup_navBackward'] = __backup_navBackward
+
+                const toggleClickable = (boolPrevOrNext, enable) => {
+                    const el = boolPrevOrNext ?
+                        this.dateCalenderElement['el'].nativeElement.querySelector('.ui-datepicker-prev')
+                        : this.dateCalenderElement['el'].nativeElement.querySelector('.ui-datepicker-next')
+                    if (el)
+                        if (enable) {
+                            this.renderer.setStyle(el, 'display', 'unset')
+                            this.renderer.removeAttribute(el, 'aria-hidden')
+                        } else {
+                            this.renderer.setStyle(el, 'display', 'none')
+                            this.renderer.setAttribute(el, 'aria-hidden', 'true')
+                        }
+                    if (enable) {
+                        if (boolPrevOrNext) {
+                            this.renderer.removeClass(this.dateCalenderElement['el'].nativeElement, '__cal_hideNavPrev')
+                        } else {
+                            this.renderer.removeClass(this.dateCalenderElement['el'].nativeElement, '__cal_hideNavNext')
+                        }
+                    } else {
+                        if (boolPrevOrNext) {
+                            this.renderer.addClass(this.dateCalenderElement['el'].nativeElement, '__cal_hideNavPrev')
+                        } else {
+                            this.renderer.addClass(this.dateCalenderElement['el'].nativeElement, '__cal_hideNavNext')
+                        }
+                    }
+                    return el
+                }
+
+                const checkDateNavigation = (prevOrNext, beforeOrAfter) => {
+                    const currYear = this.dateCalenderElement['currentYear']
+                    const currMonth = this.dateCalenderElement['currentMonth']
+                    const date_yearRange = (this.schema.widget.yearRange || this.defaultYearRange()).split(':')
+
+                    let date_yearToTest
+                    let monthToTest
+                    let year_range_inside
+                    let month_in_range
+                    if (prevOrNext) {
+                        date_yearToTest = date_yearRange[0]
+                        monthToTest = beforeOrAfter ? 0 : 1
+                        year_range_inside = currYear > date_yearToTest
+                        month_in_range = currMonth > monthToTest
+                    } else {
+                        date_yearToTest = date_yearRange[1]
+                        monthToTest = beforeOrAfter ? 11 : 10
+                        year_range_inside = currYear < date_yearToTest
+                        month_in_range = currMonth < monthToTest
+                    }
+
+                    const year_range_limit = currYear == date_yearToTest
+                    const year_in_range = year_range_limit || year_range_inside
+                    const enable_navigation = (year_range_limit && month_in_range) || year_range_inside
+                    return enable_navigation
+                }
+
+                const checkDateNavigationFW = (beforeOrAfter) => { return checkDateNavigation(false, beforeOrAfter) }
+
+                const checkDateNavigationBW = (beforeOrAfter) => { return checkDateNavigation(true, beforeOrAfter) }
+
+                const toggleNavigation = () => {
+                    if (checkDateNavigationFW(true)) {
+                        toggleClickable(false, true)
+                    } else {
+                        toggleClickable(false, false)
+                    }
+                    if (checkDateNavigationBW(true)) {
+                        toggleClickable(true, true)
+                    } else {
+                        toggleClickable(true, false)
+                    }
+                }
+                this.dateCalenderElement['navForward'] = (event) => {
+                    if (checkDateNavigationFW(true)) {
+                        this.dateCalenderElement['__backup_navForward'](event)
+                    }
+                    toggleNavigation()
+                }
+                this.dateCalenderElement['navBackward'] = (event) => {
+                    if (checkDateNavigationBW(true)) {
+                        this.dateCalenderElement['__backup_navBackward'](event)
+                    }
+                    toggleNavigation()
+                }
+
+                const ui_datepicker_year = this.dateCalenderElement['el'].nativeElement.querySelector('select.ui-datepicker-year')
+                if (ui_datepicker_year) {
+                    ui_datepicker_year.addEventListener('change', (event) => { toggleNavigation() })
+                }
+
+
+                if (!this.dateCalenderElement['__backup_onYearDropdownChange']) {
+                    this.dateCalenderElement['__backup_onYearDropdownChange'] = this.dateCalenderElement['onYearDropdownChange']
+                    this.dateCalenderElement['onYearDropdownChange'] = (event_target_value) => {
+                        this.dateCalenderElement['__backup_onYearDropdownChange'](event_target_value)
+                        // on year select check if navigation buttons should be enabled
+                        toggleNavigation()
+                    }
+                }
+
+                if (!this.dateCalenderElement['__backup_updateUI']) {
+                    this.dateCalenderElement['__backup_updateUI'] = this.dateCalenderElement['updateUI']
+                    this.dateCalenderElement['updateUI'] = () => {
+                        this.dateCalenderElement['__backup_updateUI']()
+                        // initally check if navigation buttons should be enabled
+                        toggleNavigation()
+                    }
+                }
+            }
+        }
+        wrapDateNavigation()
     }
 
     setMissingAriaAttributes() {
