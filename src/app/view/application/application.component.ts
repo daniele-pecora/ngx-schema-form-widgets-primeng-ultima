@@ -6,6 +6,7 @@ import { FORM_DIRECTORY, SCHEMA_FORM_TEMPLATE } from '../../app.constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { SchemaValidatorFactory } from 'ngx-schema-form';
 
 @Component({
   selector: 'app-application',
@@ -28,15 +29,15 @@ export class ApplicationComponent {
    *
    * Therefore we start here with a <code>null</code> inital object.
    */
-    // uiInitialFormViewModel: UIFormViewModel = {
-    //   schemaObject: {properties: {name: {type: 'string'}}},
-    //   formModelObject: {},
-    //   modelObject: {},
-    //   bindingsObject: {},
-    //   actionsObject: {},
-    //   validatorsObject: {},
-    //   mapperObject: {}
-    // };
+  // uiInitialFormViewModel: UIFormViewModel = {
+  //   schemaObject: {properties: {name: {type: 'string'}}},
+  //   formModelObject: {},
+  //   modelObject: {},
+  //   bindingsObject: {},
+  //   actionsObject: {},
+  //   validatorsObject: {},
+  //   mapperObject: {}
+  // };
   uiInitialFormViewModel: UIFormViewModel;
   onChangeFormViewModel: UIFormViewModel;
   finalModelObject: object;
@@ -127,7 +128,8 @@ export class ApplicationComponent {
     return this._http.request(options.method, url, options)
       .pipe(
         //map(res => res.json()),
-        catchError(err => {console.log('err',err)
+        catchError(err => {
+          console.log('err', err)
           return throwError(err);
         }));
   }
