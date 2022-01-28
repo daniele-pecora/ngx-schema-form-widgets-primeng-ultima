@@ -1,6 +1,6 @@
 {
   "name": "ngx-schema-form-widgets-primeng-ultima",
-  "version": "9.0.1-beta.29",
+  "version": "9.0.1-beta.30",
   "peerDependencies": {
     "@angular/animations": "9.1.12",
     "@angular/cdk": "9.2.4",
