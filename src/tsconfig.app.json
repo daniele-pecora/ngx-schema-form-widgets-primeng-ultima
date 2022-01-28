@@ -19,6 +19,7 @@
     "app/__forms/components/bindings.ts",
     "app/__forms/components/validation.ts",
     "app/__forms/date/bindings.ts",
+    "app/__forms/date_yearRange/bindings.ts",
     "app/__forms/demo/action.ts",
     "app/__forms/demo/validation.ts",
     "app/__forms/demo1/action.ts",
