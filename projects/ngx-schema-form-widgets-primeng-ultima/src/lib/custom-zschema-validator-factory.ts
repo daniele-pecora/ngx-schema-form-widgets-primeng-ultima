@@ -1,4 +1,4 @@
-import {SchemaValidatorFactory} from 'ngx-schema-form'
+import { SchemaValidatorFactory } from 'ngx-schema-form'
 
 import * as ZSchema from 'z-schema';
 
@@ -35,6 +35,12 @@ export class CustomZSchemaValidatorFactory extends SchemaValidatorFactory {
     } else {
       throw this.zschema.getLastError();
     }
+  }
+
+  compile(schema: any) {
+    const zSchema = new ZSchema({}) as any
+    zSchema.compileSchema(schema)
+    return zSchema.getResolvedSchema(schema)
   }
 
   protected denormalizeRequiredPropertyPaths(err: any[]) {

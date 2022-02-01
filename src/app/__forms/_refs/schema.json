@@ -1,0 +1,47 @@
+{
+    "type": "object",
+    "properties": {
+        "person": {
+            "$ref": "#/$defs/person"
+        }
+    },
+    "$defs": {
+        "name": {
+            "type": "string"
+        },
+        "street": {
+            "type": "string"
+        },
+        "zip": {
+            "type": "string"
+        },
+        "city": {
+            "type": "string"
+        },
+        "address": {
+            "type": "object",
+            "properties": {
+                "street": {
+                    "$ref": "#/$defs/street"
+                },
+                "zip": {
+                    "$ref": "#/$defs/zip"
+                },
+                "city": {
+                    "$ref": "#/$defs/city"
+                }
+            }
+        },
+        "person": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/name"
+                },
+                "address": {
+                    "$ref": "#/$defs/address"
+                }
+            }
+        }
+    }
+}

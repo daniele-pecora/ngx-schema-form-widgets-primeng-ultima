@@ -245,28 +245,32 @@ export class DateWidgetComponent extends NoHelperTextSpacer implements OnInit, A
                 const checkDateNavigation = (prevOrNext, beforeOrAfter) => {
                     const currYear = this.dateCalenderElement['currentYear']
                     const currMonth = this.dateCalenderElement['currentMonth']
-                    const date_yearRange = (this.schema.widget.yearRange || this.defaultYearRange()).split(':')
+                    const _date_range = this.schema.widget.yearRange || this.defaultYearRange()
+                    if (_date_range) {
+                        const date_yearRange = _date_range.split(':')
 
-                    let date_yearToTest
-                    let monthToTest
-                    let year_range_inside
-                    let month_in_range
-                    if (prevOrNext) {
-                        date_yearToTest = date_yearRange[0]
-                        monthToTest = beforeOrAfter ? 0 : 1
-                        year_range_inside = currYear > date_yearToTest
-                        month_in_range = currMonth > monthToTest
-                    } else {
-                        date_yearToTest = date_yearRange[1]
-                        monthToTest = beforeOrAfter ? 11 : 10
-                        year_range_inside = currYear < date_yearToTest
-                        month_in_range = currMonth < monthToTest
+                        let date_yearToTest
+                        let monthToTest
+                        let year_range_inside
+                        let month_in_range
+                        if (prevOrNext) {
+                            date_yearToTest = date_yearRange[0]
+                            monthToTest = beforeOrAfter ? 0 : 1
+                            year_range_inside = currYear > date_yearToTest
+                            month_in_range = currMonth > monthToTest
+                        } else {
+                            date_yearToTest = date_yearRange[1]
+                            monthToTest = beforeOrAfter ? 11 : 10
+                            year_range_inside = currYear < date_yearToTest
+                            month_in_range = currMonth < monthToTest
+                        }
+
+                        const year_range_limit = currYear == date_yearToTest
+                        const year_in_range = year_range_limit || year_range_inside
+                        const enable_navigation = (year_range_limit && month_in_range) || year_range_inside
+                        return enable_navigation
                     }
-
-                    const year_range_limit = currYear == date_yearToTest
-                    const year_in_range = year_range_limit || year_range_inside
-                    const enable_navigation = (year_range_limit && month_in_range) || year_range_inside
-                    return enable_navigation
+                    return true
                 }
 
                 const checkDateNavigationFW = (beforeOrAfter) => { return checkDateNavigation(false, beforeOrAfter) }
