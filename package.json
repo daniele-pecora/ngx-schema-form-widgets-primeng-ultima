@@ -1,6 +1,6 @@
 {
   "name": "ngx-schema-form-widgets-primeng-ultima-app",
-  "version": "0.0.1",
+  "version": "projects/ngx-schema-form-widgets-primeng-ultima/package.json",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --ssl true --host 0.0.0.0 --port 4444",
