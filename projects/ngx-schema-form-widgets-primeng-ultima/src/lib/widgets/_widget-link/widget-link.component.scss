@@ -1,0 +1,27 @@
+::ng-deep .linkOverlayDialog.ui-dialog {
+  width: 90% !important;
+  height: 90% !important;
+}
+
+::ng-deep .linkOverlayDialog.ui-dialog .ui-dialog-content {
+  height: 80% !important;
+}
+
+::ng-deep .linkOverlayDialog.ui-dialog .ui-dialog-content {
+  height: 80% !important;
+}
+
+.p-header__link--close {
+  float: right;
+  cursor: pointer;
+}
+
+.ngx-ui-widget-link {
+  margin: 0.2em;
+  display: inline-block;
+}
+
+.ngx-ui-widget-link-icon {
+  vertical-align: middle;
+}
+

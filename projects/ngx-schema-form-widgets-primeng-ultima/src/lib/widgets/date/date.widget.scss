@@ -1,0 +1,11 @@
+::ng-deep .__cal_hideNavNext {
+    .ui-datepicker-next {
+        display: none !important;
+    }
+}
+
+::ng-deep .__cal_hideNavPrev {
+    .ui-datepicker-prev {
+        display: none !important;
+    }
+}

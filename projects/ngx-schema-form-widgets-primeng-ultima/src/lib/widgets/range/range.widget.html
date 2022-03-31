@@ -1,0 +1,84 @@
+<!--
+Element :
+    - title
+    - description
+    - readOnly
+    - minimum
+    - maximum
+
+Element 'p-slider' all from primeng documentation (except 'disable')
+
+-->
+<!--
+Element 'widget'
+  - noSpacer = Allows to hide the preserved free space where the helper-text and validation message are displayed.
+              `false` (default) = shows the preserved space
+              `true` = hides the preserved space when no helper-text and validation message is present.
+              'always' , will hide the space completely and will never display a helper-text or validation message
+-->
+<div class="ui-g-12">
+  <div class="md-inputfield">
+    <p-slider
+      [animate]="schema.widget.animate||false"
+      [disabled]="schema.readOnly||null"
+      [min]="schema.minimum||0"
+      [max]="schema.maximum||100"
+      [step]="schema.widget.step||1"
+      [range]="schema.widget.range||false"
+      [style]="schema.widget.style||null"
+      [styleClass]="schema.widget.styleClass||null"
+      [orientation]="schema.widget.orientation||'horizontal'"
+      [formControl]="control"
+      [attr.id]="id"
+      (onChange)="handleChange($event)"
+      (onSlideEnd)="slideEnded($event)"
+
+      [required]="(formProperty|IsRequiredAttr)"
+
+      #pSliderEl
+    ></p-slider>
+    <!-- WORKAROUND for accessibility -->
+    <!-- PrimeNG currently has accessiblity support in newer version but not in the currently used -->
+    <div class="ui-helper-hidden-accessible">
+      <input 
+      type="checkbox" 
+      [attr.name]="name"
+      [attr.id]="id"
+      [attr.required]="(formProperty|IsRequiredAttrString)" 
+      [attr.aria-required]="(formProperty|IsRequiredAttr)"
+      value="{{-1===['0-0','0'].indexOf((pSliderEl.values||[0,0]).join('-'))?pSliderEl.values:''}}"
+      >
+      <!-- Doesn't allow the values `[0]` and `[0,0]`, they will handled as no value had been set at all -->
+    </div>
+    <!-- /WORKAROUND for accessibility -->
+
+    <div class="thumb-label-container" [style.left.%]="offsetHorizontal" 
+      *ngIf="currentValue || schema.widget.orientation === 'vertical'" 
+      [class.thumb-label-hidden]="!showValue"
+      [class.vertical]="schema?.widget?.orientation === 'vertical'"
+      [class.range]="schema?.widget?.range"
+      [class.ui-corner-all]="schema?.widget?.orientation === 'vertical'"
+    >
+      <div class="thumb-label"></div>
+      <span class="thumb-label-text">{{schema.widget.orientation && schema.widget.orientation === 'vertical' && schema.widget.range ? currentValue + ' - ' + currentValueRight : currentValue}}</span>
+    </div>
+    <div class="thumb-label-container" [style.left.%]="offsetHorizontalRight" *ngIf="schema.widget.range && (!schema.widget.orientation || schema.widget.orientation === 'horizontal') && currentValueRight" 
+    [class.thumb-label-hidden]="!showValue"
+    [class.vertical]="schema?.widget?.orientation === 'vertical'"
+    >
+      <div class="thumb-label"></div>
+      <span class="thumb-label-text">{{currentValueRight}}</span>
+    </div>
+    <label [attr.for]="id" style="transform: translateY(-5px);">{{ schema.hasOwnProperty('title') ? schema.title : formProperty.path }}<ngx-ui-widget-required-mark [formProperty]="formProperty"></ngx-ui-widget-required-mark></label>
+    <ngx-ui-field-validation-messages
+      [formComponent]="this"
+      [validationErrors]="control.errors"
+    >
+      <div class="ui-message ui-messages-info"
+           *ngIf="schema.description">
+        {{schema.description}}
+      </div>
+    </ngx-ui-field-validation-messages>
+    <input *ngIf="schema.readOnly" [attr.name]="name" type="hidden">
+  </div>
+</div>

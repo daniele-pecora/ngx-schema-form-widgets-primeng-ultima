@@ -1,0 +1,85 @@
+{
+  "type": "object",
+  "title": "Example with custom bindings.",
+  "description": "Type a family name to see how the name gets synchronized with the children.",
+  "properties": {
+    "name": {},
+    "forename": {},
+    "arrival": {
+      "readOnly": false,
+      "pattern": "[1-9]\\d{3}-\\d{2}-\\d{2}",
+      "widget": {
+        "id": "date",
+        "dateFormat": "dd.MM.yyyy",
+        "modelDateFormat": "yyyy-MM-dd",
+        "yearRange": "1900:2200",
+        "yearNavigator": true,
+        "dataType": "string",
+        "maxAge": "0:0:2",
+        "minAge": "0:0:-2"
+      },
+      "description": "Date format dd.MM.yyyy."
+    },
+    "children": {
+      "title": "",
+      "widget": {
+        "id": "array",
+        "buttonAdd": {
+          "label": "Add page",
+          "description": "Add a page to this",
+          "icon": "",
+          "iconPos": "right"
+        },
+        "buttonRemove": {
+          "label": "",
+          "icon": "ui-icon-close",
+          "iconPos": "left",
+          "description": "Remove this page"
+        },
+        "itemTitle": "Page",
+        "itemNumeration": true
+      },
+      "items": {
+        "properties": {
+          "spacer": {
+            "type": "string",
+            "title": "test bbcode",
+            "widget": {
+              "id": "bbcode",
+              "bbcode": [
+                "[p] paragraph tag [/p]"
+              ]
+            }
+          },
+          "name": {
+            "description": "Setting size to 90% will make the width fill parent",
+            "widget": {
+              "id": "string",
+              "size": "90%"
+            },
+            "buttons": [
+              {
+                "id": "changeSize",
+                "label": "change size",
+                "inline": true,
+                "position": {
+                  "h": "right",
+                  "v": "outer-bottom"
+                }
+              }
+            ]
+          },
+          "forename": {},
+          "age": {}
+        }
+      },
+      "buttons": [
+        {
+          "id": "toggleArrayType",
+          "label": "change array type",
+          "inline": false
+        }
+      ]
+    }
+  }
+}

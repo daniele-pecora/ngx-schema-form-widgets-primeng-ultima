@@ -1,0 +1,87 @@
+{
+  "widget": {
+    "id": "object",
+    "asCard": false
+  },
+  "properties": {
+    "myDialog": {
+      "widget": {
+        "id": "dialog",
+        "closable": true,
+        "header": "Dialog 1 title",
+        "show": true
+      },
+      "visibleIf": {
+        "oneOf": [
+          {
+            "/dialogTriggerInput/testOnInput": [
+              "$EXP$ 'dialog' in target.value"
+            ]
+          }
+        ]
+      }
+    },
+    "myDialogClick": {
+      "widget": {
+        "id": "dialog",
+        "closable": true,
+        "header": "Dialog 2 title"
+      }
+    },
+    "myDialogComplex": {
+      "widget": {
+        "id": "dialog",
+        "closable": true,
+        "header": "Dialog title",
+        "show": true,
+        "contentType": "form",
+        "buttons": [
+          {
+            "label": "OK",
+            "description": "Close dialog",
+            "severity": "primary",
+            "id": "inside_dialog_close_dialog",
+            "parameters": {}
+          },
+          {
+            "label": "Clear form",
+            "description": "Clear form",
+            "severity": "secondary",
+            "id": "inside_dialog_clear_form",
+            "parameters": {}
+          }
+        ]
+      }
+    },
+    "dialogTriggerInput": {
+      "properties": {
+        "testOnInput": {
+          "buttons": [
+            {
+              "label": "Dialog show/hide",
+              "description": "Show or hide dialog",
+              "iconPos": "left",
+              "severity": "success",
+              "icon": "send",
+              "id": "show_hide_dialog",
+              "parameters": {}
+            },
+            {
+              "label": "Dialog show/hide (complex)",
+              "description": "Show or hide dialog (complex)",
+              "iconPos": "left",
+              "severity": "success",
+              "icon": "send",
+              "id": "show_hide_dialog_complex",
+              "parameters": {}
+            }
+          ]
+        },
+        "testOnClick": {}
+      },
+      "widget": {
+        "id": "form"
+      }
+    }
+  }
+}

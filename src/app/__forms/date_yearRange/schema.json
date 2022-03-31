@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "date-picker1995": {
+      "type": "string",
+      "title": "DatePicker 1920 and 1995",
+      "description": "Presentation of the component 'date-picker'.",
+      "widget": {
+        "id": "date-picker"
+      }
+    },
+    "date-picker2200": {
+      "type": "string",
+      "title": "DatePicker 1920 and 2200",
+      "description": "Presentation of the component 'date-picker'.",
+      "widget": {
+        "id": "date-picker"
+      }
+    }
+  }
+}

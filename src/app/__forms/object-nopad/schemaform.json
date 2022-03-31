@@ -1,0 +1,45 @@
+{
+  "widget": {
+    "id": "object",
+    "split": false,
+    "nopad": false
+  },
+  "properties": {
+    "title": {},
+    "nameAndForname": {
+      "widget": {
+        "id": "form",
+        "split": true,
+        "nopad": true
+      },
+      "properties": {
+        "name": {},
+        "forname": {}
+      }
+    },
+    "address": {
+      "widget": {
+        "id": "form",
+        "split": true,
+        "nopad": true,
+        "splitLeft": 9,
+        "splitRight": 3
+      },
+      "properties": {
+        "street": {
+          "widget": {
+            "id": "string",
+            "size": 40
+          }
+        },
+        "housenumber": {
+          "widget": {
+            "id": "string",
+            "size": 10
+          }
+        }
+      }
+    },
+    "country": {}
+  }
+}

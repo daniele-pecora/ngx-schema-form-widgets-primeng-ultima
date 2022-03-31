@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "map": {
+      "type": "string",
+      "title": "Map"
+    },
+    "address": {
+      "type": "string",
+      "title": "Address"
+    },
+    "street_field": {
+      "type": "string",
+      "title": "Street"
+    },
+    "housenumber_field": {
+      "type": "string",
+      "title": "Housenumber"
+    },
+    "city_field": {
+      "type": "string",
+      "title": "City"
+    },
+    "fulladdress_field": {
+      "type": "string",
+      "title": "Full address"
+    }
+  }
+}

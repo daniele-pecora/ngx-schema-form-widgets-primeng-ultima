@@ -1,0 +1,300 @@
+.colorbox {
+  margin: 0px;
+  padding: 0px;
+
+  &.clickable {
+    cursor: pointer;
+  }
+
+  &.colorbox-accent {
+    color: #ffffff;
+
+    div:first-child {
+      background-color: $accentDarkColor;
+    }
+
+    div:last-child {
+      background-color: $accentColor;
+    }
+
+    i {
+      font-size: 48px;
+      margin-top: 10px;
+      color: #ffffff;
+      background: $accentDarkColor;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    &.clickable:hover {
+      div:first-child {
+        background-color: $accentColor;
+      }
+
+      div:last-child {
+        background-color: $accentLightColor;
+      }
+
+      i {
+        background: $accentColor;
+      }
+    }
+  }
+
+  &.colorbox-accent-invert {
+    color: #ffffff;
+
+    div:first-child {
+      background-color: $accentColor;
+    }
+
+    div:last-child {
+      background-color: $accentDarkColor;
+    }
+
+    i {
+      font-size: 48px;
+      margin-top: 10px;
+      color: #ffffff;
+      background: $accentColor;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    &.clickable:hover {
+      div:first-child {
+        background-color: $accentDarkColor;
+      }
+
+      div:last-child {
+        background-color: $accentLightColor;
+      }
+
+      i {
+        background: $accentDarkColor;
+      }
+    }
+  }
+
+  &.colorbox-primaryDark {
+    color: #ffffff;
+
+    div:first-child {
+      background-color: $primaryDarkColor;
+    }
+
+    div:last-child {
+      background-color: $primaryColor;
+    }
+
+    i {
+      font-size: 48px;
+      margin-top: 10px;
+      color: #ffffff;
+      background: $primaryDarkColor;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    &.clickable:hover {
+      div:first-child {
+        background-color: $primaryColor;
+      }
+
+      div:last-child {
+        background-color: $primaryLightColor;
+      }
+
+      i {
+        background: $primaryColor;
+      }
+    }
+  }
+
+  &.colorbox-primaryDark-invert {
+    color: #ffffff;
+
+    div:first-child {
+      background-color: $primaryColor;
+    }
+
+    div:last-child {
+      background-color: $primaryDarkColor;
+    }
+
+    i {
+      font-size: 48px;
+      margin-top: 10px;
+      color: #ffffff;
+      background: $primaryColor;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    &.clickable:hover {
+      div:first-child {
+        background-color: $primaryDarkColor;
+      }
+
+      div:last-child {
+        background-color: $primaryDarkColor;
+      }
+
+      i {
+        background: $primaryDarkColor;
+      }
+    }
+  }
+  $colorbox-1-i-d: #2E7D32;
+  $colorbox-1-i-l: #4CAF50;
+  &.colorbox-1-invert {
+    color: #ffffff;
+
+    div:first-child {
+      background-color: $colorbox-1-i-l;
+    }
+
+    div:last-child {
+      background-color: $colorbox-1-i-d;
+    }
+
+    i {
+      font-size: 48px;
+      margin-top: 10px;
+      color: #ffffff;
+      background: $colorbox-1-i-l;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    &.clickable:hover {
+      div:first-child {
+        background-color: $colorbox-1-i-d;
+      }
+
+      div:last-child {
+        background-color: $colorbox-1-i-d;
+      }
+
+      i {
+        background: $colorbox-1-i-d;
+      }
+    }
+  }
+
+  $colorbox-2-i-d: #0277BD;
+  $colorbox-2-i-l: #03A9F4;
+  &.colorbox-2-invert {
+    color: #ffffff;
+
+    div:first-child {
+      background-color: $colorbox-2-i-l;
+    }
+
+    div:last-child {
+      background-color: $colorbox-2-i-d;
+    }
+
+    i {
+      font-size: 48px;
+      margin-top: 10px;
+      color: #ffffff;
+      background: $colorbox-2-i-l;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    &.clickable:hover {
+      div:first-child {
+        background-color: $colorbox-2-i-d;
+      }
+
+      div:last-child {
+        background-color: $colorbox-2-i-d;
+      }
+
+      i {
+        background: $colorbox-2-i-d;
+      }
+    }
+  }
+
+  $colorbox-3-i-d: #4527A0;
+  $colorbox-3-i-l: #673AB7;
+  &.colorbox-3-invert {
+    color: #ffffff;
+
+    div:first-child {
+      background-color: $colorbox-3-i-l;
+    }
+
+    div:last-child {
+      background-color: $colorbox-3-i-d;
+    }
+
+    i {
+      font-size: 48px;
+      margin-top: 10px;
+      color: #ffffff;
+      background: $colorbox-3-i-l;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    &.clickable:hover {
+      div:first-child {
+        background-color: $colorbox-3-i-d;
+      }
+
+      div:last-child {
+        background-color: $colorbox-3-i-d;
+      }
+
+      i {
+        background: $colorbox-3-i-d;
+      }
+    }
+  }
+
+  $colorbox-4-i-d: #00695C;
+  $colorbox-4-i-l: #009688;
+  &.colorbox-4-invert {
+    color: #ffffff;
+
+    div:first-child {
+      background-color: $colorbox-4-i-l;
+    }
+
+    div:last-child {
+      background-color: $colorbox-4-i-d;
+    }
+
+    i {
+      font-size: 48px;
+      margin-top: 10px;
+      color: #ffffff;
+      background: $colorbox-4-i-l;
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    &.clickable:hover {
+      div:first-child {
+        background-color: $colorbox-4-i-d;
+      }
+
+      div:last-child {
+        background-color: $colorbox-4-i-d;
+      }
+
+      i {
+        background: $colorbox-4-i-d;
+      }
+    }
+  }
+  &.small {
+    i {
+      font-size: 32px;
+    }
+  }
+}

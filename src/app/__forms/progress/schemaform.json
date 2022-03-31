@@ -1,0 +1,29 @@
+{
+    "widget": "form",
+    "properties": {
+        "progress": {
+            "widget": {
+                "id": "progress"
+            },
+            "buttons": [
+                {
+                    "id": "action_toggle_progress_style",
+                    "icon": "ui-icon-hourglass-empty",
+                    "description": "Toggle indicator (spinner <-> bar)",
+                    "parameters": {
+                        "icons": {
+                            "bar": "ui-icon-hourglass-empty",
+                            "spinner": "ui-icon-hourglass-full"
+                        }
+                    }
+                }
+            ]
+        },
+        "progress-bar": {
+            "widget": {
+                "id": "progress",
+                "style": "bar"
+            }
+        }
+    }
+}

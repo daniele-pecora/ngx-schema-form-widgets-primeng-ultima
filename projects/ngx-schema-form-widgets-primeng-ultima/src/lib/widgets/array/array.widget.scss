@@ -1,0 +1,101 @@
+/** 
+ * This enhances the alignment of the buttons to the outer border of an array item,
+ * so it doesn't overlap with the label of any following item
+ */
+.array-widget-default > div {
+  padding: 0.5em;
+
+  &.itemInline {
+    display: inline-block;
+  }
+}
+
+
+:host ::ng-deep {
+
+  .ui-accordion .ui-accordion-header {
+    /**
+     * Keep the icons in accordion header vertical aligned
+     */
+    .ui-accordion-icon, .ui-accordion-left-icon, .ui-accordion-right-icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: .25em;
+      margin-right: .25em;
+    }
+  }
+
+  .ui-accordion-content {
+    /**
+     * This is required to make the tab of an accordion tab full height according its content.
+     * This style is taken from the class <code>.ui-g</code> from primeng.css.
+     * So if required keep this up to date.
+     */
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+
+  /**
+   * This is required to make the tab of a tabview full width of its parent.
+   * This style is taken from the class <code>.ui-g-12</code> from primeng.css.
+   * So if required keep this up to date.
+   */
+  .ui-tabview.ui-widget.ui-widget-content {
+    width: 100%;
+  }
+}
+
+
+
+:host ::ng-deep {
+  /** accordiona close icon */
+  .ui-accordion .ui-accordion-header {
+    /**
+     * Keep the icons in accordion header vertical aligned
+     */
+    .ui-accordion-icon-close {
+      float: right;
+      cursor: pointer;
+    }
+  }
+
+  /** accordion close button (using icon in span above instead)
+  .ui-accordion-header button.ngx-ui-wigdet-button-close-button:not(:focus) {
+    background-color: transparent;
+  }
+  .ui-accordion-header button.ngx-ui-wigdet-button-close-button {
+    box-shadow: none;
+    float: right;
+  }
+  
+  .ui-accordion-header button.ngx-ui-wigdet-button-close-button span {
+    color: unset;
+  }
+   */
+}
+
+
+
+/**
+ * Removes the border under the Add Button if array is empty.
+ */
+:host ::ng-deep {
+  .ui-tabview-no-border {
+      .ui-tabview {
+        border: 0 none !important;
+      }
+      .ui-tabview-nav {
+        border: 0 none !important;
+      }
+    }
+}
+
+
+/** hide closed accordion tabs */
+/** so they don't appear in tabindex when using tabnavigation */
+:host ::ng-deep {
+  .ui-accordion-content-wrapper[aria-hidden=true] {
+    display: none;
+  }
+}

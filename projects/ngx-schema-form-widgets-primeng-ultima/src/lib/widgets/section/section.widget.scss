@@ -1,0 +1,43 @@
+:host ::ng-deep {
+
+  .ui-accordion .ui-accordion-header {
+    /**
+     * Keep the icons in accordion header vertical aligned
+     */
+    .ui-accordion-icon, .ui-accordion-left-icon, .ui-accordion-right-icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: .25em;
+      margin-right: .25em;
+    }
+  }
+
+  .ui-accordion-content {
+    /**
+     * This is required to make the tab of an accordion tab full height according its content.
+     * This style is taken from the class <code>.ui-g</code> from primeng.css.
+     * So if required keep this up to date.
+     */
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+
+  /**
+   * This is required to make the tab of a tabview full width of its parent.
+   * This style is taken from the class <code>.ui-g-12</code> from primeng.css.
+   * So if required keep this up to date.
+   */
+  .ui-tabview.ui-widget.ui-widget-content {
+    width: 100%;
+  }
+}
+
+
+/** hide closed accordion tabs */
+/** so they don't appear in tabindex when using tabnavigation */
+:host ::ng-deep {
+  .ui-accordion-content-wrapper[aria-hidden=true] {
+    display: none;
+  }
+}

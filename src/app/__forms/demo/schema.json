@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "properties": {
+    "betroffener": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "vorname": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 45,
+            "description": "Anzugeben ist der Vorname der Person. Beispiel: Klaus"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 45,
+            "description": "Anzugeben ist der Familienname der Person. Beispiel: Müller"
+          },
+          "geburtsdatum": {
+            "type": "string",
+            "pattern": "^(19|20)\\d\\d[-](0[0-9]|1[012])[-](0[0-9]|[12][0-9]|3[01])$",
+            "description": "Anzugeben ist das Geburtsdatum in der Reihenfolge Jahr - Monat - Tag (JJJJ-MM-TT)."
+          }
+        }
+      }
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "minLength": 4,
+      "maxLength": 10
+    },
+    "age": {
+      "type": "number",
+      "title": "Age",
+      "minimum": 18,
+      "maximum": 40,
+      "default": 18
+    },
+    "birthday": {
+      "type": "string",
+      "title": "Birthday"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone",
+      "minLength": 4,
+      "maxLength": 10
+    },
+    "category": {
+      "type": "string",
+      "oneOf": [
+        {
+          "description": "None",
+          "enum": [
+            null
+          ]
+        },
+        {
+          "description": "Design",
+          "enum": [
+            "design"
+          ]
+        },
+        {
+          "description": "High-Tech",
+          "enum": [
+            "hightech"
+          ]
+        },
+        {
+          "description": "Materials",
+          "enum": [
+            "materials"
+          ]
+        },
+        {
+          "description": "Services",
+          "enum": [
+            "services"
+          ]
+        }
+      ],
+      "description": "Select your preferred category",
+      "title": "Category",
+      "default": "services"
+    },
+    "group": {
+      "type": "string",
+      "oneOf": [
+        {
+          "description": "None",
+          "enum": [
+            null
+          ]
+        },
+        {
+          "description": "Group A",
+          "enum": [
+            "groupA"
+          ]
+        },
+        {
+          "description": "Group A",
+          "enum": [
+            "groupB"
+          ]
+        },
+        {
+          "description": "Group C",
+          "enum": [
+            "groupC"
+          ]
+        }
+      ],
+      "description": "Select your preferred group",
+      "title": "Groups",
+      "default": null
+    }
+  }
+}

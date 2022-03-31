@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "properties": {
+    "vorname": {
+      "type": "string",
+      "minLength": 0,
+      "maxLength": 45,
+      "description": "Anzugeben ist der Vorname der Person. Beispiel: Klaus"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 45,
+      "description": "Anzugeben ist der Familienname der Person. Beispiel: Müller"
+    },
+    "geburtsdatum": {
+      "type": "string",
+      "pattern": "(([0-2][0-9])|([3][0-1])).[0-9][0-2].[1-9][0-9]{3}",
+      "description": "Anzugeben ist das Geburtsdatum in der Reihenfolge Jahr - Monat - Tag (JJJJ-MM-TT)."
+    },
+    "collectable-simple": {
+      "title": "Simple Collection",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "maxItems": 4
+    },
+    "collectable": {
+      "title": "Collection",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "loc": {
+            "type": "string"
+          },
+          "toll": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "loc"
+        ]
+      }
+    }
+  }
+}

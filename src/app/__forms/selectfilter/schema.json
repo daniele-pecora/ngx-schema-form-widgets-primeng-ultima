@@ -1,0 +1,34 @@
+{
+    "type": "string",
+    "title": "Countries",
+    "widget": {
+        "id": "select",
+        "filter": true
+    },
+    "oneOf": [
+        {
+            "description": "Deutschland",
+            "enum": [
+                "DE"
+            ]
+        },
+        {
+            "description": "Estland",
+            "enum": [
+                "EE"
+            ]
+        },
+        {
+            "description": "Feuerland",
+            "enum": [
+                "FE"
+            ]
+        },
+        {
+            "description": "Germany",
+            "enum": [
+                "GE"
+            ]
+        }
+    ]
+}

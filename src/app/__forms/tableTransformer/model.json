@@ -1,0 +1,24 @@
+{
+    "beteiligte": [
+        {
+            "name": "Mustermann",
+            "vorname": "Max",
+            "adresse": {
+                "plz": "10000",
+                "ort": "Musterstadt",
+                "strasse": "Musterstrasse",
+                "hausnummer": "1"
+            }
+        },
+        {
+            "name": "Mustermann (2)",
+            "vorname": "Max (2)",
+            "adresse": {
+                "plz": "20000",
+                "ort": "Musterstadt (2)",
+                "strasse": "Musterstrasse (2)",
+                "hausnummer": "2"
+            }
+        }
+    ]
+}

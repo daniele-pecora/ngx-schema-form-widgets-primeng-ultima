@@ -1,0 +1,356 @@
+{
+    "widget": {
+        "id": "form",
+        "split": true
+    },
+    "type": "object",
+    "properties": {
+        "beteiligte": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "vorname": {
+                        "type": "string"
+                    },
+                    "adresse": {
+                        "type": "object",
+                        "properties": {
+                            "plz": {
+                                "type": "string"
+                            },
+                            "ort": {
+                                "type": "string"
+                            },
+                            "strasse": {
+                                "type": "string"
+                            },
+                            "hausnummer": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "tables": {
+            "type": "object",
+            "properties": {
+                "table_key_value": {
+                    "type": "object",
+                    "title": "Beteiligte",
+                    "widget": {
+                        "id": "table",
+                        "style": "keyValue",
+                        "no_caption": "Datatable",
+                        "collapsed": true,
+                        "keyValue": [
+                            {
+                                "label": "[b]Beteiligter 1[/b]",
+                                "value": "",
+                                "empty": true,
+                                "transformLabel": {
+                                    "type": "bbcode"
+                                }
+                            },
+                            {
+                                "label": "Name",
+                                "value": "a[0].name +','+a[0].vorname",
+                                "transform": {
+                                    "type": "chain",
+                                    "transformers": [
+                                        {
+                                            "type": "expression",
+                                            "path": "/beteiligte",
+                                            "name": "a"
+                                        },
+                                        {
+                                            "type": "bbcode"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "label": "Adresse",
+                                "value": "a[0].adresse.strasse + ' ' + a[0].adresse.hausnummer + '[br]' + a[0].adresse.plz + ' ' + a[0].adresse.ort",
+                                "transform": {
+                                    "type": "chain",
+                                    "transformers": [
+                                        {
+                                            "type": "expression",
+                                            "path": "/beteiligte",
+                                            "name": "a"
+                                        },
+                                        {
+                                            "type": "bbcode"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "label": "[b]Beteiligter 2[/b]",
+                                "value": "",
+                                "empty": true,
+                                "transformLabel": {
+                                    "type": "bbcode"
+                                }
+                            },
+                            {
+                                "label": "Name",
+                                "value": "a[1].name +','+a[1].vorname",
+                                "transform": {
+                                    "type": "chain",
+                                    "transformers": [
+                                        {
+                                            "type": "expression",
+                                            "path": "/beteiligte",
+                                            "name": "a"
+                                        },
+                                        {
+                                            "type": "bbcode"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "label": "Adresse",
+                                "value": "a[1].adresse.strasse + ' ' + a[1].adresse.hausnummer + '[br]' + a[1].adresse.plz + ' ' + a[1].adresse.ort",
+                                "transform": {
+                                    "type": "chain",
+                                    "transformers": [
+                                        {
+                                            "type": "expression",
+                                            "path": "/beteiligte",
+                                            "name": "a"
+                                        },
+                                        {
+                                            "type": "bbcode"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "properties": {}
+                },
+                "table_key_value_light": {
+                    "type": "object",
+                    "title": "Beteiligte",
+                    "widget": {
+                        "id": "table",
+                        "style": "keyValueLight",
+                        "no_caption": "Datatable",
+                        "collapsed": true,
+                        "keyValue": [
+                            {
+                                "label": "[b]Beteiligter 1[/b]",
+                                "value": "",
+                                "empty": true,
+                                "transformLabel": {
+                                    "type": "bbcode"
+                                }
+                            },
+                            {
+                                "label": "Name",
+                                "value": "a[0].name +','+a[0].vorname",
+                                "transform": {
+                                    "type": "chain",
+                                    "transformers": [
+                                        {
+                                            "type": "expression",
+                                            "path": "/beteiligte",
+                                            "name": "a"
+                                        },
+                                        {
+                                            "type": "bbcode"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "label": "Adresse",
+                                "value": "a[0].adresse.strasse + ' ' + a[0].adresse.hausnummer + '[br]' + a[0].adresse.plz + ' ' + a[0].adresse.ort",
+                                "transform": {
+                                    "type": "chain",
+                                    "transformers": [
+                                        {
+                                            "type": "expression",
+                                            "path": "/beteiligte",
+                                            "name": "a"
+                                        },
+                                        {
+                                            "type": "bbcode"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "label": "[b]Beteiligter 2[/b]",
+                                "value": "",
+                                "empty": true,
+                                "transformLabel": {
+                                    "type": "bbcode"
+                                }
+                            },
+                            {
+                                "label": "Name",
+                                "value": "a[1].name +','+a[1].vorname",
+                                "transform": {
+                                    "type": "chain",
+                                    "transformers": [
+                                        {
+                                            "type": "expression",
+                                            "path": "/beteiligte",
+                                            "name": "a"
+                                        },
+                                        {
+                                            "type": "bbcode"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "label": "Adresse",
+                                "value": "a[1].adresse.strasse + ' ' + a[1].adresse.hausnummer + '[br]' + a[1].adresse.plz + ' ' + a[1].adresse.ort",
+                                "transform": {
+                                    "type": "chain",
+                                    "transformers": [
+                                        {
+                                            "type": "expression",
+                                            "path": "/beteiligte",
+                                            "name": "a"
+                                        },
+                                        {
+                                            "type": "bbcode"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "properties": {}
+                },
+                "table_multi_col_model": {
+                    "type": "object",
+                    "title": "Multi column table",
+                    "description": "Created with a predefined static model object",
+                    "widget": {
+                        "id": "table",
+                        "caption": "Datatable",
+                        "collapsed": true,
+                        "model": {
+                            "transform": {
+                                "col-1": {
+                                    "type": "textMapping",
+                                    "mapping": {
+                                        "1 1": "Value transformed to 'THIS :-)'"
+                                    }
+                                },
+                                "col-2": {
+                                    "type": "textMapping",
+                                    "mapping": {
+                                        "2 2": "Value transformed to 'THAT :-)'"
+                                    }
+                                },
+                                "col-4": {
+                                    "type": "expression",
+                                    "name": "a",
+                                    "path": "/beteiligte"
+                                },
+                                "col-5": {
+                                    "type": "bbcode"
+                                }
+                            },
+                            "transformLabel": {
+                                "col-1": {
+                                    "type": "textMapping",
+                                    "mapping": {
+                                        "Col 1": "Column 1"
+                                    }
+                                },
+                                "col-2": {
+                                    "type": "bbcode"
+                                }
+                            },
+                            "table": {
+                                "columns": [
+                                    {
+                                        "field": "col-1",
+                                        "header": "Col 1"
+                                    },
+                                    {
+                                        "field": "col-2",
+                                        "header": "[b][url=https://www.google.de/]Col 2[/url][/b]"
+                                    },
+                                    {
+                                        "field": "col-3",
+                                        "header": "Col 3"
+                                    },
+                                    {
+                                        "field": "col-4",
+                                        "header": "Col 4"
+                                    },
+                                    {
+                                        "field": "col-5",
+                                        "header": "Col 5"
+                                    }
+                                ],
+                                "data": [
+                                    {
+                                        "col-1": "1 1",
+                                        "col-2": "1 2",
+                                        "col-3": "1 3",
+                                        "col-4": "'1 4'",
+                                        "col-5": "1 5"
+                                    },
+                                    {
+                                        "col-1": "2 1",
+                                        "col-2": "2 2",
+                                        "col-3": "2 3",
+                                        "col-4": "2 4",
+                                        "col-5": "2 5"
+                                    },
+                                    {
+                                        "col-1": "3 1",
+                                        "col-2": "3 2",
+                                        "col-3": "3 3",
+                                        "col-4": "'3 4'",
+                                        "col-5": "3 5"
+                                    },
+                                    {
+                                        "col-1": "4 1",
+                                        "col-2": "4 2",
+                                        "col-3": "4 3",
+                                        "col-4": "4 4",
+                                        "col-5": "4 5"
+                                    },
+                                    {
+                                        "col-1": "5 1",
+                                        "col-2": "5 2",
+                                        "col-3": "5 3",
+                                        "col-4": "a[0].name +','+a[0].vorname",
+                                        "col-5": "[b]some BBCode[/b][br][url=https://www.google.de/maps/search/Teststraße+55/ target=_blank]Teststraße 55[/url][br]12345 Musterstadt[br]Deutschland"
+                                    }
+                                ]
+                            },
+                            "example_only__excludes": [
+                                "col-1"
+                            ],
+                            "example_only__includes": [
+                                "col-2"
+                            ]
+                        }
+                    },
+                    "properties": {}
+                }
+            }
+        }
+    },
+    "order": [
+        "beteiligte",
+        "tables"
+    ]
+}

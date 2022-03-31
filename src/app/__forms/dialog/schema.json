@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "myDialogComplex": {
+      "type": "object",
+      "no-title": "My Dialog (complex)",
+      "no-description": "Some description (complex)",
+      "properties": {
+        "prop1": {
+          "type": "string"
+        },
+        "prop2": {
+          "type": "string"
+        },
+        "prop3": {
+          "type": "string"
+        }
+      }
+    },
+    "myDialog": {
+      "type": "string",
+      "title": "My Dialog 1",
+      "description": "This dialog will only show up if you have typed the word 'dialog'"
+    },
+    "myDialogClick": {
+      "type": "string",
+      "title": "My Dialog 2",
+      "description": "You clicked the input field"
+    },
+    "dialogTriggerInput": {
+      "type": "object",
+      "properties": {
+        "testOnInput": {
+          "type": "string",
+          "title": "Open dialog by text",
+          "description": "Type a string containing the word 'dialog' to enable the dialog at all"
+        },
+        "testOnClick": {
+          "type": "string",
+          "title": "Open dialog on click",
+          "description": "Click this input 'readOnly' field to open the dialog"
+        }
+      },
+      "order": [
+        "testOnClick",
+        "testOnInput"
+      ]
+    }
+  }
+}

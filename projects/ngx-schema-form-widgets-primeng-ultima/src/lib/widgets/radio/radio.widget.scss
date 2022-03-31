@@ -1,0 +1,14 @@
+/** 
+ * The ripple effect will create a bounding box
+ * on the active radio button
+ * that overlaps other radio buttons.
+ * This caused the other radio buttons not beeing clickable.
+ * Since the effect is not seen on radio buttons anyway
+ * it can be removed securely.
+ */
+::ng-deep{
+    .ui-radiobutton .ui-radiobutton-box.ui-state-active:before {
+        -webkit-animation: none !important;
+        animation:  none !important;
+    }
+}

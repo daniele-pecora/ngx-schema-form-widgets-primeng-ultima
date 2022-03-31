@@ -1,0 +1,229 @@
+<!--
+Element 'array' in json schema
+  - title = label
+  - description
+  - minItems
+  - maxItems
+
+Element 'array' in 'widget'
+  - style     = set to 'tabview' to show as tabview panels
+                set to 'accordion' to show as accordion
+                leave empty to use default style (uses standard ui-widget for objects or simple types)
+  - itemTitle = Any string that represents the label of the array item.
+              If not set then the parent title will be used.
+              eg. 'Simple Item'
+  - itemNumeration = Prepends a numeric before title.
+                   eg. '1. Simple Item'
+                   default is <code>true</code>
+                   Possible values are `false`, `true` or `index`
+                   - `false` no counter will be prepended to the items title
+                   - `true` a continous counter will be prepended to the items title. This counter type will not stop incrementing when items get deleted.
+                   - `index` a counter based on the items position, starting by 1, will be prepended to the items title
+  - itemInline     = Possible values are `false`, `true`. 
+                     If `true` all array item within a defaultView will be horizontally aligned
+
+  - buttonAdd
+  - buttonRemove
+      Element for each button
+      - position    = bottom (default) | top  , set the position where button should appear: before of after the rendered element
+      - icon        = Button icon
+      - iconPos     = Button icon position
+      - label       = Button text
+      - description = Tooltip
+      - severity    = Button severity
+      - styleClass  = Button style class
+      - styleId     = Button style id
+
+
+- showErrors : true|false
+               or object of type:
+                                {
+                                    position  : top|bottom, (default:top)   // shows the messages at top or at the bottom
+                                    all       : true|false, (default:false) // show also children's error messages
+                                    firstOnly : true|false, (default:false) // show only the first error message
+                                    codes     : string[],   ([])            // show only error messages that match any of this error codes, leave empty to show all errors
+                                 }
+  -->
+
+<ngx-ui-validation-messages
+  *ngIf="formProperty.schema.widget?.showErrors && formProperty.schema.widget?.showErrors?.position!=='bottom'"
+  [formComponent]="this"></ngx-ui-validation-messages>
+
+<div class="widget form-group"
+  [class.ui-g-12]="schema.widget.style==='tabview'"
+  [class.array-widget-default]="schema.widget.style!=='tabview'"
+>
+  <label *ngIf="schema.title && formProperty.schema.items.type==='object'" [attr.for]="id"
+         class="horizontal control-label">
+    {{ schema.title }}
+  </label>
+  <div *ngIf="schema.title && formProperty.schema.items.type!=='object'">
+    <label [attr.for]="id" class="horizontal control-label">
+      {{ schema.title }}
+    </label>
+  </div>
+
+  <h5 *ngIf="schema.description">{{schema.description}}</h5>
+
+  <!-- <ng-container *ngIf="schema.widget.style==='tabview';else defaultStyleTemplate">
+    <ng-container [ngTemplateOutlet]="tabviewStyleTemplate"></ng-container>
+  </ng-container> -->
+  <ng-container [ngSwitch]="schema?.widget?.style">
+    <ng-container *ngSwitchCase="'tabview'" [ngTemplateOutlet]="tabviewStyleTemplate"></ng-container>
+    <ng-container *ngSwitchCase="'accordion'" [ngTemplateOutlet]="accordionStyleTemplate"></ng-container>
+    <ng-container *ngSwitchDefault [ngTemplateOutlet]="defaultStyleTemplate"></ng-container>
+  </ng-container>
+
+  <!-- ### Style ACCORDION -->
+  <ng-template #accordionStyleTemplate>
+    <button
+      [attr.id]="schema.widget.buttonAdd?.styleId||null"
+      i18n-label
+      [label]="schema.widget.buttonAdd?.label||null"
+      [attr.title]="schema.widget.buttonAdd?.description||schema.widget.buttonAdd?.label||null"
+      [disabled]="isAddButtonDisabled(schema.widget.buttonAdd)"
+      [icon]="getIcon(schema.widget.buttonAdd?.icon||'ui-icon-add')||null"
+      [iconPos]="schema.widget.buttonAdd?.iconPos||null"
+      (click)="addItemUpdateIndex()"
+      pButton
+      type="button"
+      [pTooltip]="schema.widget.buttonAdd?.description||null"
+      *ngIf="!(schema.hasOwnProperty('minItems') && schema.hasOwnProperty('maxItems') && schema.minItems === schema.maxItems)"
+      [ngClass]="['ngx-ui-widget-button', ''+getButtonType(schema?.widget?.buttonAdd), 'ui-button-'+(getSeverity(schema?.widget?.buttonAdd?.severity)||'primary'), (schema?.widget?.buttonAdd?.styleClass||'')]"
+      [attr.role]="'button'"
+    ></button>
+
+    <p-accordion [activeIndex]="currentPage" (onOpen)="onTabOpen_Accordion($event)" (onClose)="onTabClose_Accordion($event)">
+      <ng-container
+      *ngFor="let itemProperty of formProperty.properties; let i=index"
+      >
+        <p-accordionTab
+          [selected]="currentPage===i"
+          i18n-header
+          [header]="formProperty.schema.items.type==='object'?(formProperty.schema.widget.itemNumeration==='index'?(i+1)+'. ':'')+(itemProperty.schema.title || itemProperty._path):null"
+          *ngIf="formProperty.visible"
+        >
+          <p-header>
+            <span>{{formProperty.schema.items.type==='object'?(formProperty.schema.widget.itemNumeration==='index'?(i+1)+'. ':'')+(itemProperty.schema.title || itemProperty._path):null}}</span>
+            <span class="ui-accordion-icon-close ui-icon-close"
+            (click)="removeItem(i)"
+            (keyup.enter)="removeItem(i)"
+            [attr.title]="schema.widget.buttonRemove?.description||schema.widget.buttonRemove?.label||null"
+            [pTooltip]="schema.widget.buttonRemove?.description||null"
+            [attr.tabindex]="0"
+            role="button"
+            ></span>
+          </p-header>
+          <div>
+            <sf-form-element [formProperty]="itemProperty"></sf-form-element>
+          </div>
+        </p-accordionTab>
+      </ng-container>
+    </p-accordion>
+
+  </ng-template>
+
+  <!-- ### Style TABS -->
+  <ng-template #tabviewStyleTemplate>
+    <button
+      [attr.id]="schema.widget.buttonAdd?.styleId||null"
+      i18n-label
+      [label]="schema.widget.buttonAdd?.label||null"
+      [attr.title]="schema.widget.buttonAdd?.description||schema.widget.buttonAdd?.label||null"
+      [disabled]="isAddButtonDisabled(schema.widget.buttonAdd)"
+      [icon]="getIcon(schema.widget.buttonAdd?.icon||'ui-icon-add')||null"
+      [iconPos]="schema.widget.buttonAdd?.iconPos||null"
+      (click)="addItemUpdateIndex()"
+      pButton
+      type="button"
+      [pTooltip]="schema.widget.buttonAdd?.description||null"
+      *ngIf="!(schema.hasOwnProperty('minItems') && schema.hasOwnProperty('maxItems') && schema.minItems === schema.maxItems)"
+      [ngClass]="['ngx-ui-widget-button', ''+getButtonType(schema?.widget?.buttonAdd), 'ui-button-'+(getSeverity(schema?.widget?.buttonAdd?.severity)||'primary'), (schema?.widget?.buttonAdd?.styleClass||'')]"
+      [attr.role]="'button'"
+    ></button>
+    <p-tabView
+      #tabView
+      class="ui-g"
+      (onClose)="handleOnClose($event)"
+      [activeIndex]="tabActiveIndex"
+      (onChange)="handleOnChange($event)"
+      [class.ui-tabview-no-border]="!formProperty?.properties?.length"
+    >
+      <p-tabPanel
+        controlClose="true"
+        [selected]="tabActiveIndex===i"
+        class="ui-g"
+        [closable]="!isRemoveButtonDisabled(schema.widget.buttonRemove)"
+        i18n-header
+        [header]="formProperty.schema.items.type==='object'?(formProperty.schema.widget.itemNumeration==='index'?(i+1)+'. ':'')+(itemProperty.schema.title || itemProperty._path):null"
+        *ngFor="let itemProperty of formProperty.properties; let i=index">
+        <div>
+          <sf-form-element [formProperty]="itemProperty"></sf-form-element>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+
+  </ng-template>
+
+  <!-- ### Style DEFAULT -->
+  <ng-template #defaultStyleTemplate>
+    <ng-template #buttonAdd>
+      <button
+        [attr.id]="schema.widget.buttonAdd?.styleId||null"
+        i18n-label
+        [label]="schema.widget.buttonAdd?.label||null"
+        [attr.title]="schema.widget.buttonAdd?.description||schema.widget.buttonAdd?.label||null"
+        [disabled]="isAddButtonDisabled(schema.widget.buttonAdd)"
+        [icon]="getIcon(schema.widget.buttonAdd?.icon||'ui-icon-add')||null"
+        [iconPos]="schema.widget.buttonAdd?.iconPos||null"
+        (click)="addItem()"
+        pButton
+        type="button"
+        [pTooltip]="schema.widget.buttonAdd?.description||null"
+        *ngIf="!(schema.hasOwnProperty('minItems') && schema.hasOwnProperty('maxItems') && schema.minItems === schema.maxItems)"
+        [ngClass]="['ngx-ui-widget-button', ''+getButtonType(schema?.widget?.buttonAdd), 'ui-button-'+(getSeverity(schema?.widget?.buttonAdd?.severity)||'primary'), (schema?.widget?.buttonAdd?.styleClass||'')]"
+        [attr.role]="'button'"
+      ></button>
+    </ng-template>
+    <ng-container *ngIf="schema?.widget?.buttonAdd?.position==='top'">
+      <ng-container *ngTemplateOutlet="buttonAdd"></ng-container>
+    </ng-container>
+    <div *ngFor="let itemProperty of formProperty.properties; let i=index" [class.itemInline]="formProperty?.schema?.widget?.itemInline">
+            <span
+              *ngIf="formProperty.schema.items.type==='object'">{{(formProperty.schema.widget.itemNumeration==='index'?(i+1)+'. ':'')}}{{itemProperty.schema.title || itemProperty._path}}</span>
+      <ng-template #buttonRemove>
+        <button
+          [attr.id]="schema.widget.buttonRemove?.styleId||null"
+          i18n-label
+          [label]="schema.widget.buttonRemove?.label||null"
+          [attr.title]="schema.widget.buttonRemove?.description||schema.widget.buttonRemove?.label||null"
+          [disabled]="isRemoveButtonDisabled(schema.widget.buttonRemove)"
+          [icon]="getIcon(schema.widget.buttonRemove?.icon||'ui-icon-close')||null"
+          [iconPos]="schema.widget.buttonRemove?.iconPos||null"
+          (click)="removeItem(i)"
+          pButton
+          type="button"
+          [pTooltip]="schema.widget.buttonRemove?.description||null"
+          *ngIf="!(schema.hasOwnProperty('minItems') && schema.hasOwnProperty('maxItems') && schema.minItems === schema.maxItems)"
+          [ngClass]="['ngx-ui-widget-button', ''+getButtonType(schema?.widget?.buttonRemove), 'ui-button-'+(getSeverity(schema?.widget?.buttonRemove?.severity)||'secondary'), (schema?.widget?.buttonRemove?.styleClass||'')]"
+          [attr.role]="'button'"
+        ></button>
+      </ng-template>
+
+      <ng-container *ngIf="schema?.widget?.buttonRemove?.position==='top'">
+        <ng-container *ngTemplateOutlet="buttonRemove"></ng-container>
+      </ng-container>
+      <sf-form-element [formProperty]="itemProperty"></sf-form-element>
+      <ng-container *ngIf="schema?.widget?.buttonRemove?.position!=='top'">
+        <ng-container *ngTemplateOutlet="buttonRemove"></ng-container>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="schema?.widget?.buttonAdd?.position!=='top'">
+      <ng-container *ngTemplateOutlet="buttonAdd"></ng-container>
+    </ng-container>
+  </ng-template>
+</div>
+
+<ngx-ui-validation-messages
+  *ngIf="formProperty.schema.widget?.showErrors && formProperty.schema.widget?.showErrors?.position==='bottom'"
+  [formComponent]="this"></ngx-ui-validation-messages>

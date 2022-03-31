@@ -1,0 +1,116 @@
+{
+  "widget": {
+    "id": "form",
+    "buttons": [
+      {
+        "id": "action1",
+        "label": "Button 1"
+      }
+    ]
+  },
+  "properties": {
+    "vorname": {
+    },
+    "name": {
+    },
+    "geburtsdatum": {
+      "widget": {
+        "disabled-validationMessage": "Overwriting all messages",
+        "validationMessages": {
+          "y-PATTERN": "The pattern of the field didn't match"
+        },
+        "id": "date",
+        "dateFormat": "dd.MM.yyyy",
+        "modelDateFormat": "yyyy-MM-dd",
+        "yearRange": "1980:2020",
+        "yearNavigator": true,
+        "dataType": "string"
+      },
+      "readOnly": false,
+      "description": "Geben Sie Ihr Geburtsdatum in der Form TT.MM.JJJJ an.",
+      "pattern": "^(19|20)\\d\\d[-](0[0-9]|1[012])[-](0[0-9]|[12][0-9]|3[01])$"
+    },
+    "collectable-simple": {
+      "widget": {
+        "id": "array",
+        "buttonAdd": {
+          "x-position": "top"
+        },
+        "buttonRemove": {
+          "x-position": "top"
+        }
+      },
+      "items": {
+        "type": "string"
+      }
+    },
+    "collectable": {
+      "widget": {
+        "id": "array",
+        "buttonAdd": {
+          "x-position": "top"
+        },
+        "buttonRemove": {
+          "position": "top"
+        }
+      },
+      "items": {
+        "widget": "form",
+        "properties": {
+          "loc": {
+            "type": "string"
+          },
+          "toll": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc"
+        ]
+      }
+    }
+  },
+  "required": [
+    "geburtsdatum"
+  ],
+  "links": [
+    {
+      "description": "Angular IO (Overlay)",
+      "label": "Angular IO (Overlay)",
+      "id": "testlink3",
+      "href": "https://angular.io/",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": "true"
+    },
+    {
+      "description": "Angular IO (No Overlay)",
+      "label": "Angular IO (No Overlay)",
+      "id": "testlink3",
+      "href": "https://angular.io/",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false
+    },
+    {
+      "description": "Angular IO (Overlay - allow script)",
+      "label": "Angular IO (Overlay -  allow script)",
+      "id": "testlink4",
+      "href": "https://angular.io/",
+      "target": "_blank",
+      "icon": "ui-icon-info-outline",
+      "iconPos": "left",
+      "inline": false,
+      "overlay": true,
+      "sandbox": "allow-same-origin allow-scripts",
+      "overlayClose": "Close this overlay",
+      "overlayOpen": "Open in new window"
+    }
+  ]
+}

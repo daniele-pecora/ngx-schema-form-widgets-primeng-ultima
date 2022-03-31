@@ -1,0 +1,234 @@
+{
+  "type" : "object",
+  "properties" : {
+    "betroffener" : {
+      "type" : "object",
+      "properties" : {
+        "vorname" : {
+          "type" : "string",
+          "pattern" : "(([ -         -~¡-¬®-ćĊ-ěĞ-ģĦ-ıĴ-śŞ-ūŮ-žƏƠ-ơƯ-ưƷǍ-ǔǞ-ǟǤ-ǰǴ-ǵǺ-ǿȘ-țȞ-ȟȪ-ȫȮ-ȳəʒḂ-ḃḊ-ḋḐ-ḑḞ-ḡḤ-ḧḰ-ḱṀ-ṁṄ-ṅṖ-ṗṠ-ṣṪ-ṫẀ-ẅẌ-ẓẞẠ-ầẪ-ẬẮ-ềỄ-ồỖ-ờỤ-ỹ€])|(M̂|N̂|m̂|n̂|D̂|d̂|J̌|L̂|l̂))*",
+          "minLength" : 1,
+          "maxLength" : 60,
+          "title" : "Vornamen",
+          "description" : "Geben Sie Ihre(n) Vornamen ein. Er/Sie wird/werden zu Ihrer Identifizierung im Melderegister ben\u00F6tigt."
+        },
+        "nachname" : {
+          "type" : "string",
+          "pattern" : "(([ -         -~¡-¬®-ćĊ-ěĞ-ģĦ-ıĴ-śŞ-ūŮ-žƏƠ-ơƯ-ưƷǍ-ǔǞ-ǟǤ-ǰǴ-ǵǺ-ǿȘ-țȞ-ȟȪ-ȫȮ-ȳəʒḂ-ḃḊ-ḋḐ-ḑḞ-ḡḤ-ḧḰ-ḱṀ-ṁṄ-ṅṖ-ṗṠ-ṣṪ-ṫẀ-ẅẌ-ẓẞẠ-ầẪ-ẬẮ-ềỄ-ồỖ-ờỤ-ỹ€])|(M̂|N̂|m̂|n̂|D̂|d̂|J̌|L̂|l̂))*",
+          "minLength" : 1,
+          "maxLength" : 45,
+          "title" : "Familienname",
+          "description" : "Geben Sie Ihren Familiennamen ein. Er wird zu Ihrer Identifizierung im Melderegister ben\u00F6tigt."
+        },
+        "geburt" : {
+          "type" : "string",
+          "pattern" : "^(19|20)\\d\\d[-](0[0-9]|1[012])[-](0[0-9]|[12][0-9]|3[01])$",
+          "title" : "Geburtsdatum",
+          "description" : "Geben Sie Ihr Geburtsdatum in der Form YYYY-MM-DD an. Es wird zu Ihrer Identifizierung im Melderegister ben\u00F6tigt."
+        }
+      },
+      "required" : [ "nachname", "geburt" ],
+      "title" :"Grunddaten der betroffenen Person ",
+      "description" :"Hier werden die Grunddaten der betroffenen Person angegeben."
+    },
+    "betroffeneranschrift" : {
+      "type" : "object",
+      "properties" : {
+        "wohnort" : {
+          "type" : "string",
+          "pattern" : "(([ -         -~¡-¬®-ćĊ-ěĞ-ģĦ-ıĴ-śŞ-ūŮ-žƏƠ-ơƯ-ưƷǍ-ǔǞ-ǟǤ-ǰǴ-ǵǺ-ǿȘ-țȞ-ȟȪ-ȫȮ-ȳəʒḂ-ḃḊ-ḋḐ-ḑḞ-ḡḤ-ḧḰ-ḱṀ-ṁṄ-ṅṖ-ṗṠ-ṣṪ-ṫẀ-ẅẌ-ẓẞẠ-ầẪ-ẬẮ-ềỄ-ồỖ-ờỤ-ỹ€])|(M̂|N̂|m̂|n̂|D̂|d̂|J̌|L̂|l̂))*",
+          "minLength" : 1,
+          "maxLength" : 45,
+          "title" : "Wohnort",
+          "description" : "Geben Sie den Wohnort Ihrer Wohnung an."
+        },
+        "postleitzahl" : {
+          "type" : "string",
+          "pattern" : "\\d{5}",
+          "title" : "Postleitzahl",
+          "description" : "Geben Sie die Postleitzahl Ihrer Wohnung an."
+        },
+        "strassemithausnummer" : {
+          "type" : "string",
+          "pattern" : "[a-zA-Z\u00E4\u00F6\u00FC\u00C4\u00D6\u00DC\u00DF0-9\\s\\.-]+\\s+\\d+[a-zA-Z\\s0-9\\-/]*",
+          "minLength" : 1,
+          "maxLength" : 60,
+          "title" : "Stra\u00DFe mit Hausnummer",
+          "description" : "Geben Sie die Stra\u00DFe Ihrer Wohnung an."
+        },
+        "wohnungsgeber" : {
+          "type" : "string",
+          "pattern" : "(([ -         -~¡-¬®-ćĊ-ěĞ-ģĦ-ıĴ-śŞ-ūŮ-žƏƠ-ơƯ-ưƷǍ-ǔǞ-ǟǤ-ǰǴ-ǵǺ-ǿȘ-țȞ-ȟȪ-ȫȮ-ȳəʒḂ-ḃḊ-ḋḐ-ḑḞ-ḡḤ-ḧḰ-ḱṀ-ṁṄ-ṅṖ-ṗṠ-ṣṪ-ṫẀ-ẅẌ-ẓẞẠ-ầẪ-ẬẮ-ềỄ-ồỖ-ờỤ-ỹ€])|(M̂|N̂|m̂|n̂|D̂|d̂|J̌|L̂|l̂))*",
+          "minLength" : 0,
+          "maxLength" : 26,
+          "title" : "Wohnungsgeber",
+          "description" : "Bitte geben Sie Ihren Wohnungsgeber (Vermieter) an, z. B. Wohnungsbaugenossenschaft \"Frohes Wohnen\""
+        },
+        "gemeindeschluessel" : {
+          "type" : "string",
+          "pattern" : "\\d{8}",
+          "minLength" : 8,
+          "maxLength" : 8,
+          "title" : "Gemeindeschl\u00FCssel",
+          "description" : "Jede Gemeinde f\u00FChrt zur eindeutigen Identifizierung einen amtlichen Gemeindeschl\u00FCssel (AGS). Der AGS wird von den Statistischen Landes\u00E4mtern festgelegt und von den Statistischen Landes\u00E4mtern und dem Statistischen Bundesamt herausgegeben. Von dem AGS kann bisher neben der Gemeinde das Bundesland, der Regierungsbezirk und der Landkreis abgeleitet werden. Es wird der AGS der Gemeinde abgebildet, in der die Wohnung der (nat\u00FCrlichen) Person liegt."
+        }
+      },
+      "required" : [ "wohnort", "postleitzahl", "strassemithausnummer" ],
+      "title" :"Anschrift der betroffenen Person ",
+      "description" :"Hier wird die Anschrift der betroffenen Person angegeben."
+    },
+    "kontaktdatenantragsteller" : {
+      "type" : "object",
+      "properties" : {
+        "telefon" : {
+          "type" : "string",
+          "pattern" : "^[^A-Za-z]{1,15}$",
+          "title" : "Telefon",
+          "description" :"Die Angabe Ihrer Telefonnummer ist freiwillig, wird aber f\u00FCr evtl. R\u00FCckfragen empfohlen."
+        },
+        "fax" : {
+          "type" : "string",
+          "pattern" : "^[^A-Za-z]{1,15}$",
+          "title" : "Fax",
+          "description" :"Die Angabe Ihrer Faxnummer ist freiwillig."
+        },
+        "email" : {
+          "type" : "string",
+          "pattern" : "([._+-]*[a-zA-Z0-9]+([._+-]{0,1}[a-zA-Z0-9]+)*[._+-]*)@([a-zA-Z0-9]+([.-]{0,1}[a-zA-Z0-9]+)*[.][a-zA-Z]{2,})",
+          "minLength" : 1,
+          "maxLength" : 255,
+          "title" :"E-Mail-Adresse ",
+          "description" :"Bitte geben Sie Ihre E-Mail-Adresse an. Sie wird f\u00FCr evtl. R\u00FCckfragen ben\u00F6tigt."
+        },
+        "ansprechpartner" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 210,
+          "title" :"Ansprechpartner ",
+          "description" :"Hier kann der Ansprechpartner angegeben werden."
+        }
+      },
+      "title" :"Kontaktdaten der betroffenen Person ",
+      "description" :"Hier werden die Kontaktdaten der betroffenen Person angegeben."
+    },
+    "zurvorlagebei" : {
+      "type" : "string",
+      "minLength" : 1,
+      "maxLength" : 60,
+      "title" :"Zur Vorlage bei ",
+      "description" :"Es ist anzugeben, an welcher Stelle die Bescheinigung vorgelegt werden soll."
+    },
+    "zeichen" : {
+      "type" : "string",
+      "title" : "Identifikationsmerkmal",
+      "description" : "Eigenes Zeichen vom Anwender des WS f\u00FCr eine eigene Identifizierung und Zuordnung."
+    },
+    "fassung" : {
+      "type" : "string",
+      "pattern" : "\\d{4}-\\d{2}-\\d{2}",
+      "minLength" : 10,
+      "maxLength" : 10
+    },
+    "test" : {
+      "type" : "string",
+      "minLength" : 1,
+      "maxLength" : 255
+    },
+    "responsewithoutrequest" : {
+      "type" : "boolean"
+    },
+    "produkt" : {
+      "type" : "string",
+      "minLength" : 1,
+      "maxLength" : 255
+    },
+    "produkthersteller" : {
+      "type" : "string",
+      "minLength" : 1,
+      "maxLength" : 255
+    },
+    "produktversion" : {
+      "type" : "string",
+      "minLength" : 1,
+      "maxLength" : 50
+    },
+    "version" : {
+      "type" : "string",
+      "minLength" : 1,
+      "maxLength" : 50
+    },
+    "transaktionsdaten" : {
+      "type" : "object",
+      "properties" : {
+        "erfolgsUrl" : {
+          "type" : "string",
+          "description" :"R\u00FCcksprung-Url an die weitergeleitet wird wenn der Bezahlvorgang erfolgreich war."
+        },
+        "fehlerUrl" : {
+          "type" : "string",
+          "description" :"R\u00FCcksprung-Url an die weitergeleitet wird wenn der Bezahlvorgang fehlgeschlagen ist."
+        },
+        "hmac" : {
+          "type" : "string",
+          "description" : "Der HMAC Wert wird aus den Transaktionsdaten und einem Secret erzeugt. Der Grundtext f\u00FCr den HASH-Wert besteht aus den Werten der Transasaktionsdaten wie in der im Schema vordefinierten Reihenfolge. Das Secret(geheimer Schl\u00FCssel) kann mittels eines Benutzers erzeugt werden, sodass dieser f\u00FCr die HASH-Bildung genutzt werden kann. Als Algorithmus ist HMAC256 festgelegt."
+        },
+        "kundeninformation" : {
+          "type" : "object",
+          "properties" : {
+            "vorname" : {
+              "type" : "string",
+              "description" :"Vorname des Kunden"
+            },
+            "nachname" : {
+              "type" : "string",
+              "description" :"Nachname des Kunden"
+            },
+            "email" : {
+              "type" : "string",
+              "description" :"E-Mail-Adresse des Kunden"
+            },
+            "strasse" : {
+              "type" : "string",
+              "description" :"Stra\u00DFe des Kunden"
+            },
+            "hausnummer" : {
+              "type" : "string",
+              "description" :"Hausnummer des Kunden"
+            },
+            "plz" : {
+              "type" : "string",
+              "description" :"Postleitzahl des Kunden."
+            },
+            "stadt" : {
+              "type" : "string",
+              "description" :"Wohnort des Kunden"
+            },
+            "tel" : {
+              "type" : "string",
+              "description" :"Telefonnummer des Kunden"
+            },
+            "fax" : {
+              "type" : "string",
+              "description" :"Faxnummer des Kunden"
+            },
+            "firmenname" : {
+              "type" : "string",
+              "description" : "Firmenname"
+            }
+          },
+          "description" :"Informationen \u00FCber den Kunden."
+        },
+        "transactionsPrefix" : {
+          "type" : "string",
+          "minLength" : 0,
+          "maxLength" : 255,
+          "description" :"Hier k\u00F6nnen zus\u00E4tzliche Informationen hinterlegt werden die f\u00FCr ein Transaktionsverfahren ben\u00F6tigt werden, zum Beispiel der Bezirk f\u00FCr den die Transaktion relevant ist."
+        }
+      },
+      "required" : [ "erfolgsUrl", "fehlerUrl", "hmac" ],
+      "description" : "Die Transaktionsdaten werden ben\u00F6tigt, um eine Transaktionsnummer und URL zu erzeugen die f\u00FCr den Bezahlvorgang verwendet werden k\u00F6nnen."
+    }
+  },
+  "required" : [ "betroffener", "betroffeneranschrift", "kontaktdatenantragsteller", "version" ],
+  "name" : "meldebescheinigungrequest1"
+}

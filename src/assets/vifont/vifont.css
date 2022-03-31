@@ -1,0 +1,1808 @@
+@font-face {
+  font-family: "vifont";
+  src: url("./vifont.woff2") format("woff2"), url("./vifont.woff") format("woff");
+  display: inline-block;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+[class^="vi-"],
+[class*="vi-"] {
+  font-family: "vifont";
+  display: inline-block;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.vi-missing:before {
+  content: "\E000";
+}
+
+.vi-edit:before {
+  content: "\E001";
+}
+
+.vi-trash:before {
+  content: "\E002";
+}
+
+.vi-add:before {
+  content: "\E003";
+}
+
+.vi-save:before {
+  content: "\E004";
+}
+
+.vi-file:before {
+  content: "\E005";
+}
+
+.vi-lock:before {
+  content: "\E006";
+}
+
+.vi-inbox:before {
+  content: "\E007";
+}
+
+.vi-outbox:before {
+  content: "\E008";
+}
+
+.vi-contact:before {
+  content: "\E009";
+}
+
+.vi-family:before {
+  content: "\E00A";
+}
+
+.vi-meldekette:before {
+  content: "\E00B";
+}
+
+.vi-printer:before {
+  content: "\E00C";
+}
+
+.vi-annotations:before {
+  content: "\E00D";
+}
+
+.vi-specials:before {
+  content: "\E00F";
+}
+
+.vi-search:before {
+  content: "\E010";
+}
+
+.vi-search-history:before {
+  content: "\E011";
+}
+
+.vi-search-prev:before {
+  content: "\E012";
+}
+
+.vi-portal:before {
+  content: "\E013";
+}
+
+.vi-pin:before {
+  content: "\E014";
+}
+
+.vi-gear:before {
+  content: "\E015";
+}
+
+.vi-tool:before {
+  content: "\E016";
+}
+
+.vi-datatrans:before {
+  content: "\E017";
+}
+
+.vi-qs:before {
+  content: "\E018";
+}
+
+.vi-fernwartung:before {
+  content: "\E019";
+}
+
+.vi-calendar:before {
+  content: "\E01A";
+}
+
+.vi-correction:before {
+  content: "\E01B";
+}
+
+.vi-bdr:before {
+  content: "\E01C";
+}
+
+.vi-osv:before {
+  content: "\E01D";
+}
+
+.vi-archive:before {
+  content: "\E01E";
+}
+
+.vi-restore:before {
+  content: "\E01F";
+}
+
+.vi-document:before {
+  content: "\E020";
+}
+
+.vi-arrow-left:before {
+  content: "\E021";
+}
+
+.vi-arrow-right:before {
+  content: "\E022";
+}
+
+.vi-success-valid:before {
+  content: "\E023";
+}
+
+.vi-false-valid:before {
+  content: "\E024";
+}
+
+.vi-apply:before {
+  content: "\E025";
+}
+
+.vi-remove:before {
+  content: "\E026";
+}
+
+.vi-iconview:before {
+  content: "\E027";
+}
+
+.vi-list:before {
+  content: "\E028";
+}
+
+.vi-treeview:before {
+  content: "\E029";
+}
+
+.vi-star:before {
+  content: "\E02A";
+}
+
+.vi-filter:before {
+  content: "\E02B";
+}
+
+.vi-magnet:before {
+  content: "\E02C";
+}
+
+.vi-update:before {
+  content: "\E02D";
+}
+
+.vi-signaturepad:before {
+  content: "\E02E";
+}
+
+.vi-bmon:before {
+  content: "\E02F";
+}
+
+.vi-form:before {
+  content: "\E030";
+}
+
+.vi-npa-chip:before {
+  content: "\E031";
+}
+
+.vi-stethoscope:before {
+  content: "\E032";
+}
+
+.vi-folder-closed:before {
+  content: "\E033";
+}
+
+.vi-folder-open:before {
+  content: "\E034";
+}
+
+.vi-collapse-nav:before {
+  content: "\E035";
+}
+
+.vi-expand-nav:before {
+  content: "\E036";
+}
+
+.vi-home:before {
+  content: "\E037";
+}
+
+.vi-election:before {
+  content: "\E038";
+}
+
+.vi-eye:before {
+  content: "\E039";
+}
+
+.vi-success:before {
+  content: "\E03A";
+}
+
+.vi-wohnungsbau:before {
+  content: "\E03B";
+}
+
+.vi-inside:before {
+  content: "\E03C";
+}
+
+.vi-outside:before {
+  content: "\E03D";
+}
+
+.vi-anonymous-boy:before {
+  content: "\E03E";
+}
+
+.vi-anonymous-girl:before {
+  content: "\E03F";
+}
+
+.vi-anonymous-male:before {
+  content: "\E040";
+}
+
+.vi-anonymous-female:before {
+  content: "\E041";
+}
+
+.vi-buergerservice:before {
+  content: "\E042";
+}
+
+.vi-controlling:before {
+  content: "\E043";
+}
+
+.vi-statistics:before {
+  content: "\E044";
+}
+
+.vi-gun:before {
+  content: "\E045";
+}
+
+.vi-explosive:before {
+  content: "\E046";
+}
+
+.vi-key:before {
+  content: "\E047";
+}
+
+.vi-fingerprint:before {
+  content: "\E048";
+}
+
+.vi-log:before {
+  content: "\E049";
+}
+
+.vi-vois:before {
+  content: "\E04A";
+}
+
+.vi-pass-pa:before {
+  content: "\E04B";
+}
+
+.vi-scanner:before {
+  content: "\E04C";
+}
+
+.vi-attachment:before {
+  content: "\E04D";
+}
+
+.vi-datepicker:before {
+  content: "\E04E";
+}
+
+.vi-anonymous-inter:before {
+  content: "\E04F";
+}
+
+.vi-details:before {
+  content: "\E050";
+}
+
+.vi-female:before {
+  content: "\E051";
+}
+
+.vi-male:before {
+  content: "\E052";
+}
+
+.vi-warning:before {
+  content: "\E053";
+}
+
+.vi-help:before {
+  content: "\E054";
+}
+
+.vi-info:before {
+  content: "\E055";
+}
+
+.vi-hint:before {
+  content: "\E056";
+}
+
+.vi-history:before {
+  content: "\E057";
+}
+
+.vi-name:before {
+  content: "\E058";
+}
+
+.vi-gsv:before {
+  content: "\E059";
+}
+
+.vi-married:before {
+  content: "\E05A";
+}
+
+.vi-anonymous:before {
+  content: "\E05B";
+}
+
+.vi-europe:before {
+  content: "\E05C";
+}
+
+.vi-execute:before {
+  content: "\E05D";
+}
+
+.vi-relocation:before {
+  content: "\E05E";
+}
+
+.vi-flat:before {
+  content: "\E05F";
+}
+
+.vi-return:before {
+  content: "\E060";
+}
+
+.vi-chain:before {
+  content: "\E061";
+}
+
+.vi-speak:before {
+  content: "\E062";
+}
+
+.vi-support:before {
+  content: "\E063";
+}
+
+.vi-quit:before {
+  content: "\E064";
+}
+
+.vi-logoff:before {
+  content: "\E065";
+}
+
+.vi-task:before {
+  content: "\E066";
+}
+
+.vi-data-exchange:before {
+  content: "\E067";
+}
+
+.vi-transmission:before {
+  content: "\E068";
+}
+
+.vi-transmission-block:before {
+  content: "\E069";
+}
+
+.vi-disclosure:before {
+  content: "\E06A";
+}
+
+.vi-asp:before {
+  content: "\E06B";
+}
+
+.vi-religion:before {
+  content: "\E06C";
+}
+
+.vi-religion-prev:before {
+  content: "\E06D";
+}
+
+.vi-location:before {
+  content: "\E06E";
+}
+
+.vi-tax:before {
+  content: "\E06F";
+}
+
+.vi-nationality:before {
+  content: "\E070";
+}
+
+.vi-nationality-loss:before {
+  content: "\E071";
+}
+
+.vi-nationality-cert:before {
+  content: "\E072";
+}
+
+.vi-nationality-prev:before {
+  content: "\E073";
+}
+
+.vi-certificate:before {
+  content: "\E074";
+}
+
+.vi-document-auth:before {
+  content: "\E075";
+}
+
+.vi-notes:before {
+  content: "\E076";
+}
+
+.vi-start:before {
+  content: "\E077";
+}
+
+.vi-stop:before {
+  content: "\E078";
+}
+
+.vi-database:before {
+  content: "\E079";
+}
+
+.vi-source-restore:before {
+  content: "\E07A";
+}
+
+.vi-download:before {
+  content: "\E07B";
+}
+
+.vi-copy:before {
+  content: "\E07C";
+}
+
+.vi-user:before {
+  content: "\E07D";
+}
+
+.vi-user-add:before {
+  content: "\E07E";
+}
+
+.vi-user-delete:before {
+  content: "\E07F";
+}
+
+.vi-role:before {
+  content: "\E080";
+}
+
+.vi-role-add:before {
+  content: "\E081";
+}
+
+.vi-role-delete:before {
+  content: "\E082";
+}
+
+.vi-unit:before {
+  content: "\E083";
+}
+
+.vi-unit-add:before {
+  content: "\E084";
+}
+
+.vi-unit-delete:before {
+  content: "\E085";
+}
+
+.vi-e-akte:before {
+  content: "\E086";
+}
+
+.vi-undo:before {
+  content: "\E087";
+}
+
+.vi-eraser:before {
+  content: "\E088";
+}
+
+.vi-redo:before {
+  content: "\E089";
+}
+
+.vi-addons:before {
+  content: "\E08A";
+}
+
+.vi-ribbon:before {
+  content: "\E08B";
+}
+
+.vi-expand:before {
+  content: "\E08C";
+}
+
+.vi-collapse:before {
+  content: "\E08D";
+}
+
+.vi-intersexual:before {
+  content: "\E08E";
+}
+
+.vi-next:before {
+  content: "\E08F";
+}
+
+.vi-forward:before {
+  content: "\E090";
+}
+
+.vi-back:before {
+  content: "\E091";
+}
+
+.vi-backward:before {
+  content: "\E092";
+}
+
+.vi-up:before {
+  content: "\E093";
+}
+
+.vi-down:before {
+  content: "\E094";
+}
+
+.vi-close:before {
+  content: "\E095";
+}
+
+.vi-health-report:before {
+  content: "\E096";
+}
+
+.vi-cut:before {
+  content: "\E097";
+}
+
+.vi-paste:before {
+  content: "\E098";
+}
+
+.vi-angle:before {
+  content: "\E099";
+}
+
+.vi-link:before {
+  content: "\E09A";
+}
+
+.vi-doctorate:before {
+  content: "\E09B";
+}
+
+.vi-factory:before {
+  content: "\E09C";
+}
+
+.vi-e-akte-select:before {
+  content: "\E09D";
+}
+
+.vi-e-akte-deselect:before {
+  content: "\E09E";
+}
+
+.vi-printer-select:before {
+  content: "\E09F";
+}
+
+.vi-printer-deselect:before {
+  content: "\E0A0";
+}
+
+.vi-down-nf:before {
+  content: "\E0A1";
+}
+
+.vi-up-nf:before {
+  content: "\E0A2";
+}
+
+.vi-device-control:before {
+  content: "\E0A3";
+}
+
+.vi-municipality:before {
+  content: "\E0A4";
+}
+
+.vi-message-mb:before {
+  content: "\E0A5";
+}
+
+.vi-question-mb:before {
+  content: "\E0A6";
+}
+
+.vi-information-mb:before {
+  content: "\E0A7";
+}
+
+.vi-success-mb:before {
+  content: "\E0A8";
+}
+
+.vi-error-mb:before {
+  content: "\E0A9";
+}
+
+.vi-hint-mb:before {
+  content: "\E0AA";
+}
+
+.vi-warning-mb:before {
+  content: "\E0AB";
+}
+
+.vi-fatal-mb:before {
+  content: "\E0AC";
+}
+
+.vi-paragraph29:before {
+  content: "\E0AD";
+}
+
+.vi-address:before {
+  content: "\E0AE";
+}
+
+.vi-passport-withdraw:before {
+  content: "\E0AF";
+}
+
+.vi-binoculars:before {
+  content: "\E0B0";
+}
+
+.vi-confirm-name:before {
+  content: "\E0B1";
+}
+
+.vi-warning-valid:before {
+  content: "\E0B2";
+}
+
+.vi-dialog:before {
+  content: "\E0B3";
+}
+
+.vi-city:before {
+  content: "\E0B4";
+}
+
+.vi-district:before {
+  content: "\E0B5";
+}
+
+.vi-street:before {
+  content: "\E0B6";
+}
+
+.vi-area:before {
+  content: "\E0B7";
+}
+
+.vi-expand-right:before {
+  content: "\E0B8";
+}
+
+.vi-expand-left:before {
+  content: "\E0B9";
+}
+
+.vi-deselect:before {
+  content: "\E0BA";
+}
+
+.vi-select:before {
+  content: "\E0BB";
+}
+
+.vi-menu:before {
+  content: "\E0BC";
+}
+
+.vi-gender:before {
+  content: "\E0BD";
+}
+
+.vi-expandable:before {
+  content: "\E0BE";
+}
+
+.vi-append:before {
+  content: "\E0BF";
+}
+
+.vi-remove-2:before {
+  content: "\E0C0";
+}
+
+.vi-collapse-left:before {
+  content: "\E0C1";
+}
+
+.vi-collapse-right:before {
+  content: "\E0C2";
+}
+
+.vi-ente:before {
+  content: "\E0C3";
+}
+
+.vi-webcam:before {
+  content: "\E0C4";
+}
+
+.vi-pipette:before {
+  content: "\E0C5";
+}
+
+.vi-newspaper:before {
+  content: "\E0C6";
+}
+
+.vi-filing:before {
+  content: "\E0C7";
+}
+
+.vi-meldewesen:before {
+  content: "\E0C8";
+}
+
+.vi-gewerbewesen:before {
+  content: "\E0C9";
+}
+
+.vi-auslaenderwesen:before {
+  content: "\E0CA";
+}
+
+.vi-fuehrerscheinwesen:before {
+  content: "\E0CB";
+}
+
+.vi-cube:before {
+  content: "\E0CC";
+}
+
+.vi-ballot-paper:before {
+  content: "\E0CD";
+}
+
+.vi-cancel:before {
+  content: "\E0CE";
+}
+
+.vi-unknown:before {
+  content: "\E0CF";
+}
+
+.vi-layout:before {
+  content: "\E0D0";
+}
+
+.vi-items-components:before {
+  content: "\E0D1";
+}
+
+.vi-flash:before {
+  content: "\E0D3";
+}
+
+.vi-widget:before {
+  content: "\E0D4";
+}
+
+.vi-basic:before {
+  content: "\E0D5";
+}
+
+.vi-outbox-reports:before {
+  content: "\E0D6";
+}
+
+.vi-inbox-reports:before {
+  content: "\E0D7";
+}
+
+.vi-driving-license:before {
+  content: "\E0D8";
+}
+
+.vi-car:before {
+  content: "\E0D9";
+}
+
+.vi-estate:before {
+  content: "\E0DA";
+}
+
+.vi-picture:before {
+  content: "\E0DB";
+}
+
+.vi-import:before {
+  content: "\E0DC";
+}
+
+.vi-export:before {
+  content: "\E0DD";
+}
+
+.vi-send:before {
+  content: "\E0DE";
+}
+
+.vi-move:before {
+  content: "\E0DF";
+}
+
+.vi-expand-2:before {
+  content: "\E0E0";
+}
+
+.vi-collapse-2:before {
+  content: "\E0E1";
+}
+
+.vi-cemetery:before {
+  content: "\E0E2";
+}
+
+.vi-bzr-gzr:before {
+  content: "\E0E3";
+}
+
+.vi-fachverfahren:before {
+  content: "\E0E4";
+}
+
+.vi-meldekette-info:before {
+  content: "\E0E5";
+}
+
+.vi-partially-cancel:before {
+  content: "\E0E6";
+}
+
+.vi-card:before {
+  content: "\E0E7";
+}
+
+.vi-rollstuhlfahrer:before {
+  content: "\E0E8";
+}
+
+.vi-table:before {
+  content: "\E0E9";
+}
+
+.vi-gebuehrenkasse:before {
+  content: "\E0EA";
+}
+
+.vi-minus:before {
+  content: "\E0EB";
+}
+
+.vi-fischereischein:before {
+  content: "\E0EC";
+}
+
+.vi-fundbuero:before {
+  content: "\E0ED";
+}
+
+.vi-rz-print:before {
+  content: "\E0EE";
+}
+
+.vi-rz-print-select:before {
+  content: "\E0EF";
+}
+
+.vi-rz-print-deselect:before {
+  content: "\E0F0";
+}
+
+.vi-code:before {
+  content: "\E0F1";
+}
+
+.vi-civiso:before {
+  content: "\E0F2";
+}
+
+.vi-pam:before {
+  content: "\E0F3";
+}
+
+.vi-online:before {
+  content: "\E0F4";
+}
+
+.vi-birthday:before {
+  content: "\E0F5";
+}
+
+.vi-alert:before {
+  content: "\E0F6";
+}
+
+.vi-gew-kraftverkehr:before {
+  content: "\E0F7";
+}
+
+.vi-verpflichtungserklaerung:before {
+  content: "\E0F8";
+}
+
+.vi-dot:before {
+  content: "\E0F9";
+}
+
+.vi-birth:before {
+  content: "\E0FA";
+}
+
+.vi-intend-right:before {
+  content: "\E0FB";
+}
+
+.vi-intend-left:before {
+  content: "\E0FC";
+}
+
+.vi-beaker:before {
+  content: "\E0FD";
+}
+
+.vi-fullscreen:before {
+  content: "\E0FE";
+}
+
+.vi-close-fullscreen:before {
+  content: "\E0FF";
+}
+
+.vi-bell:before {
+  content: "\E100";
+}
+
+.vi-scalable:before {
+  content: "\E101";
+}
+
+.vi-townhall:before {
+  content: "\E102";
+}
+
+.vi-mailbox:before {
+  content: "\E103";
+}
+
+.vi-tilesize:before {
+  content: "\E104";
+}
+
+.vi-anonymous-ngr-male:before {
+  content: "\E105";
+}
+
+.vi-container:before {
+  content: "\E106";
+}
+
+.vi-hourglass:before {
+  content: "\E107";
+}
+
+.vi-help-2:before {
+  content: "\E108";
+}
+
+.vi-base:before {
+  content: "\E109";
+}
+
+.vi-kontrollgeraetekarten:before {
+  content: "\E10A";
+}
+
+.vi-fahrschule:before {
+  content: "\E10B";
+}
+
+.vi-fahrgastbefoerderung:before {
+  content: "\E10C";
+}
+
+.vi-amtlkennzeichen:before {
+  content: "\E10D";
+}
+
+.vi-owi:before {
+  content: "\E10E";
+}
+
+.vi-sio:before {
+  content: "\E10F";
+}
+
+.vi-zulassungsakte:before {
+  content: "\E110";
+}
+
+.vi-filiale:before {
+  content: "\E111";
+}
+
+.vi-investment:before {
+  content: "\E112";
+}
+
+.vi-abakus:before {
+  content: "\E113";
+}
+
+.vi-barchart:before {
+  content: "\E114";
+}
+
+.vi-piechart:before {
+  content: "\E115";
+}
+
+.vi-workplace:before {
+  content: "\E116";
+}
+
+.vi-childtrans:before {
+  content: "\E117";
+}
+
+.vi-write:before {
+  content: "\E118";
+}
+
+.vi-schoeffen:before {
+  content: "\E119";
+}
+
+.vi-sort:before {
+  content: "\E11A";
+}
+
+.vi-sortup:before {
+  content: "\E11B";
+}
+
+.vi-sortdown:before {
+  content: "\E11C";
+}
+
+.vi-draft:before {
+  content: "\E11D";
+}
+
+.vi-nib:before {
+  content: "\E11E";
+}
+
+.vi-smile:before {
+  content: "\E11F";
+}
+
+.vi-sad:before {
+  content: "\E120";
+}
+
+.vi-relations:before {
+  content: "\E121";
+}
+
+.vi-fe-am:before {
+  content: "\E122";
+}
+
+.vi-fe-a1:before {
+  content: "\E123";
+}
+
+.vi-fe-a2:before {
+  content: "\E124";
+}
+
+.vi-fe-a:before {
+  content: "\E125";
+}
+
+.vi-fe-b1:before {
+  content: "\E126";
+}
+
+.vi-fe-b:before {
+  content: "\E127";
+}
+
+.vi-fe-c1:before {
+  content: "\E128";
+}
+
+.vi-fe-c:before {
+  content: "\E129";
+}
+
+.vi-fe-d1:before {
+  content: "\E12A";
+}
+
+.vi-fe-d:before {
+  content: "\E12B";
+}
+
+.vi-fe-e-cd:before {
+  content: "\E12C";
+}
+
+.vi-fe-e-b:before {
+  content: "\E12D";
+}
+
+.vi-fe-ce-part1:before {
+  content: "\E12E";
+}
+
+.vi-fe-ce-part2:before {
+  content: "\E12F";
+}
+
+.vi-fe-t:before {
+  content: "\E130";
+}
+
+.vi-arrow-down:before {
+  content: "\E131";
+}
+
+.vi-arrow-up:before {
+  content: "\E132";
+}
+
+.vi-feedback:before {
+  content: "\E133";
+}
+
+.vi-super-happy:before {
+  content: "\E134";
+}
+
+.vi-super-bad:before {
+  content: "\E135";
+}
+
+.vi-neutral:before {
+  content: "\E136";
+}
+
+.vi-enter:before {
+  content: "\E137";
+}
+
+.vi-drag:before {
+  content: "\E138";
+}
+
+.vi-upload:before {
+  content: "\E139";
+}
+
+.vi-lock-dot:before {
+  content: "\E13A";
+}
+
+.vi-stamp:before {
+  content: "\E13B";
+}
+
+.vi-anonymous-male-dead:before {
+  content: "\E13C";
+}
+
+.vi-anonymous-female-dead:before {
+  content: "\E13D";
+}
+
+.vi-anonymous-trans-dead:before {
+  content: "\E13E";
+}
+
+.vi-anonymous-girl-dead:before {
+  content: "\E13F";
+}
+
+.vi-anonymous-boy-dead:before {
+  content: "\E140";
+}
+
+.vi-map:before {
+  content: "\E141";
+}
+
+.vi-smartphone:before {
+  content: "\E142";
+}
+
+.vi-handwerkskammer:before {
+  content: "\E143";
+}
+
+.vi-treeview-level:before {
+  content: "\E144";
+}
+
+.vi-open-response:before {
+  content: "\E145";
+}
+
+.vi-kanban:before {
+  content: "\E146";
+}
+
+.vi-move-files:before {
+  content: "\E147";
+}
+
+.vi-stateless:before {
+  content: "\E148";
+}
+
+.vi-eye-dot:before {
+  content: "\E149";
+}
+
+.vi-forbidden-dot:before {
+  content: "\E14A";
+}
+
+.vi-kfz:before {
+  content: "\E14B";
+}
+
+.vi-hug:before {
+  content: "\E14C";
+}
+
+.vi-tevis:before {
+  content: "\E14D";
+}
+
+.vi-clock:before {
+  content: "\E14F";
+}
+
+.vi-appointments:before {
+  content: "\E150";
+}
+
+.vi-background-dot:before {
+  content: "\E151";
+}
+
+.vi-background-triangle:before {
+  content: "\E152";
+}
+
+.vi-call-up:before {
+  content: "\E153";
+}
+
+.vi-caps-lock:before {
+  content: "\E154";
+}
+
+.vi-coffin:before {
+  content: "\E156";
+}
+
+.vi-dog-left:before {
+  content: "\E157";
+}
+
+.vi-dog-right:before {
+  content: "\E158";
+}
+
+.vi-elfried:before {
+  content: "\E159";
+}
+
+.vi-eu-stars:before {
+  content: "\E15A";
+}
+
+.vi-registration-abroad:before {
+  content: "\E15B";
+}
+
+.vi-registration:before {
+  content: "\E15C";
+}
+
+.vi-semi-set:before {
+  content: "\E15D";
+}
+
+.vi-sidebar-off:before {
+  content: "\E15E";
+}
+
+.vi-sidebar-on:before {
+  content: "\E15F";
+}
+
+.vi-star-unselected:before {
+  content: "\E160";
+}
+
+.vi-to-do:before {
+  content: "\E161";
+}
+
+.vi-border-triangle:before {
+  content: "\E162";
+}
+
+.vi-call-up-ticket:before {
+  content: "\E163";
+}
+
+.vi-cinerary-urn:before {
+  content: "\E164";
+}
+
+.vi-eight:before {
+  content: "\E165";
+}
+
+.vi-five:before {
+  content: "\E166";
+}
+
+.vi-four:before {
+  content: "\E167";
+}
+
+.vi-home-unselected:before {
+  content: "\E168";
+}
+
+.vi-limit:before {
+  content: "\E169";
+}
+
+.vi-minimize:before {
+  content: "\E16A";
+}
+
+.vi-nine:before {
+  content: "\E16B";
+}
+
+.vi-obligation:before {
+  content: "\E16C";
+}
+
+.vi-one:before {
+  content: "\E16D";
+}
+
+.vi-regulation:before {
+  content: "\E16E";
+}
+
+.vi-scroll-down:before {
+  content: "\E16F";
+}
+
+.vi-seven:before {
+  content: "\E170";
+}
+
+.vi-six:before {
+  content: "\E171";
+}
+
+.vi-three:before {
+  content: "\E172";
+}
+
+.vi-two:before {
+  content: "\E173";
+}
+
+.vi-unchain:before {
+  content: "\E174";
+}
+
+.vi-warning-triangle:before {
+  content: "\E176";
+}
+
+.vi-zero:before {
+  content: "\E177";
+}
+
+.vi-glasses:before {
+  content: "\E178";
+}
+
+.vi-unknown-gender:before {
+  content: "\E179";
+}
+
+.vi-error-partial:before {
+  content: "\E17A";
+}
+
+.vi-circle-partial-three:before {
+  content: "\E17B";
+}
+
+.vi-circle-partial-two:before {
+  content: "\E17C";
+}
+
+.vi-success-partial:before {
+  content: "\E17D";
+}
+
+.vi-warning-partial-one:before {
+  content: "\E17E";
+}
+
+.vi-warning-partial-two:before {
+  content: "\E17F";
+}
+
+.vi-to-mark:before {
+  content: "\E180";
+}
+
+.vi-merge:before {
+  content: "\E181";
+}
+
+.vi-collect:before {
+  content: "\E182";
+}
+
+.vi-meeting:before {
+  content: "\E183";
+}
+
+.vi-illness:before {
+  content: "\E184";
+}
+
+.vi-failure:before {
+  content: "\E185";
+}
+
+.vi-vacation:before {
+  content: "\E186";
+}
+
+.vi-permission:before {
+  content: "\E187";
+}
+
+.vi-file-folder:before {
+  content: "\E188";
+}
+
+.vi-fishing-license:before {
+  content: "\E189";
+}
+
+.vi-warning-two-partial-one:before {
+  content: "\E18A";
+}
+
+.vi-warning-two-partial-two:before {
+  content: "\E18B";
+}
+
+.vi-warning-partial-three:before {
+  content: "\E18C";
+}
+
+.vi-circle-partial-one:before {
+  content: "\E18D";
+}
+
+.vi-anonymous-group:before {
+  content: "\E18E";
+}
+
+.vi-automatic-pay:before {
+  content: "\E18F";
+}
+
+.vi-bdr-logo:before {
+  content: "\E190";
+}
+
+.vi-certification-request:before {
+  content: "\E191";
+}
+
+.vi-institution:before {
+  content: "\E192";
+}
+
+.vi-right-administration:before {
+  content: "\E193";
+}
+
+.vi-server-configuration:before {
+  content: "\E194";
+}
+
+.vi-text-module:before {
+  content: "\E195";
+}
+
+.vi-erlaubniswesen:before {
+  content: "\E196";
+}
+
+.vi-team:before {
+  content: "\E197";
+}
+
+.vi-waiting-group:before {
+  content: "\E198";
+}
+
+.vi-csd:before {
+  content: "\E199";
+}
+
+.vi-base-inverted:before {
+  content: "\E19A";
+}
+
+.vi-bev:before {
+  content: "\E19B";
+}
+
+.vi-examine:before {
+  content: "\E19C";
+}
+
+.vi-fahrgastbefoerderung-inverted:before {
+  content: "\E19D";
+}
+
+.vi-fahrschule-inverted:before {
+  content: "\E19E";
+}
+
+.vi-fischereischein-inverted:before {
+  content: "\E19F";
+}
+
+.vi-friedhof-inverted:before {
+  content: "\E1A0";
+}
+
+.vi-friedhof:before {
+  content: "\E1A1";
+}
+
+.vi-fundbuero-inverted:before {
+  content: "\E1A2";
+}
+
+.vi-gavel:before {
+  content: "\E1A3";
+}
+
+.vi-gebuehrenkasse-inverted:before {
+  content: "\E1A4";
+}
+
+.vi-grave:before {
+  content: "\E1A5";
+}
+
+.vi-hkr-interface:before {
+  content: "\E1A6";
+}
+
+.vi-hug-inverted:before {
+  content: "\E1A7";
+}
+
+.vi-kfz-inverted:before {
+  content: "\E1A8";
+}
+
+.vi-libra:before {
+  content: "\E1A9";
+}
+
+.vi-link-extern:before {
+  content: "\E1AA";
+}
+
+.vi-link-window:before {
+  content: "\E1AB";
+}
+
+.vi-online-inverted:before {
+  content: "\E1AC";
+}
+
+.vi-owi-inverted:before {
+  content: "\E1AD";
+}
+
+.vi-priority-high:before {
+  content: "\E1AE";
+}
+
+.vi-priority-low:before {
+  content: "\E1AF";
+}
+
+.vi-priority-normal:before {
+  content: "\E1B0";
+}
+
+.vi-prohibited:before {
+  content: "\E1B1";
+}
+
+.vi-schoeffen-inverted:before {
+  content: "\E1B2";
+}
+
+.vi-sio-inverted:before {
+  content: "\E1B3";
+}
+
+.vi-wunschzettelverwaltung:before {
+  content: "\E1B4";
+}
+
+.vi-empty:before {
+  content: "\F8FF";
+}
+
+.vi-empty {
+  opacity: 0;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.vi-spin {
+  animation: rotation 3s infinite linear;
+}
+
+.vi-2x {
+  font-size: 2em;
+}
+
+.vi-3x {
+  font-size: 3em;
+}
+
+.vi-4x {
+  font-size: 4em;
+}
+
+.vi-5x {
+  font-size: 5em;
+}

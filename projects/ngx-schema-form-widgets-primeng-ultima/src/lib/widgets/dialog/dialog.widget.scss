@@ -1,0 +1,20 @@
+
+::ng-deep { 
+    /** 
+     * prevent dialog content from beeing hidden
+     * e.g dropdown will not be shown if bigger then dialog
+     * https://primefaces.org/primeng/showcase/#/dialog
+     */
+    /*
+    Warning: Don't do this, it will break the scrolling 
+    so no overflowed content can be displayed uncut in dialog
+    .ui-dialog-content {
+        overflow: unset !important;
+    }
+    */
+}
+
+/* make sure dialog doesn't get bigger than the viewport */
+.ngx-ui-dialog {
+    max-width: 100vw;
+}

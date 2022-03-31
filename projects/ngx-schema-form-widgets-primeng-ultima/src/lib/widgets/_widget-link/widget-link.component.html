@@ -1,0 +1,120 @@
+<!--
+        Element 'link'
+         - label       : label
+         - description : tooltip
+         - id          : style id
+         - disabled    : true|false|'valid'|'invalid' = disabled state, or form is in/valid
+         - href        : any url to navigate to
+         - target      : any navigation target to open the link in
+         - icon        : icon from primeng ultima
+         - iconPos     : left|right = primeng button icon position
+         - inline      : true|false = show horizontally inlined
+         - overlay     : true|false = show content in dialog with embedded iframe sandbox
+         - overlayClose: text to show withing the link 'close overlay'
+         - overlayOpen : text to show withing the link 'open in new window'
+         - sandbox     : any of allowed values from sandbox attribute for iframe. see: https://www.w3.org/TR/2011/WD-html5-20110525/the-iframe-element.html#attr-iframe-sandbox
+-->
+<p-dialog #overlayDialog
+          [closeOnEscape]="true"
+          [closable]="false"
+          (onHide)="onHide($event, overlayDialog)"
+          [resizable]="false"
+          styleClass="linkOverlayDialog"
+          [modal]="true"
+          [dismissableMask]="true"
+>
+  <p-header>
+    <span *ngIf="link.label">{{link.label}}</span>
+    <a class="p-header__link--close"
+       (click)="overlayDialog.visible=false;false"
+       (keydown.enter)="overlayDialog.visible=false;false"
+       (mouseup)="overlayDialog.visible=false;false"
+       href="#"
+       rel="noopener noreferrer"
+       [tooltipDisabled]="mobileDevice"
+       [pTooltip]="link.overlayClose||null"
+
+       [attr.role]="'button'"
+       [attr.title]="link.overlayClose||null"
+    ><i class="material-icons">close</i>
+    </a>
+    <!-- FIX: #19 -->
+    <!-- having the following span with the same event bindings -->
+    <!-- is the only working solution to make the anchor above  working on mobiles -->
+    <!-- so jus leave it here -->
+    <span class="p-header__link--close"
+          (click)="overlayDialog.visible=false;false"
+          (keydown.enter)="overlayDialog.visible=false;false"
+          (mouseup)="overlayDialog.visible=false;false"
+    >
+                <!--<i class="material-icons"></i>-->
+              </span>
+    <!-- /FIX: #19 -->
+  </p-header>
+  <iframe
+    *ngIf="overlayDialog.visible"
+    style="position: relative; height: 90%; width: 100%;"
+    [sandbox]="link.sandbox||''"
+    [src]="href"
+    frameborder="0"
+    allowfullscreen></iframe>
+  <p-footer>
+    <div *ngIf="'_blank'===link.target">
+      <a #linkOpenInNewWindow
+         class="p-header__link--close"
+         (click)="overlayDialog.visible=false;true"
+         (keydown.enter)="overlayDialog.visible=false;true"
+         [href]="href"
+         rel="noopener noreferrer"
+         target="_blank"
+         [tooltipDisabled]="mobileDevice"
+         [pTooltip]="link.overlayOpen||null"
+
+         [attr.role]="'button'"
+         [attr.title]="link.overlayOpen||null"
+      >
+        <!-- FIX: #19 -->
+        <!-- leave the link empty, it will be triggered from subsequent span -->
+        <!--<i class="material-icons">open_in_new</i>-->
+        <i class="material-icons"></i>
+        <!-- /FIX: #19 -->
+      </a>
+      <!-- FIX: #19 -->
+      <!-- having the following span with the same event bindings -->
+      <!-- is the only working solution to make the anchor above  working on mobiles -->
+      <!-- so jus leave it here -->
+      <button pButton
+              class="p-header__link--close"
+              (click)="linkOpenInNewWindow.click()"
+              (keydown.enter)="linkOpenInNewWindow.click()"
+              [tooltipDisabled]="mobileDevice"
+              [pTooltip]="link.overlayOpen||null"
+              [attr.role]="'button'"
+              [attr.title]="link.overlayOpen||null"
+      ><i class="material-icons">open_in_new</i></button>
+      <!-- /FIX: #19 -->
+    </div>
+  </p-footer>
+</p-dialog>
+<a
+  (click)="onClick(overlayDialog)"
+  [href]="href"
+  rel="noopener noreferrer"
+  [attr.title]="link.description||link.label||null"
+  [attr.id]="link.id"
+  [attr.target]="link.target||null"
+  [tooltipDisabled]="mobileDevice"
+  [pTooltip]="link.description||null"
+  [attr.data-rel]="link.overlay?'dialog':null"
+  class="ngx-ui-widget-link"
+
+  [attr.role]="'link'"
+>
+<span *ngIf="link.icon && (!link.iconPos || link.iconPos ==='left' || link.iconPos ==='top')"
+      class="ngx-ui-widget-link-icon ui-button-icon-{{link.iconPos||'left'}} material-icons {{link.icon|IconName}}"
+      [attr.aria-hidden]="true"></span>
+  {{link.label}}
+  <span *ngIf="link.icon && (link.iconPos ==='right' || link.iconPos ==='bottom')"
+        class="ngx-ui-widget-link-icon ui-button-icon-{{link.iconPos}} material-icons {{link.icon|IconName}}"
+        [attr.aria-hidden]="true"></span>
+</a>
